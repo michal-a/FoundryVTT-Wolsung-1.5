@@ -110,4 +110,66 @@ export default class WolsungCards extends Cards {
         return from.pass(this, toDraw.map(c => c.id), {updateData, action: "draw", ...options});
     }
 
+    async dealDialog() {
+      const hands = game.cards.filter(c => (c.type !== "deck") && (c.type !== "pile") && c.testUserPermission(game.user, "LIMITED"));
+      if ( !hands.length ) return ui.notifications.warn("CARDS.DealWarnNoTargets", {localize: true});
+  
+      // Construct the dialog HTML
+      const html = await renderTemplate("systems/wolsung/templates/cards/dialog-deal.hbs", {
+        hands: hands,
+        modes: {
+          [CONST.CARD_DRAW_MODES.TOP]: "CARDS.DrawModeTop",
+          [CONST.CARD_DRAW_MODES.BOTTOM]: "CARDS.DrawModeBottom",
+          [CONST.CARD_DRAW_MODES.RANDOM]: "CARDS.DrawModeRandom",
+        }
+      });
+  
+      // Display the prompt
+      return Dialog.prompt({
+        title: game.i18n.localize("CARDS.DealTitle"),
+        label: game.i18n.localize("CARDS.Deal"),
+        content: html,
+        callback: html => {
+          const form = html.querySelector("form.cards-dialog");
+          const fd = new FormDataExtended(form).toObject();
+          if ( !fd.to ) return this;
+          if ( !(fd.to instanceof Array) ) fd.to = [html.querySelector('[name="to"]').value];
+          const to = fd.to.map(id => game.cards.get(id));
+          const options = {how: fd.how, updateData: fd.down ? {face: null} : {}};
+          return this.deal(to, fd.number, options).catch(err => {
+            ui.notifications.error(err.message);
+            return this;
+          });
+        },
+        rejectClose: false,
+        options: {jQuery: false}
+      });
+    }
+
+    async playDialog(card) {
+      const cards = game.cards.filter(c => (c !== this) && (c.type !== "deck") && (c.name !== game.settings.get("wolsung", "initiativePile")) && c.testUserPermission(game.user, "LIMITED"));
+      if ( !cards.length ) return ui.notifications.warn("CARDS.PassWarnNoTargets", {localize: true});
+  
+      // Construct the dialog HTML
+      const html = await renderTemplate("systems/wolsung/templates/cards/dialog-play.hbs", {card, cards});
+  
+      // Display the prompt
+      return Dialog.prompt({
+        title: game.i18n.localize("CARD.Play"),
+        label: game.i18n.localize("CARD.Play"),
+        content: html,
+        callback: html => {
+          const form = html.querySelector("form.cards-dialog");
+          const fd = new FormDataExtended(form).toObject();
+          const to = game.cards.get(fd.to);
+          const options = {action: "play", updateData: fd.down ? {face: null} : {}};
+          return this.pass(to, [card.id], options).catch(err => {
+            return ui.notifications.error(err.message);
+          });
+        },
+        rejectClose: false,
+        options: {jQuery: false}
+      });
+    }
+
 }

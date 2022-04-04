@@ -7,8 +7,11 @@ import WolsungActorSheet from "./sheets/WolsungActorSheet.mjs";
 import WolsungActor from "./documents/WolsungActor.mjs";
 import WolsungDiceTerm from "./rolls/WolsungDiceTerm.mjs";
 import rollFromChatMessageWolsungCommand from "./rolls/WolsungRoll.mjs";
+import WolsungCardConfig from "./cards/WolsungCardConfig.mjs";
 import WolsungCards from "./cards/WolsungCards.mjs";
 import WolsungCardsHand from "./cards/WolsungCardsHand.mjs";
+import WolsungCardsDeck from "./cards/WolsungCardsDeck.mjs";
+import WolsungCardsPile from "./cards/WolsungCardsPile.mjs";
 import WolsungCombat from "./combat/combat.mjs";
 import WolsungCombatTracker from "./combat/combatTracker.mjs";
 
@@ -32,8 +35,17 @@ Hooks.once("init", function(){
     Actors.unregisterSheet("core", ActorSheet);
     Actors.registerSheet("wolsung", WolsungActorSheet, {makeDefault: true});
 
-    //DocumentSheetConfig.unregisterSheet(Cards, "core", CardsHand);
+    DocumentSheetConfig.unregisterSheet(Card, "core", CardConfig);
+    DocumentSheetConfig.registerSheet(Card, "wolsung", WolsungCardConfig, {makeDefault: true});
+
+    DocumentSheetConfig.unregisterSheet(Cards, "core", CardsHand);
     DocumentSheetConfig.registerSheet(Cards, "wolsung", WolsungCardsHand, {types: ["hand"], makeDefault: true});
+
+    DocumentSheetConfig.unregisterSheet(Cards, "core", CardsConfig);
+    DocumentSheetConfig.registerSheet(Cards, "wolsung", WolsungCardsDeck, {types: ["deck"], makeDefault: true});
+
+    DocumentSheetConfig.unregisterSheet(Cards, "core", CardsPile);
+    DocumentSheetConfig.registerSheet(Cards, "wolsung", WolsungCardsPile, {types: ["pile"], makeDefault: true});
 
     console.log(CONFIG);
     preloadWolsungTemplates();
