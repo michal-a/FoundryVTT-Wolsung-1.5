@@ -20,7 +20,7 @@ export default class WolsungActorSheet extends ActorSheet{
     ]
 
     get template() {
-        return `systems/wolsung/templates/sheets/actor-${this.actor.data.type}-sheet.html`;
+        return `systems/wolsung/templates/sheets/actor-${this.actor.data.type}-sheet.hbs`;
     }
 
     getData() {
@@ -108,7 +108,7 @@ export default class WolsungActorSheet extends ActorSheet{
     async _onGenerujKonfrontacje(event) {
         event.preventDefault();
 
-        const template = "systems/wolsung/templates/chat/konfrontacja-dialog.html";
+        const template = "systems/wolsung/templates/chat/konfrontacja-dialog.hbs";
         const html = await renderTemplate(template, {});
         return new Promise(resolve => {
             const data = {
@@ -226,7 +226,7 @@ export default class WolsungActorSheet extends ActorSheet{
     }
 
     async _onPrepareRoll(rollData) {
-        const template = "systems/wolsung/templates/chat/prepareRoll-dialog.html";
+        const template = "systems/wolsung/templates/chat/prepareRoll-dialog.hbs";
         const html = await renderTemplate(template, rollData);
         return new Promise(resolve => {
             const data = {

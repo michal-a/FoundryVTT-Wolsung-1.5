@@ -10,7 +10,7 @@ export default class WolsungItemSheet extends ItemSheet{
     }
 
     get template() {
-        return `systems/wolsung/templates/sheets/item-${this.item.data.type}-sheet.html`;
+        return `systems/wolsung/templates/sheets/item-${this.item.data.type}-sheet.hbs`;
     }
 
     getData() {

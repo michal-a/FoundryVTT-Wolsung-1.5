@@ -19,9 +19,9 @@
                 <input name="data.personalia.narodowosc" type="text" value="{{data.personalia.narodowosc}}" placeholder="{{localize 'wolsung.bohater.narodowosc'}}"/>
             </div>
             <div class="stats">
-                {{> "systems/wolsung/templates/partials/bohater-atrybuty-block.html"}}
-                {{> "systems/wolsung/templates/partials/bohater-konfrontacja-block.html"}}
-                {{> "systems/wolsung/templates/partials/bohater-pdBogactwo-block.html"}}
+                {{> "systems/wolsung/templates/partials/bohater-atrybuty-block.hbs"}}
+                {{> "systems/wolsung/templates/partials/bohater-konfrontacja-block.hbs"}}
+                {{> "systems/wolsung/templates/partials/bohater-pdBogactwo-block.hbs"}}
             </div>
         </div>
     </header>
@@ -45,7 +45,7 @@
                 <span class="title"><b>{{localize "wolsung.bohater.blizny"}}</b></span>
                 <div class="blizny-content">
                     {{#each blizny as |blizna id|}}
-                    {{> "systems/wolsung/templates/partials/blizna-card.html"}}
+                    {{> "systems/wolsung/templates/partials/blizna-card.hbs"}}
                     {{/each}}
                     <a class="item-create" data-type="blizna" title="{{localize 'wolsung.bohater.nowaBlizna'}}">
                         <i class="fas fa-plus"></i>
@@ -54,12 +54,12 @@
             </div>
         </div>
         <div class="tab" data-group="primary" data-tab="tabInitial">
-            {{> "systems/wolsung/templates/partials/bohater-umiejetnosci-block.html"}}
+            {{> "systems/wolsung/templates/partials/bohater-umiejetnosci-block.hbs"}}
         </div>
         <div class="tab" data-group="primary" data-tab="atuty">
             <div class="atuty-list">
                 {{#each atuty as |atut id|}}
-                {{> "systems/wolsung/templates/partials/atut-card.html"}}
+                {{> "systems/wolsung/templates/partials/atut-card.hbs"}}
                 {{/each}}
                 <a class="item-create" data-type="atut" title="{{localize 'wolsung.bohater.nowyAtut'}}">
                     <i class="fas fa-plus"></i>
@@ -73,7 +73,7 @@
             </div>
             <div class="zdolnosc-list">
                 {{#each zdolnosci as |zdolnosc id|}}
-                {{> "systems/wolsung/templates/partials/zdolnosc-card.html"}}
+                {{> "systems/wolsung/templates/partials/zdolnosc-card.hbs"}}
                 {{/each}}
                 <a class="item-create" data-type="zdolnosc" title="{{localize 'wolsung.bohater.nowaZdolnosc'}}">
                     <i class="fas fa-plus"></i>
@@ -83,7 +83,7 @@
         <div class="tab" data-group="primary" data-tab="gadzety">
             <div class="gadzet-list">
                 {{#each gadzety as |gadzet id|}}
-                {{> "systems/wolsung/templates/partials/gadzet-card.html"}}
+                {{> "systems/wolsung/templates/partials/gadzet-card.hbs"}}
                 {{/each}}
                 <a class="item-create" data-type="gadzet" title="{{localize 'wolsung.bohater.nowyGadzet'}}">
                     <i class="fas fa-plus"></i>
@@ -100,7 +100,7 @@
                         </a>
                     </div>
                     {{#each moce as |moc id|}}
-                    {{> "systems/wolsung/templates/partials/moc-card.html"}}
+                    {{> "systems/wolsung/templates/partials/moc-card.hbs"}}
                     {{/each}}
                 </div>
                 <div class="zaklecie-list">
@@ -111,7 +111,7 @@
                         </a>
                     </div>
                     {{#each zaklecia as |zaklecie id|}}
-                    {{> "systems/wolsung/templates/partials/zaklecie-card.html"}}
+                    {{> "systems/wolsung/templates/partials/zaklecie-card.hbs"}}
                     {{/each}}
                 </div>
             </div>
@@ -120,14 +120,14 @@
             <div class="osiagniecia">
                 <ol class="osiagniecia-list">
                     {{#each osiagniecia as |osiagniecie id|}}
-                    {{> "systems/wolsung/templates/partials/osiagniecie-card.html"}}
+                    {{> "systems/wolsung/templates/partials/osiagniecie-card.hbs"}}
                     {{/each}}
                     <a class="osiagniecie-item item-create" data-type="osiagniecie" title="{{localize 'wolsung.bohater.noweOsiagniecie'}}"><li><i class="fas fa-plus"></i></li></a>
                 </ol>
             </div>
         </div>
         <div class="tab" data-group="primary" data-tab="archetyp">
-            {{> "systems/wolsung/templates/partials/bohater-archetyp-block.html"}}
+            {{> "systems/wolsung/templates/partials/bohater-archetyp-block.hbs"}}
         </div>
 
     </section>

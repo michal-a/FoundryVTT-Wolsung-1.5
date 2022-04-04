@@ -62,7 +62,7 @@
         <div class="tab" data-group="primary" data-tab="tabInitial">
             <div class="zdolnosci">
                 {{#each zdolnosci as |zdolnosc id|}}
-                {{> "systems/wolsung/templates/partials/obsada-zdolnosc-card.html"}}
+                {{> "systems/wolsung/templates/partials/obsada-zdolnosc-card.hbs"}}
                 {{/each}}
                 <a class="item-create" data-type="zdolnosc" title="{{localize 'wolsung.obsada.nowaZdolnosc'}}">
                     <i class="fas fa-plus"></i>
@@ -81,7 +81,7 @@
                 <p>{{localize "wolsung.obsada.umiejetnosci"}}</p>
                 <div class="konfrontacja-block">
                     {{#each umiejetnosciWalka as |walka id|}}
-                    {{> "systems/wolsung/templates/partials/obsada-umiejetnosc-card.html"}}
+                    {{> "systems/wolsung/templates/partials/obsada-umiejetnosc-card.hbs"}}
                     {{/each}}
                     <div class="umiejetnosc-card">
                         <a class="item-create" data-type="umiejetnoscObsady" data-konfrontacja="walka" title="{{localize 'wolsung.obsada.nowaUmiejetnosc'}}">
@@ -104,7 +104,7 @@
                 <p>{{localize "wolsung.obsada.umiejetnosci"}}</p>
                 <div class="konfrontacja-block">
                     {{#each umiejetnosciPoscig as |poscig id|}}
-                    {{> "systems/wolsung/templates/partials/obsada-umiejetnosc-card.html"}}
+                    {{> "systems/wolsung/templates/partials/obsada-umiejetnosc-card.hbs"}}
                     {{/each}}
                     <div class="umiejetnosc-card">
                         <a class="item-create" data-type="umiejetnoscObsady" data-konfrontacja="poscig" title="{{localize 'wolsung.obsada.nowaUmiejetnosc'}}">
@@ -127,7 +127,7 @@
                 <p>{{localize "wolsung.obsada.umiejetnosci"}}</p>
                 <div class="konfrontacja-block">
                     {{#each umiejetnosciDyskusja as |dyskusja id|}}
-                    {{> "systems/wolsung/templates/partials/obsada-umiejetnosc-card.html"}}
+                    {{> "systems/wolsung/templates/partials/obsada-umiejetnosc-card.hbs"}}
                     {{/each}}
                     <div class="umiejetnosc-card">
                         <a class="item-create" data-type="umiejetnoscObsady" data-konfrontacja="dyskusja" title="{{localize 'wolsung.obsada.nowaUmiejetnosc'}}">
@@ -144,7 +144,7 @@
                 <p>{{localize "wolsung.obsada.umiejetnosci"}}</p>
                 <div class="umiejetnosci-block">
                     {{#each umiejetnosciBrak as |brak id|}}
-                    {{> "systems/wolsung/templates/partials/obsada-umiejetnosc-card.html"}}
+                    {{> "systems/wolsung/templates/partials/obsada-umiejetnosc-card.hbs"}}
                     {{/each}}
                     <div class="umiejetnosc-card">
                         <a class="item-create" data-type="umiejetnoscObsady" data-konfrontacja="brak" title="{{localize 'wolsung.obsada.nowaUmiejetnosc'}}">
