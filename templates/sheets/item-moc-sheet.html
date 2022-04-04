@@ -1,0 +1,28 @@
+<form class="{{cssClass}}" autocomplete="off">
+    <header class="sheet-header atut-header">
+        <img class="item-img" src="{{item.img}}" data-edit="img" title="{{item.name}}"/>
+        <div class="header-fields">
+            <h1><input name="name" type="text" value="{{item.name}}" placeholder="{{ localize 'wolsung.moc.name' }}"/></h1>
+        </div>
+    </header>
+    <nav class="sheet-tabs tabs" data-group="primary">
+        <a class="item" data-tab="description">{{localize "wolsung.moc.descTab"}}</a>
+        <a class="item" data-tab="efekt">{{localize "wolsung.moc.efekt"}}</a>
+        <a class="item" data-tab="karta">{{localize "wolsung.moc.karta"}}</a>
+        <a class="item" data-tab="bonus">{{localize "wolsung.moc.bonus"}}</a>
+    </nav>
+    <section class="sheet-content">
+        <div class="tab" data-group="primary" data-tab="description">
+            {{editor content=data.opis target="data.opis" button=true owner=owner editable=editable content=""}}
+        </div>
+        <div class="tab" data-group="primary" data-tab="efekt">
+            {{editor content=data.efekt target="data.efekt" button=true owner=owner editable=editable content=""}}
+        </div>
+        <div class="tab" data-group="primary" data-tab="karta">
+            {{editor content=data.karta target="data.karta" button=true owner=owner editable=editable content=""}}
+        </div>
+        <div class="tab" data-group="primary" data-tab="bonus">
+            {{editor content=data.bonus target="data.bonus" button=true owner=owner editable=editable content=""}}
+        </div>
+    </section>
+</form>

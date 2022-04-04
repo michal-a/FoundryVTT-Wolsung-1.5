@@ -1,0 +1,160 @@
+.wolsung.sheet.actor {
+    .obsada {
+        .right {
+            text-align: right;
+        }
+        .left {
+            text-align: left
+        }
+        .number {
+            width: 20px;
+            background: rgba(0, 0, 0, 0.1);
+            border: none;
+        }
+        .text {
+            width: 150px;
+        }
+        select {
+            background: rgba(0, 0, 0, 0);
+            border: none;
+            padding: 0px;
+        }
+        input {
+            background: rgba(0, 0, 0, 0);
+            border: none;
+            border-bottom: 1px solid;
+        }
+        h2 {
+            margin-left: 3px;
+            margin-right: 3px;
+            margin-top: 3px;
+            border-bottom: none;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        .sheet-header {
+            .actor-img {
+            flex: 0 auto;
+            overflow: hidden;
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            min-height: 100px;
+            max-height: 100px;
+            }
+            .bold {
+                font-weight: bold;
+            }
+            .actor-img {
+                height: 100px;
+                margin-right: 10px;
+            }
+            .header-fields {
+                border: 1px solid;
+                min-height: 100px;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+                .header-row {
+                    display:flex;
+                    flex-direction: row;
+                    justify-content: flex-start;
+                    align-items: center;
+                    font-size: small;
+                    margin-left: 3px;
+                    margin-right: 3px;
+                    margin-bottom: 3px;
+                }
+            }
+        }
+        .sheet-content {
+            max-height: 413px;
+            height: 100%;
+            .opis {
+                display: flex;
+                flex-direction: column;
+                height: 413px;
+                padding: 3px;
+                border: 1px solid;
+                .editor {
+                    height: 100%;
+                }
+            }
+            .zdolnosci {
+                height: 413px;
+                border: 1px solid;
+                display: flex;
+                flex-direction: column;
+                overflow-y: auto;
+                justify-content: flex-start;
+                .zdolnosc-card {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: flex-start;
+                    border-bottom: 1px dotted;
+                    width: 100%;
+                    .zdolnosc-name {
+                        font-weight: bold;
+                        width: 15%;
+                        padding: 3px;
+                    }
+                    .zdolnosc-opis {
+                        width: 85%;
+                    }
+                }
+            }
+            .umiejetnosci {
+                height: 413px;
+                border: 1px solid;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+                input {
+                    background: rgba(0, 0, 0, 0.1);
+                    border: none;
+                }
+                p {
+                    font-weight: bold;
+                }
+                .konfrontacja-row {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: flex-start;
+                    align-items: center;
+                }
+                .konfrontacja-block {
+                    display: flex;
+                    flex-flow: row wrap;
+                    justify-content: flex-start;
+                    align-content: flex-start;
+                    width: 100%;
+                    overflow-y: auto;
+                    height: 56.2%
+                }
+                .umiejetnosci-block {
+                    display: flex;
+                    flex-flow: row wrap;
+                    justify-content: flex-start;
+                    align-content: flex-start;
+                    width: 100%;
+                    overflow-y: auto;
+                    height: 95%
+                }
+                .umiejetnosc-card {
+                    width: 50%;
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: flex-start;
+                    align-items: center;
+                    padding: 3px;
+                    border-right: 1px dotted;
+                }
+                .textarea {
+                    height: 20%;
+                }
+            }
+        }
+    }
+}

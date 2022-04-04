@@ -1,0 +1,34 @@
+<div class="atrybuty">
+    <div class="atrybuty-header">
+        <h3 class="atrybuty-header-name">{{localize "wolsung.bohater.atrybuty.nazwa"}}</h3>
+        <h3 class="atrybuty-header-przerzut">10+</h3>
+        <h3 class="atrybuty-header-przerzut">&nbsp;9+</h3>
+        <h3 class="atrybuty-header-przerzut">&nbsp;8+</h3>
+        <span>Rany</span>
+    </div>
+    <div class="atrybuty-row">
+        <input class="rany" name="data.atrybuty.krz.rany" type="text" value="{{data.atrybuty.krz.rany}}" placeholder="0" data-dtype="Number"/>
+        {{radioBoxes "data.atrybuty.krz.wartosc" config.wartosciAtrybutow checked=data.atrybuty.krz.wartosc localize=false}}
+        <span>{{localize "wolsung.bohater.atrybuty.krz"}}</span>
+    </div>
+    <div class="atrybuty-row">
+        <input class="rany" name="data.atrybuty.zr.rany" type="text" value="{{data.atrybuty.zr.rany}}" placeholder="0" data-dtype="Number"/>
+        {{radioBoxes "data.atrybuty.zr.wartosc" config.wartosciAtrybutow checked=data.atrybuty.zr.wartosc localize=false}}
+        <span>{{localize "wolsung.bohater.atrybuty.zr"}}</span>
+    </div>
+    <div class="atrybuty-row">
+        <input class="rany" name="data.atrybuty.prz.rany" type="text" value="{{data.atrybuty.prz.rany}}" placeholder="0" data-dtype="Number"/>
+        {{radioBoxes "data.atrybuty.prz.wartosc" config.wartosciAtrybutow checked=data.atrybuty.prz.wartosc localize=false}}
+        <span>{{localize "wolsung.bohater.atrybuty.prz"}}</span>
+    </div>
+    <div class="atrybuty-row">
+        <input class="rany" name="data.atrybuty.op.rany" type="text" value="{{data.atrybuty.op.rany}}" placeholder="0" data-dtype="Number"/>
+        {{radioBoxes "data.atrybuty.op.wartosc" config.wartosciAtrybutow checked=data.atrybuty.op.wartosc localize=false}}
+        <span>{{localize "wolsung.bohater.atrybuty.op"}}</span>
+    </div>
+    <div class="atrybuty-row">
+        <input class="rany" name="data.atrybuty.cha.rany" type="text" value="{{data.atrybuty.cha.rany}}" placeholder="0" data-dtype="Number"/>
+        {{radioBoxes "data.atrybuty.cha.wartosc" config.wartosciAtrybutow checked=data.atrybuty.cha.wartosc localize=false}}
+        <span>{{localize "wolsung.bohater.atrybuty.cha"}}</span>
+    </div>
+</div>

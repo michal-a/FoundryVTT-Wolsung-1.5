@@ -1,0 +1,287 @@
+{
+    "Actor": {
+        "types": [
+            "bohater",
+            "obsada",
+            "bn"
+        ],
+        "bohater": {
+            "personalia": {
+              "narodowosc": "",
+              "archetyp": "",
+              "rasa": "",
+              "profesja": "",
+              "prestiz": "",
+              "opis": "",
+              "bogactwo": {
+                "podstawa": 3,
+                "biezace": 3
+              },
+              "pd": 0
+            },
+            "konfrontacja": {
+              "odpornosc": {
+                "min": 0,
+                "value": 3,
+                "max": 3
+              },
+              "kondycja": {
+                "mod": 0
+              },
+              "reputacja": {
+                "mod": 0
+              },
+              "obrona": {
+                "mod": 0
+              },
+              "wytrwalosc": {
+                "mod": 0
+              },
+              "pewnoscSiebie": {
+                "mod": 0
+              }
+            },
+            "atrybuty": {
+              "krz": {
+                "wartosc": "10",
+                "rany": 0
+              },
+              "zr": {
+                "wartosc": "10",
+                "rany": 0
+              },
+              "prz": {
+                "wartosc": "10",
+                "rany": 0
+              },
+              "op": {
+                "wartosc": "10",
+                "rany": 0
+              },
+              "cha": {
+                "wartosc": "10",
+                "rany": 0
+              }
+            },
+            "umiejetnosci": {
+              "analiza": {
+                "name": "analiza",
+                "atrybut": "prz",
+                "podstawa": 3,
+                "specjalizacja": "",
+                "modyfikator": 0
+              },
+              "blef": {
+                "name": "blef",
+                "atrybut": "cha",
+                "podstawa": 3,
+                "specjalizacja": "",
+                "modyfikator": 0
+              },
+              "ekspresja": {
+                "name": "ekspresja",
+                "atrybut": "cha",
+                "podstawa": 3,
+                "specjalizacja": "",
+                "modyfikator": 0
+              },
+              "empatia": {
+                "name": "empatia",
+                "atrybut": "prz",
+                "podstawa": 3,
+                "specjalizacja": "",
+                "modyfikator": 0
+              },
+              "odwaga": {
+                "name": "odwaga",
+                "atrybut": "op",
+                "podstawa": 3,
+                "specjalizacja": "",
+                "modyfikator": 0
+              },
+              "okultyzm": {
+                "name": "okultyzm",
+                "atrybut": "prz",
+                "podstawa": 3,
+                "specjalizacja": "",
+                "modyfikator": 0
+              },
+              "perswazja": {
+                "name": "perswazja",
+                "atrybut": "cha",
+                "podstawa": 3,
+                "specjalizacja": "",
+                "modyfikator": 0
+              },
+              "pojazdy": {
+                "name": "pojazdy",
+                "atrybut": "zr",
+                "podstawa": 3,
+                "specjalizacja": "",
+                "modyfikator": 0
+              },
+              "polswiatek": {
+                "name": "polswiatek",
+                "atrybut": "prz",
+                "podstawa": 3,
+                "specjalizacja": "",
+                "modyfikator": 0
+              },
+              "przyroda": {
+                "name": "przyroda",
+                "atrybut": "prz",
+                "podstawa": 3,
+                "specjalizacja": "",
+                "modyfikator": 0
+              },
+              "spostrzegawczosc": {
+                "name": "spostrzegawczosc",
+                "atrybut": "prz",
+                "podstawa": 3,
+                "specjalizacja": "",
+                "modyfikator": 0
+              },
+              "strzelanie": {
+                "name": "strzelanie",
+                "atrybut": "zr",
+                "podstawa": 3,
+                "specjalizacja": "",
+                "modyfikator": 0
+              },
+              "technika": {
+                "name": "technika",
+                "atrybut": "prz",
+                "podstawa": 3,
+                "specjalizacja": "",
+                "modyfikator": 0
+              },
+              "ukrywanieSie": {
+                "name": "ukrywanieSie",
+                "atrybut": "zr",
+                "podstawa": 3,
+                "specjalizacja": "",
+                "modyfikator": 0
+              },
+              "walka": {
+                "name": "walka",
+                "atrybut": "krz",
+                "podstawa": 3,
+                "specjalizacja": "",
+                "modyfikator": 0
+              },
+              "wiedzaAkademicka": {
+                "name": "wiedzaAkademicka",
+                "atrybut": "prz",
+                "podstawa": 3,
+                "specjalizacja": "",
+                "modyfikator": 0
+              },
+              "wysportowanie": {
+                "name": "wysportowanie",
+                "atrybut": "krz",
+                "podstawa": 3,
+                "specjalizacja": "",
+                "modyfikator": 0
+              },
+              "zastraszanie": {
+                "name": "zastraszanie",
+                "atrybut": "cha",
+                "podstawa": 3,
+                "specjalizacja": "",
+                "modyfikator": 0
+              },
+              "zlodziejstwo": {
+                "name": "zlodziejstwo",
+                "atrybut": "zr",
+                "podstawa": 3,
+                "specjalizacja": "",
+                "modyfikator": 0
+              }
+            }
+        },
+        "obsada": {
+            "opis": "",
+            "rasa": "",
+            "pula": 2,
+            "typ": "przeciwnik",
+            "konfrontacja": {
+                "odpornosc": {
+                    "min": 0,
+                    "value": 3,
+                    "max": 3
+                  },
+                  "obrona": {
+                    "value": 10,
+                    "max": 10
+                  },
+                  "wytrwalosc": {
+                    "value": 10,
+                    "max": 10
+                  },
+                  "pewnoscSiebie": {
+                    "value": 10,
+                    "max": 10
+                  },
+                  "domyslna": "walka",
+                  "walka": "",
+                  "dyskusja": "",
+                  "poscig": ""
+            }
+        },
+        "bn": {
+          "opis": ""
+        }
+    },
+    "Item": {
+        "types": [
+            "atut",
+            "gadzet",
+            "zdolnosc",
+            "osiagniecie",
+            "moc",
+            "zaklecie",
+            "blizna",
+            "umiejetnoscObsady"
+        ],
+        "atut": {
+            "koszt": "3PD",
+            "wymagania": "",
+            "opis": ""
+        },
+        "gadzet": {
+            "opis": "",
+            "cechy": ""
+        },
+        "zdolnosc": {
+            "opis": ""
+        },
+        "osiagniecie": {
+            "opis": "",
+            "bonus": "",
+            "czestotliwosc": "",
+            "uzyte": false
+        },
+        "moc": {
+            "opis": "",
+            "efekt": "",
+            "karta": "",
+            "bonus": "",
+            "aktywna": true
+        },
+        "zaklecie": {
+            "opis": "",
+            "wymagania": "",
+            "efekty": ""
+        },
+        "umiejetnoscObsady": {
+            "podstawa": 3,
+            "przerzut": 10,
+            "konfrontacja": "brak"
+        },
+        "blizna": {
+          "opis": "",
+          "kara": "",
+          "bonus": ""
+        }
+    }
+}

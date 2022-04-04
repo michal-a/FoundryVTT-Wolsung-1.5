@@ -1,0 +1,22 @@
+<div class="pdbogactwo">
+    <div class="bogactwo">
+        <a class="bogactwo-roll"><p>{{localize "wolsung.bohater.bogactwo.name"}}</p></a>
+        <div class="bogactwo-row">
+            <div class="bogactwo-column">
+                <span>{{localize "wolsung.bohater.bogactwo.biezace"}}</span>
+                <span><b>{{localize "wolsung.bohater.bogactwo.zamozny"}} (3)</b></span>
+                <span><b>{{localize "wolsung.bohater.bogactwo.bogaty"}} (6)</b></span>
+                <span><b>{{localize "wolsung.bohater.bogactwo.bBogaty"}} (9)</b></span>
+                <span><b>{{localize "wolsung.bohater.bogactwo.krezus"}} (12)</b></span>
+            </div>
+            <div class="bogactwo-column">
+                <input name="data.personalia.bogactwo.biezace" type="text" value="{{data.personalia.bogactwo.biezace}}" data-dtype="Number"/>
+                {{radioBoxes "data.personalia.bogactwo.podstawa" config.podstawaBogactwa checked=data.personalia.bogactwo.podstawa localize=false}}
+            </div>
+        </div>
+    </div>
+    <div class="pd">
+        <p>{{localize "wolsung.bohater.pd"}}</p>
+        <input name="data.personalia.pd" type="text" value="{{data.personalia.pd}}" data-dtype="Number"/>
+    </div>
+</div>

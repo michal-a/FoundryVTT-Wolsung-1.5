@@ -1,0 +1,158 @@
+<form class="{{cssClass}} obsada" autocomplete="off">
+    <header class="sheet-header">
+        <img class="actor-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}"/>
+        <div class="header-fields">
+            <h2><input name="name" type="text" value="{{actor.name}}" placeholder="{{ localize 'wolsung.obsada.name' }}"/></h2>
+            <div class="header-row bold">
+                <span>{{localize "wolsung.obsada.konfrontacja.name"}}</span>
+                <select name="data.konfrontacja.domyslna" >
+                    {{#select data.konfrontacja.domyslna}}
+                    {{#each config.domyslnaKonfrontacja as |name type|}}
+                    <option value="{{type}}">{{localize name}}</option>
+                    {{/each}}
+                    {{/select}}
+                </select>
+            </div>
+            <div class="header-row">
+                <select name="data.typ" >
+                    {{#select data.typ}}
+                    {{#each config.obsadaTyp as |name type|}}
+                    <option value="{{type}}">{{localize name}}</option>
+                    {{/each}}
+                    {{/select}}
+                </select>
+                {{#if data.typBool.przeciwnik}}
+                <span>, </span>
+                <input class="text" name="data.rasa" type="text" value="{{data.rasa}}" placeholder="{{localize 'wolsung.obsada.rasa'}}"/>
+                <span>{{localize "wolsung.obsada.pula.start"}}</span>
+                <input class="number right" name="data.pula" type="text" value="{{data.pula}}" data-dtype="Number"/>
+                <span>{{localize "wolsung.obsada.pula.end"}}{{localize "wolsung.obsada.odpornosc"}}</span>
+                <input class="number right" name="data.konfrontacja.odpornosc.value" type="text" value="{{data.konfrontacja.odpornosc.value}}" data-dtype="Number"/>
+                <span>/</span>
+                <input class="number left" name="data.konfrontacja.odpornosc.max" type="text" value="{{data.konfrontacja.odpornosc.max}}" data-dtype="Number"/>
+                {{/if}}
+                {{#if data.typBool.statysta}}
+                <span>{{localize "wolsung.obsada.pula.start"}}{{data.pula}}{{localize "wolsung.obsada.pula.end"}}{{localize "wolsung.obsada.grupa"}}</span>
+                <input class="number right" name="data.konfrontacja.odpornosc.value" type="text" value="{{data.konfrontacja.odpornosc.value}}" data-dtype="Number"/>
+                <span>/</span>
+                <input class="number left" name="data.konfrontacja.odpornosc.max" type="text" value="{{data.konfrontacja.odpornosc.max}}" data-dtype="Number"/>
+                <input class="text" name="data.rasa" type="text" value="{{data.rasa}}" placeholder="{{localize 'wolsung.obsada.czyja'}}"/>
+                {{/if}}
+                {{#if data.typBool.sojusznik}}
+                <span>{{localize "wolsung.obsada.pula.start"}}{{data.pula}}{{localize "wolsung.obsada.pula.end"}}</span>
+                {{/if}}
+            </div>
+        </div>
+    </header>
+    <nav class="sheet-tabs tabs" data-group="primary">
+        <a class="item" data-tab="opis">{{localize "wolsung.obsada.tabs.opis"}}</a>
+        <a class="item" data-tab="tabInitial">{{localize "wolsung.obsada.tabs.zdolnosci"}}</a>
+        <a class="item" data-tab="walka">{{localize "wolsung.obsada.tabs.walka"}}</a>
+        <a class="item" data-tab="poscig">{{localize "wolsung.obsada.tabs.poscig"}}</a>
+        <a class="item" data-tab="dyskusja">{{localize "wolsung.obsada.tabs.dyskusja"}}</a>
+        <a class="item" data-tab="umiejetnosci">{{localize "wolsung.obsada.tabs.umiejetnosci"}}</a>
+    </nav>
+    <section class="sheet-content">
+        <div class="tab" data-group="primary" data-tab="opis">
+            <div class="opis">
+                <span><b>{{localize "wolsung.obsada.opis"}}</b></span>
+                {{editor content=data.opis target="data.opis" button=true owner=owner editable=editable content="{{localize 'wolsung.obsada.opis'}}"}}
+            </div>
+        </div>
+        <div class="tab" data-group="primary" data-tab="tabInitial">
+            <div class="zdolnosci">
+                {{#each zdolnosci as |zdolnosc id|}}
+                {{> "systems/wolsung/templates/partials/obsada-zdolnosc-card.html"}}
+                {{/each}}
+                <a class="item-create" data-type="zdolnosc" title="{{localize 'wolsung.obsada.nowaZdolnosc'}}">
+                    <i class="fas fa-plus"></i>
+                </a>
+                
+            </div>
+        </div>
+        <div class="tab" data-group="primary" data-tab="walka">
+            <div class="umiejetnosci">
+                <div class="konfrontacja-row">
+                    <p>{{localize "wolsung.konfrontacja.obrona"}}:</p>
+                    <input class="number right" name="data.konfrontacja.obrona.value" type="text" value="{{data.konfrontacja.obrona.value}}" data-dtype="Number"/>
+                    <span>/</span>
+                    <input class="number left" name="data.konfrontacja.obrona.max" type="text" value="{{data.konfrontacja.obrona.max}}" data-dtype="Number"/>
+                </div>
+                <p>{{localize "wolsung.obsada.umiejetnosci"}}</p>
+                <div class="konfrontacja-block">
+                    {{#each umiejetnosciWalka as |walka id|}}
+                    {{> "systems/wolsung/templates/partials/obsada-umiejetnosc-card.html"}}
+                    {{/each}}
+                    <div class="umiejetnosc-card">
+                        <a class="item-create" data-type="umiejetnoscObsady" data-konfrontacja="walka" title="{{localize 'wolsung.obsada.nowaUmiejetnosc'}}">
+                            <i class="fas fa-plus"></i>
+                        </a>
+                    </div>
+                </div>
+                <p>{{localize "wolsung.obsada.uwagi"}}</p>
+                <textarea class="textarea" name="data.konfrontacja.walka">{{data.konfrontacja.walka}}</textarea>
+            </div>
+        </div>
+        <div class="tab" data-group="primary" data-tab="poscig">
+            <div class="umiejetnosci">
+                <div class="konfrontacja-row">
+                    <p>{{localize "wolsung.konfrontacja.wytrwalosc"}}:</p>
+                    <input class="number right" name="data.konfrontacja.wytrwalosc.value" type="text" value="{{data.konfrontacja.wytrwalosc.value}}" data-dtype="Number"/>
+                    <span>/</span>
+                    <input class="number left" name="data.konfrontacja.wytrwalosc.max" type="text" value="{{data.konfrontacja.wytrwalosc.max}}" data-dtype="Number"/>
+                </div>
+                <p>{{localize "wolsung.obsada.umiejetnosci"}}</p>
+                <div class="konfrontacja-block">
+                    {{#each umiejetnosciPoscig as |poscig id|}}
+                    {{> "systems/wolsung/templates/partials/obsada-umiejetnosc-card.html"}}
+                    {{/each}}
+                    <div class="umiejetnosc-card">
+                        <a class="item-create" data-type="umiejetnoscObsady" data-konfrontacja="poscig" title="{{localize 'wolsung.obsada.nowaUmiejetnosc'}}">
+                            <i class="fas fa-plus"></i>
+                        </a>
+                    </div>
+                </div>
+                <p>{{localize "wolsung.obsada.uwagi"}}</p>
+                <textarea class="textarea" name="data.konfrontacja.poscig">{{data.konfrontacja.poscig}}</textarea>
+            </div>
+        </div>
+        <div class="tab" data-group="primary" data-tab="dyskusja">
+            <div class="umiejetnosci">
+                <div class="konfrontacja-row">
+                    <p>{{localize "wolsung.konfrontacja.pewnoscSiebie"}}:</p>
+                    <input class="number right" name="data.konfrontacja.pewnoscSiebie.value" type="text" value="{{data.konfrontacja.pewnoscSiebie.value}}" data-dtype="Number"/>
+                    <span>/</span>
+                    <input class="number left" name="data.konfrontacja.pewnoscSiebie.max" type="text" value="{{data.konfrontacja.pewnoscSiebie.max}}" data-dtype="Number"/>
+                </div>
+                <p>{{localize "wolsung.obsada.umiejetnosci"}}</p>
+                <div class="konfrontacja-block">
+                    {{#each umiejetnosciDyskusja as |dyskusja id|}}
+                    {{> "systems/wolsung/templates/partials/obsada-umiejetnosc-card.html"}}
+                    {{/each}}
+                    <div class="umiejetnosc-card">
+                        <a class="item-create" data-type="umiejetnoscObsady" data-konfrontacja="dyskusja" title="{{localize 'wolsung.obsada.nowaUmiejetnosc'}}">
+                            <i class="fas fa-plus"></i>
+                        </a>
+                    </div>
+                </div>
+                <p>{{localize "wolsung.obsada.uwagi"}}</p>
+                <textarea class="textarea" name="data.konfrontacja.dyskusja">{{data.konfrontacja.dyskusja}}</textarea>
+            </div>
+        </div>
+        <div class="tab" data-group="primary" data-tab="umiejetnosci">
+            <div class="umiejetnosci">
+                <p>{{localize "wolsung.obsada.umiejetnosci"}}</p>
+                <div class="umiejetnosci-block">
+                    {{#each umiejetnosciBrak as |brak id|}}
+                    {{> "systems/wolsung/templates/partials/obsada-umiejetnosc-card.html"}}
+                    {{/each}}
+                    <div class="umiejetnosc-card">
+                        <a class="item-create" data-type="umiejetnoscObsady" data-konfrontacja="brak" title="{{localize 'wolsung.obsada.nowaUmiejetnosc'}}">
+                            <i class="fas fa-plus"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</form>

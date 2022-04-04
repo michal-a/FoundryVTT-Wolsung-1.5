@@ -1,0 +1,19 @@
+<form class="{{cssClass}}" autocomplete="off">
+    <header class="sheet-header">
+        <img class="item-img" src="{{item.img}}" data-edit="img" title="{{item.name}}"/>
+        <div class="header-fields">
+            <h1><input name="name" type="text" value="{{item.name}}" placeholder="{{ localize 'wolsung.osiagniecie.name' }}"/></h1>
+    </header>
+    <section class="sheet-content">
+        <span class="description">{{localize "wolsung.opisString"}}</span>
+        {{editor content=data.opis target="data.opis" button=true owner=owner editable=editable content=""}}
+        <select class="czestotliwosc" name="data.czestotliwosc">
+            {{#select data.czestotliwosc}}
+            {{#each config.czestotliwosc as |name type|}}
+            <option value="{{type}}">{{localize name}}</option>
+            {{/each}}
+            {{/select}}
+        </select>
+        <textarea class="textarea" name="data.bonus">{{data.bonus}}</textarea>
+    </section>
+</form>

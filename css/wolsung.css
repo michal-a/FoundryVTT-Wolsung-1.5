@@ -1,0 +1,866 @@
+.wolsung.sheet.item form {
+  display: flex;
+  flex-direction: column;
+}
+.wolsung.sheet.item .sheet-header {
+  flex: 0 auto;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  min-height: 110px;
+}
+.wolsung.sheet.item .sheet-header .item-img {
+  flex: 0 0 100px;
+  height: 100px;
+  margin-right: 10px;
+}
+.wolsung.sheet.item .sheet-header .header-fields {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.wolsung.sheet.item .sheet-header .header-fields .header-row {
+  font-size: small;
+  display: flex;
+  flex-direction: row;
+  margin-left: 10px;
+  margin-right: 10px;
+  align-items: center;
+}
+.wolsung.sheet.item .umiejetnosc-header {
+  flex: 0 auto;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  font-size: small;
+  align-items: center;
+}
+.wolsung.sheet.item .umiejetnosc-header .number-input {
+  max-width: 40px;
+}
+.wolsung.sheet.item .sheet-content {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 8px;
+}
+.wolsung.sheet.item .sheet-content .description {
+  font-size: small;
+  font-weight: bold;
+}
+.wolsung.sheet.item .sheet-content .editor {
+  height: 100%;
+}
+.wolsung.sheet.item .sheet-content .textarea {
+  font-size: small;
+}
+.wolsung.sheet.item .sheet-content .active {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.wolsung.sheet.item .sheet-content .czestotliwosc {
+  font-weight: bold;
+  background: rgba(0, 0, 0, 0);
+  border: none;
+}
+.wolsung.sheet.actor .bohater form {
+  display: flex;
+  flex-direction: column;
+}
+.wolsung.sheet.actor .bohater .sheet-header {
+  flex: 0 auto;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  min-height: 223px;
+  max-height: 223px;
+}
+.wolsung.sheet.actor .bohater .sheet-header .image-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  height: 223px;
+  margin-right: 10px;
+}
+.wolsung.sheet.actor .bohater .sheet-header .image-container img {
+  height: 223px;
+}
+.wolsung.sheet.actor .bohater .sheet-header .header-fields {
+  border: 1px solid;
+  min-height: 223px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  max-width: 551px;
+}
+.wolsung.sheet.actor .bohater .sheet-header .header-fields select {
+  background: rgba(0, 0, 0, 0);
+  border: none;
+}
+.wolsung.sheet.actor .bohater .sheet-header .header-fields input {
+  background: rgba(0, 0, 0, 0);
+  border: none;
+  border-bottom: 1px solid;
+}
+.wolsung.sheet.actor .bohater .sheet-header .header-fields h2 {
+  margin-left: 3px;
+  margin-right: 3px;
+  margin-top: 3px;
+  border-bottom: none;
+}
+.wolsung.sheet.actor .bohater .sheet-header .header-fields .personal-details {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: small;
+  margin-left: 3px;
+  margin-right: 3px;
+  margin-bottom: 3px;
+}
+.wolsung.sheet.actor .bohater .sheet-header .header-fields .stats {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  height: 100%;
+  border-top: 1px solid;
+}
+.wolsung.sheet.actor .bohater .sheet-header .header-fields .stats .atrybuty {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  border-right: 1px solid;
+  margin-top: 3px;
+  margin-left: 3px;
+}
+.wolsung.sheet.actor .bohater .sheet-header .header-fields .stats .atrybuty .atrybuty-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  margin-right: 3px;
+}
+.wolsung.sheet.actor .bohater .sheet-header .header-fields .stats .atrybuty .atrybuty-header h3 {
+  margin: 0px;
+}
+.wolsung.sheet.actor .bohater .sheet-header .header-fields .stats .atrybuty .atrybuty-header .atrybuty-header-name {
+  width: 100px;
+}
+.wolsung.sheet.actor .bohater .sheet-header .header-fields .stats .atrybuty .atrybuty-header .atrybuty-header-przerzut {
+  width: 40px;
+}
+.wolsung.sheet.actor .bohater .sheet-header .header-fields .stats .atrybuty .atrybuty-header span {
+  font-size: smaller;
+}
+.wolsung.sheet.actor .bohater .sheet-header .header-fields .stats .atrybuty .atrybuty-row {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-start;
+  align-items: center;
+  margin-right: 3px;
+}
+.wolsung.sheet.actor .bohater .sheet-header .header-fields .stats .atrybuty .atrybuty-row .rany {
+  width: 20px;
+  border: none;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+.wolsung.sheet.actor .bohater .sheet-header .header-fields .stats .atrybuty .atrybuty-row .checkbox {
+  width: 40px;
+}
+.wolsung.sheet.actor .bohater .sheet-header .header-fields .stats .atrybuty .atrybuty-row span {
+  width: 100px;
+  font-weight: bold;
+}
+.wolsung.sheet.actor .bohater .sheet-header .header-fields .stats .konfrontacja {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 201px;
+  height: 152px;
+  border-right: 1px solid;
+}
+.wolsung.sheet.actor .bohater .sheet-header .header-fields .stats .konfrontacja .konfrontacja-button {
+  width: 100%;
+  text-align: center;
+  font-weight: bold;
+  background-color: rgba(255, 255, 255, 0.2);
+  border: groove;
+  margin: 0px;
+}
+.wolsung.sheet.actor .bohater .sheet-header .header-fields .stats .konfrontacja .konfrontacja-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 3px;
+  border-bottom: 1px solid;
+  margin: 0px;
+  height: 28px;
+}
+.wolsung.sheet.actor .bohater .sheet-header .header-fields .stats .konfrontacja input {
+  width: 20px;
+  text-align: center;
+  padding: 0px;
+  border: none;
+  background-color: rgba(0, 0, 0, 0.1);
+  height: 17px;
+}
+.wolsung.sheet.actor .bohater .sheet-header .header-fields .stats .konfrontacja .konfrontacja-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 3px;
+}
+.wolsung.sheet.actor .bohater .sheet-header .header-fields .stats .konfrontacja .konfrontacja-content .konfrontacja-content-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  min-height: 101px;
+}
+.wolsung.sheet.actor .bohater .sheet-header .header-fields .stats .konfrontacja .konfrontacja-content .konfrontacja-content-column .konfrontacja-content-cell {
+  height: 20%;
+}
+.wolsung.sheet.actor .bohater .sheet-header .header-fields .stats .pdbogactwo {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 96px;
+}
+.wolsung.sheet.actor .bohater .sheet-header .header-fields .stats .pdbogactwo input {
+  border: none;
+  background-color: rgba(0, 0, 0, 0.1);
+  width: 20px;
+  height: 14px;
+  text-align: center;
+}
+.wolsung.sheet.actor .bohater .sheet-header .header-fields .stats .pdbogactwo .bogactwo {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  border-bottom: 1px solid;
+}
+.wolsung.sheet.actor .bohater .sheet-header .header-fields .stats .pdbogactwo .bogactwo .bogactwo-row {
+  padding-left: 3px;
+  padding-right: 3px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-size: smaller;
+}
+.wolsung.sheet.actor .bohater .sheet-header .header-fields .stats .pdbogactwo .bogactwo .bogactwo-row .bogactwo-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.wolsung.sheet.actor .bohater .sheet-header .header-fields .stats .pdbogactwo .bogactwo .bogactwo-row .bogactwo-column .checkbox {
+  text-align: center;
+  height: 14px;
+  width: 20px;
+  line-height: 14px;
+}
+.wolsung.sheet.actor .bohater .sheet-header .header-fields .stats .pdbogactwo .bogactwo .bogactwo-row .bogactwo-column .checkbox input {
+  margin-left: 3px;
+  margin-right: 2px;
+  top: 0px;
+  bottom: 0px;
+}
+.wolsung.sheet.actor .bohater .sheet-header .header-fields .stats .pdbogactwo .pd {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.wolsung.sheet.actor .bohater .sheet-header .header-fields .stats .pdbogactwo .pd input {
+  width: 100%;
+}
+.wolsung.sheet.actor .bohater .sheet-header .header-fields .stats .pdbogactwo p {
+  text-align: center;
+  font-weight: bold;
+}
+.wolsung.sheet.actor .bohater .sheet-content {
+  height: 100%;
+  max-height: 290px;
+}
+.wolsung.sheet.actor .bohater .sheet-content .opis {
+  height: 70%;
+  padding: 3px;
+  border: 1px solid;
+}
+.wolsung.sheet.actor .bohater .sheet-content .opis .editor {
+  height: 178px;
+}
+.wolsung.sheet.actor .bohater .sheet-content .blizny {
+  height: 30%;
+  border-left: 1px solid;
+  border-right: 1px solid;
+  border-bottom: 1px solid;
+  overflow-y: auto;
+}
+.wolsung.sheet.actor .bohater .sheet-content .blizny .title {
+  padding: 3px;
+}
+.wolsung.sheet.actor .bohater .sheet-content .blizny .blizny-content {
+  display: flex;
+  flex-flow: row wrap;
+  width: 100%;
+  border-top: 1px dotted;
+}
+.wolsung.sheet.actor .bohater .sheet-content .blizny .blizny-content .blizna-card {
+  font-size: smaller;
+  width: 33.3%;
+  border-right: 1px dotted;
+  border-bottom: 1px dotted;
+  padding: 3px;
+}
+.wolsung.sheet.actor .bohater .sheet-content .active {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.wolsung.sheet.actor .bohater .sheet-content .umiejetnosci {
+  padding-top: 3px;
+  display: flex;
+  flex-flow: row wrap;
+  border: 1px solid;
+  width: 100%;
+  height: 100%;
+}
+.wolsung.sheet.actor .bohater .sheet-content .umiejetnosci .umiejetnosci-entry {
+  display: flex;
+  flex-direction: column;
+  width: 25%;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-top: 3px;
+  padding-bottom: 8px;
+  border-left: 1px dotted;
+  border-bottom: 1px dotted;
+}
+.wolsung.sheet.actor .bohater .sheet-content .umiejetnosci .umiejetnosci-entry .umiejetnosci-row {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  font-size: smaller;
+}
+.wolsung.sheet.actor .bohater .sheet-content .umiejetnosci .umiejetnosci-entry .umiejetnosci-row .umiejetnosc-values {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+.wolsung.sheet.actor .bohater .sheet-content .umiejetnosci .umiejetnosci-entry .umiejetnosci-row .umiejetnosc-values input {
+  width: 20px;
+  text-align: center;
+  padding: 0px;
+  border: none;
+  background-color: rgba(0, 0, 0, 0.1);
+  height: 17px;
+}
+.wolsung.sheet.actor .bohater .sheet-content .umiejetnosci .umiejetnosci-entry .umiejetnosci-row .umiejetnosc-values select {
+  background: rgba(0, 0, 0, 0);
+  border: none;
+  font-size: small;
+}
+.wolsung.sheet.actor .bohater .sheet-content .umiejetnosci .umiejetnosci-entry .umiejetnosci-row .specjalizacja {
+  width: 80%;
+  background: rgba(0, 0, 0, 0);
+  border: none;
+  border-bottom: 1px solid;
+  font-size: x-small;
+  height: 18px;
+}
+.wolsung.sheet.actor .bohater .sheet-content .umiejetnosci .umiejetnosci-entry .umiejetnosci-entry-empty {
+  width: 194.5px;
+  height: 45px;
+}
+.wolsung.sheet.actor .bohater .sheet-content .atuty-list {
+  display: flex;
+  flex-flow: row wrap;
+  border: 1px solid;
+  justify-content: flex-start;
+  align-content: flex-start;
+  overflow-y: auto;
+}
+.wolsung.sheet.actor .bohater .sheet-content .atuty-list .atut-card {
+  width: 33.3%;
+  height: 91px;
+  padding-left: 3px;
+  padding-right: 3px;
+  border-bottom: 1px dotted;
+  border-right: 1px dotted;
+}
+.wolsung.sheet.actor .bohater .sheet-content .atuty-list .atut-card .atut-name {
+  font-weight: bold;
+  width: 100%;
+}
+.wolsung.sheet.actor .bohater .sheet-content .atuty-list .atut-card .atut-opis {
+  font-size: x-small;
+  text-align: justify;
+}
+.wolsung.sheet.actor .bohater .sheet-content .prestiz {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  border-top: 1px solid;
+  border-left: 1px solid;
+  border-right: 1px solid;
+  padding: 3px;
+}
+.wolsung.sheet.actor .bohater .sheet-content .prestiz p {
+  font-weight: bold;
+  padding-right: 5px;
+}
+.wolsung.sheet.actor .bohater .sheet-content .prestiz textarea {
+  border: none;
+  min-height: 53px;
+  font-size: smaller;
+}
+.wolsung.sheet.actor .bohater .sheet-content .zdolnosc-list {
+  display: flex;
+  flex-flow: row wrap;
+  border: 1px solid;
+  justify-content: flex-start;
+  align-content: flex-start;
+  overflow-y: auto;
+}
+.wolsung.sheet.actor .bohater .sheet-content .zdolnosc-list .zdolnosc-card {
+  width: 50%;
+  height: 114px;
+  padding-left: 3px;
+  padding-right: 3px;
+  border-bottom: 1px dotted;
+  border-right: 1px dotted;
+}
+.wolsung.sheet.actor .bohater .sheet-content .zdolnosc-list .zdolnosc-card .zdolnosc-name {
+  font-weight: bold;
+  width: 100%;
+}
+.wolsung.sheet.actor .bohater .sheet-content .zdolnosc-list .zdolnosc-card .zdolnosc-opis {
+  font-size: x-small;
+  text-align: justify;
+}
+.wolsung.sheet.actor .bohater .sheet-content .gadzet-list {
+  display: flex;
+  flex-flow: row wrap;
+  border: 1px solid;
+  justify-content: flex-start;
+  align-content: flex-start;
+  overflow-y: auto;
+}
+.wolsung.sheet.actor .bohater .sheet-content .gadzet-list .gadzet-card {
+  width: 33.3%;
+  height: 91px;
+  padding-left: 3px;
+  padding-right: 3px;
+  border-bottom: 1px dotted;
+  border-right: 1px dotted;
+}
+.wolsung.sheet.actor .bohater .sheet-content .gadzet-list .gadzet-card .gadzet-name {
+  font-weight: bold;
+  width: 100%;
+}
+.wolsung.sheet.actor .bohater .sheet-content .gadzet-list .gadzet-card .gadzet-cechy {
+  font-size: x-small;
+  text-align: justify;
+}
+.wolsung.sheet.actor .bohater .sheet-content .magia {
+  display: flex;
+  flex-direction: row;
+  border: 1px solid;
+  overflow-y: auto;
+}
+.wolsung.sheet.actor .bohater .sheet-content .magia .moc-list {
+  display: flex;
+  width: 50%;
+  flex-direction: column;
+  align-content: flex-start;
+  height: 100%;
+}
+.wolsung.sheet.actor .bohater .sheet-content .magia .zaklecie-list {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-content: flex-start;
+}
+.wolsung.sheet.actor .bohater .sheet-content .magia .list-header {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+  border-bottom: 1px solid;
+  border-left: 1px dashed;
+  border-right: 1px dashed;
+  padding: 3px;
+}
+.wolsung.sheet.actor .bohater .sheet-content .magia .magia-card {
+  padding: 3px;
+  border-bottom: 1px dotted;
+  border-left: 1px dashed;
+  border-right: 1px dashed;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.wolsung.sheet.actor .bohater .sheet-content .magia .magia-card .magia-name {
+  font-weight: bold;
+  width: 100%;
+}
+.wolsung.sheet.actor .bohater .sheet-content .magia .magia-card .magia-cechy {
+  font-size: small;
+  text-align: justify;
+}
+.wolsung.sheet.actor .bohater .sheet-content .osiagniecia {
+  padding: 3px;
+  border: 1px solid;
+  font-size: smaller;
+  font-weight: bold;
+  overflow-y: auto;
+}
+.wolsung.sheet.actor .bohater .sheet-content .osiagniecia .osiagniecia-list {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+}
+.wolsung.sheet.actor .bohater .sheet-content .osiagniecia .osiagniecia-list .osiagniecie-item {
+  width: 50%;
+}
+.wolsung.sheet.actor .bohater .sheet-content .archetypy-karty {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: 100%;
+  border: 1px solid;
+}
+.wolsung.sheet.actor .bohater .sheet-content .archetypy-karty .archetypy {
+  height: 65%;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  border-bottom: 1px solid;
+}
+.wolsung.sheet.actor .bohater .sheet-content .archetypy-karty .archetypy .archetyp {
+  padding: 3px;
+  width: 50%;
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.wolsung.sheet.actor .bohater .sheet-content .archetypy-karty .archetypy .archetyp h3 {
+  text-align: center;
+  font-weight: bold;
+  margin-block-end: 3px;
+}
+.wolsung.sheet.actor .bohater .sheet-content .archetypy-karty .archetypy .archetyp span {
+  text-align: justify;
+}
+.wolsung.sheet.actor .bohater .sheet-content .archetypy-karty .archetypy .tl {
+  border-right: 1px dotted;
+  border-bottom: 1px dotted;
+}
+.wolsung.sheet.actor .bohater .sheet-content .archetypy-karty .archetypy .tr {
+  border-left: 1px dotted rgba(0, 0, 0, 0);
+  border-bottom: 1px dotted;
+}
+.wolsung.sheet.actor .bohater .sheet-content .archetypy-karty .archetypy .bl {
+  border-right: 1px dotted;
+  border-top: 1px dotted rgba(0, 0, 0, 0);
+}
+.wolsung.sheet.actor .bohater .sheet-content .archetypy-karty .archetypy .br {
+  border-left: 1px dotted rgba(0, 0, 0, 0);
+  border-top: 1px dotted rgba(0, 0, 0, 0);
+}
+.wolsung.sheet.actor .bohater .sheet-content .archetypy-karty .karty {
+  height: 35%;
+  width: 100%;
+}
+.wolsung.sheet.actor .bohater .sheet-content .archetypy-karty .karty table {
+  text-align: center;
+  font-size: smaller;
+  margin: 0px;
+  border-top: none;
+  border-bottom: none;
+}
+.wolsung.sheet.actor .obsada .right {
+  text-align: right;
+}
+.wolsung.sheet.actor .obsada .left {
+  text-align: left;
+}
+.wolsung.sheet.actor .obsada .number {
+  width: 20px;
+  background: rgba(0, 0, 0, 0.1);
+  border: none;
+}
+.wolsung.sheet.actor .obsada .text {
+  width: 150px;
+}
+.wolsung.sheet.actor .obsada select {
+  background: rgba(0, 0, 0, 0);
+  border: none;
+  padding: 0px;
+}
+.wolsung.sheet.actor .obsada input {
+  background: rgba(0, 0, 0, 0);
+  border: none;
+  border-bottom: 1px solid;
+}
+.wolsung.sheet.actor .obsada h2 {
+  margin-left: 3px;
+  margin-right: 3px;
+  margin-top: 3px;
+  border-bottom: none;
+}
+.wolsung.sheet.actor .obsada form {
+  display: flex;
+  flex-direction: column;
+}
+.wolsung.sheet.actor .obsada .sheet-header .actor-img {
+  flex: 0 auto;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  min-height: 100px;
+  max-height: 100px;
+}
+.wolsung.sheet.actor .obsada .sheet-header .bold {
+  font-weight: bold;
+}
+.wolsung.sheet.actor .obsada .sheet-header .actor-img {
+  height: 100px;
+  margin-right: 10px;
+}
+.wolsung.sheet.actor .obsada .sheet-header .header-fields {
+  border: 1px solid;
+  min-height: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.wolsung.sheet.actor .obsada .sheet-header .header-fields .header-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: small;
+  margin-left: 3px;
+  margin-right: 3px;
+  margin-bottom: 3px;
+}
+.wolsung.sheet.actor .obsada .sheet-content {
+  max-height: 413px;
+  height: 100%;
+}
+.wolsung.sheet.actor .obsada .sheet-content .opis {
+  display: flex;
+  flex-direction: column;
+  height: 413px;
+  padding: 3px;
+  border: 1px solid;
+}
+.wolsung.sheet.actor .obsada .sheet-content .opis .editor {
+  height: 100%;
+}
+.wolsung.sheet.actor .obsada .sheet-content .zdolnosci {
+  height: 413px;
+  border: 1px solid;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  justify-content: flex-start;
+}
+.wolsung.sheet.actor .obsada .sheet-content .zdolnosci .zdolnosc-card {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  border-bottom: 1px dotted;
+  width: 100%;
+}
+.wolsung.sheet.actor .obsada .sheet-content .zdolnosci .zdolnosc-card .zdolnosc-name {
+  font-weight: bold;
+  width: 15%;
+  padding: 3px;
+}
+.wolsung.sheet.actor .obsada .sheet-content .zdolnosci .zdolnosc-card .zdolnosc-opis {
+  width: 85%;
+}
+.wolsung.sheet.actor .obsada .sheet-content .umiejetnosci {
+  height: 413px;
+  border: 1px solid;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.wolsung.sheet.actor .obsada .sheet-content .umiejetnosci input {
+  background: rgba(0, 0, 0, 0.1);
+  border: none;
+}
+.wolsung.sheet.actor .obsada .sheet-content .umiejetnosci p {
+  font-weight: bold;
+}
+.wolsung.sheet.actor .obsada .sheet-content .umiejetnosci .konfrontacja-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+.wolsung.sheet.actor .obsada .sheet-content .umiejetnosci .konfrontacja-block {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  align-content: flex-start;
+  width: 100%;
+  overflow-y: auto;
+  height: 56.2%;
+}
+.wolsung.sheet.actor .obsada .sheet-content .umiejetnosci .umiejetnosci-block {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  align-content: flex-start;
+  width: 100%;
+  overflow-y: auto;
+  height: 95%;
+}
+.wolsung.sheet.actor .obsada .sheet-content .umiejetnosci .umiejetnosc-card {
+  width: 50%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 3px;
+  border-right: 1px dotted;
+}
+.wolsung.sheet.actor .obsada .sheet-content .umiejetnosci .textarea {
+  height: 20%;
+}
+.wolsung.sheet.actor .bn form {
+  display: flex;
+  flex-direction: column;
+}
+.wolsung.sheet.actor .bn .sheet-header {
+  min-height: 223px;
+  max-height: 223px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+.wolsung.sheet.actor .bn .sheet-header .image-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  height: 223px;
+}
+.wolsung.sheet.actor .bn .sheet-header .image-container img {
+  height: 223px;
+  border: none;
+}
+.wolsung.sheet.actor .bn .sheet-header h1 {
+  flex-grow: 2.5;
+}
+.wolsung.sheet.actor .bn .sheet-content {
+  margin-top: 5px;
+  height: 325px;
+}
+.wolsung.sheet.actor .bn .sheet-content .editor {
+  height: 100%;
+}
+.wolsung.cards.hand .window-content {
+  background: none;
+}
+.wolsung.cards.hand .hand-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.wolsung.cards.hand .hand-content .zetony {
+  display: flex;
+  flex-flow: row wrap;
+  margin: 20px;
+}
+.wolsung.cards.hand .hand-content .zetony img {
+  border: none;
+}
+.wolsung.cards.hand .hand-content .zetony .zeton {
+  position: relative;
+}
+.wolsung.cards.hand .hand-content .zetony .zeton .zeton-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: absolute;
+  padding: 3px;
+  top: 0;
+  left: 0;
+  background-color: rgba(255, 255, 255, 0.7);
+  height: 100px;
+  width: 100px;
+}
+.wolsung.cards.hand .hand-content .zetony .zeton .zeton-details .button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px groove;
+  background-color: rgba(0, 0, 0, 0.2);
+  padding: 3px;
+  font-weight: bold;
+}
+.wolsung.cards.hand .hand-content .zetony .zeton .hidden {
+  display: none;
+}
+.wolsung.cards.hand .hand-content .karty {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  gap: 20px;
+  margin: 20px;
+}
+.wolsung.cards.hand .hand-content .karty .karta {
+  position: relative;
+}
+.wolsung.cards.hand .hand-content .karty .karta-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: absolute;
+  padding: 3px;
+  top: 0;
+  left: 0;
+  background-color: rgba(255, 255, 255, 0.7);
+}
+.wolsung.cards.hand .hand-content .karty .karta-details .karta-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.wolsung.cards.hand .hand-content .karty .karta-details .karta-buttons .button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px groove;
+  background-color: rgba(0, 0, 0, 0.2);
+  padding: 3px;
+  font-weight: bold;
+  width: 53px;
+  height: 44px;
+}
+.wolsung.cards.hand .hand-content .karty .karta-details .karta-opis {
+  font-weight: bold;
+}
+.wolsung.cards.hand .hand-content .karty .hidden {
+  display: none;
+}
+textarea {
+  font-family: var(--font-primary);
+}

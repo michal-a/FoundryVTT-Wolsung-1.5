@@ -1,0 +1,24 @@
+<form class="{{cssClass}}" autocomplete="off">
+    <header class="sheet-header atut-header">
+        <img class="item-img" src="{{item.img}}" data-edit="img" title="{{item.name}}"/>
+        <div class="header-fields">
+            <h1><input name="name" type="text" value="{{item.name}}" placeholder="{{ localize 'wolsung.zaklecie.name' }}"/></h1>
+        </div>
+    </header>
+    <nav class="sheet-tabs tabs" data-group="primary">
+        <a class="item" data-tab="description">{{localize "wolsung.zaklecie.descTab"}}</a>
+        <a class="item" data-tab="wymagania">{{localize "wolsung.zaklecie.wymagania"}}</a>
+        <a class="item" data-tab="efekty">{{localize "wolsung.zaklecie.efekty"}}</a>
+    </nav>
+    <section class="sheet-content">
+        <div class="tab" data-group="primary" data-tab="description">
+            {{editor content=data.opis target="data.opis" button=true owner=owner editable=editable content=""}}
+        </div>
+        <div class="tab" data-group="primary" data-tab="wymagania">
+            {{editor content=data.wymagania target="data.wymagania" button=true owner=owner editable=editable content=""}}
+        </div>
+        <div class="tab" data-group="primary" data-tab="efekty">
+            {{editor content=data.efekty target="data.efekty" button=true owner=owner editable=editable content=""}}
+        </div>
+    </section>
+</form>

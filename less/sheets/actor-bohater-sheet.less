@@ -1,0 +1,529 @@
+.wolsung.sheet.actor {
+    .bohater {
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        .sheet-header {
+            flex: 0 auto;
+            overflow: hidden;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            min-height: 223px;
+            max-height: 223px;
+            .image-container {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                height: 223px;
+                margin-right: 10px;
+                img {
+                    height: 223px;
+                }
+            }
+            .header-fields {
+                border: 1px solid;
+                min-height: 223px;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+                max-width: 551px;
+                select {
+                    background: rgba(0, 0, 0, 0);
+                    border: none;
+                }
+                input {
+                    background: rgba(0, 0, 0, 0);
+                    border: none;
+                    border-bottom: 1px solid;
+                }
+                h2 {
+                    margin-left: 3px;
+                    margin-right: 3px;
+                    margin-top: 3px;
+                    border-bottom: none;
+                }
+                .personal-details {
+                    display:flex;
+                    flex-direction: row;
+                    justify-content: flex-start;
+                    align-items: center;
+                    font-size: small;
+                    margin-left: 3px;
+                    margin-right: 3px;
+                    margin-bottom: 3px;
+                }
+                .stats {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: flex-start;
+                    align-items: center;
+                    height: 100%;
+                    border-top: 1px solid;
+                    .atrybuty {
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: flex-start;
+                        border-right: 1px solid;
+                        margin-top: 3px;
+                        margin-left: 3px;
+                        .atrybuty-header {
+                            display: flex;
+                            flex-direction: row;
+                            justify-content: flex-start;
+                            align-items: center;
+                            margin-right: 3px;
+                            h3 {
+                                margin: 0px;
+                            }
+                            .atrybuty-header-name {
+                                width: 100px;
+                            }
+                            .atrybuty-header-przerzut {
+                                width: 40px;
+                            }
+                            span {
+                                font-size: smaller;
+                            }
+                        }
+                        .atrybuty-row {
+                            display: flex;
+                            flex-direction: row-reverse;
+                            justify-content: flex-start;
+                            align-items: center;
+                            margin-right: 3px;
+                            .rany {
+                                width: 20px;
+                                border: none;
+                                background-color: rgba(0, 0, 0, 0.1);
+                            }
+                            .checkbox {
+                                width: 40px;
+                            }
+                            span {
+                                width: 100px;
+                                font-weight: bold;
+                            }
+                        }
+                    }
+                    .konfrontacja {
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: flex-start;
+                        width: 201px;
+                        height: 152px;
+                        border-right: 1px solid;
+                        .konfrontacja-button {
+                            width: 100%;
+                            text-align: center;
+                            font-weight: bold;
+                            background-color: rgba(255, 255, 255, 0.2);
+                            border: groove;
+                            margin: 0px;
+                        }
+                        .konfrontacja-header {
+                            display: flex;
+                            flex-direction: row;
+                            justify-content: space-between;
+                            align-items: center;
+                            width: 100%;
+                            padding: 3px;
+                            border-bottom: 1px solid;
+                            margin: 0px;
+                            height: 28px;
+                        }
+                        input {
+                            width: 20px;
+                            text-align: center;
+                            padding: 0px;
+                            border: none;
+                            background-color: rgba(0, 0, 0, 0.1);
+                            height: 17px;
+                        }
+                        .konfrontacja-content {
+                            display: flex;
+                            flex-direction: row;
+                            justify-content: space-between;
+                            padding: 3px;
+                            .konfrontacja-content-column {
+                                display: flex;
+                                flex-direction: column;
+                                justify-content: flex-start;
+                                min-height: 101px;
+                                .konfrontacja-content-cell {
+                                    height: 20%;
+                                }
+                            }
+                        }
+                    }
+                    .pdbogactwo {
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: space-between;
+                        width: 96px;
+                        input {
+                            border: none;
+                            background-color: rgba(0, 0, 0, 0.1);
+                            width: 20px;
+                            height: 14px;
+                            text-align: center;
+                        }
+                        .bogactwo {
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: flex-start;
+                            border-bottom: 1px solid;
+                            .bogactwo-row {
+                                padding-left: 3px;
+                                padding-right: 3px;
+                                display: flex;
+                                flex-direction: row;
+                                justify-content: space-between;
+                                font-size: smaller;
+                                .bogactwo-column {
+                                    display: flex;
+                                    flex-direction: column;
+                                    justify-content: flex-start;
+                                    .checkbox {
+                                        text-align: center;
+                                        height: 14px;
+                                        width: 20px;
+                                        line-height: 14px;
+                                        input {
+                                            margin-left: 3px;
+                                            margin-right: 2px;
+                                            top: 0px;
+                                            bottom: 0px;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        .pd {
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: flex-start;
+                            input {
+                                width: 100%;
+                            }
+                        }
+                        p {
+                            text-align: center;
+                            font-weight: bold;
+                        }
+                    }
+                }
+            }
+        }
+        .sheet-content {
+            height: 100%;
+            max-height: 290px;
+            .opis {
+                height: 70%;
+                padding: 3px;
+                border: 1px solid;
+                .editor {
+                    height: 178px;
+                }
+            }
+            .blizny {
+                height: 30%;
+                border-left: 1px solid;
+                border-right: 1px solid;
+                border-bottom: 1px solid;
+                overflow-y: auto;
+                .title {
+                    padding: 3px;
+                }
+                .blizny-content {
+                    display: flex;
+                    flex-flow: row wrap;
+                    width: 100%;
+                    border-top: 1px dotted;
+                    .blizna-card {
+                        font-size: smaller;
+                        width: 33.3%;
+                        border-right: 1px dotted;
+                        border-bottom: 1px dotted;
+                        padding: 3px;
+                    }
+                }
+            }
+            .active {
+                display: flex;
+                flex-direction: column;
+                height: 100%;
+            }
+            .umiejetnosci {
+                padding-top: 3px;
+                display: flex;
+                flex-flow: row wrap;
+                border: 1px solid;
+                width: 100%;
+                height: 100%;
+                .umiejetnosci-entry{
+                    display: flex;
+                    flex-direction: column;
+                    width: 25%;
+                    padding-left: 4px;
+                    padding-right: 4px;
+                    padding-top: 3px;
+                    padding-bottom: 8px;
+                    border-left: 1px dotted;
+                    border-bottom: 1px dotted;
+                    .umiejetnosci-row {
+                        width: 100%;
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: space-between;
+                        align-items: center;
+                        font-size: smaller;
+                        .umiejetnosc-values{
+                            display: flex;
+                            flex-direction:row;
+                            justify-content: flex-start;
+                            align-items: center;
+                            input {
+                                width: 20px;
+                                text-align: center;
+                                padding: 0px;
+                                border: none;
+                                background-color: rgba(0, 0, 0, 0.1);
+                                height: 17px;
+                            }
+                            select{
+                                background: rgba(0, 0, 0, 0);
+                                border: none;
+                                font-size: small;
+                            }
+                        }
+                        .specjalizacja {
+                            width: 80%;
+                            background: rgba(0, 0, 0, 0);
+                            border: none;
+                            border-bottom: 1px solid;
+                            font-size: x-small;
+                            height: 18px;
+                        }
+                    }
+                    .umiejetnosci-entry-empty {
+                        width: 194.5px;
+                        height: 45px;
+                    }
+                }
+            }
+            .atuty-list {
+                display: flex;
+                flex-flow: row wrap;
+                border: 1px solid;
+                justify-content: flex-start;
+                align-content: flex-start;
+                overflow-y: auto;
+                .atut-card {
+                    width: 33.3%;
+                    height: 91px;
+                    padding-left: 3px;
+                    padding-right: 3px;
+                    border-bottom: 1px dotted;
+                    border-right: 1px dotted;
+                    .atut-name {
+                        font-weight: bold;
+                        width: 100%;
+                    }
+                    .atut-opis {
+                        font-size: x-small;
+                        text-align:justify;
+                    }
+                }
+            }
+            .prestiz {
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-start;
+                align-items: flex-start;
+                border-top: 1px solid;
+                border-left: 1px solid;
+                border-right: 1px solid;
+                padding: 3px;
+                p {
+                    font-weight: bold;
+                    padding-right: 5px;
+                }
+                textarea {
+                    border: none;
+                    min-height: 53px;
+                    font-size: smaller;
+                }
+            }
+            .zdolnosc-list {
+                display: flex;
+                flex-flow: row wrap;
+                border: 1px solid;
+                justify-content: flex-start;
+                align-content: flex-start;
+                overflow-y: auto;
+                .zdolnosc-card {
+                    width: 50%;
+                    height: 114px;
+                    padding-left: 3px;
+                    padding-right: 3px;
+                    border-bottom: 1px dotted;
+                    border-right: 1px dotted;
+                    .zdolnosc-name {
+                        font-weight: bold;
+                        width: 100%;
+                    }
+                    .zdolnosc-opis {
+                        font-size: x-small;
+                        text-align:justify;
+                    }
+                }
+            }
+            .gadzet-list {
+                display: flex;
+                flex-flow: row wrap;
+                border: 1px solid;
+                justify-content: flex-start;
+                align-content: flex-start;
+                overflow-y: auto;
+                .gadzet-card {
+                    width: 33.3%;
+                    height: 91px;
+                    padding-left: 3px;
+                    padding-right: 3px;
+                    border-bottom: 1px dotted;
+                    border-right: 1px dotted;
+                    .gadzet-name {
+                        font-weight: bold;
+                        width: 100%;
+                    }
+                    .gadzet-cechy {
+                        font-size: x-small;
+                        text-align:justify;
+                    }
+                }
+            }
+            .magia {
+                display: flex;
+                flex-direction: row;
+                border: 1px solid;
+                overflow-y: auto;
+                .moc-list {
+                    display: flex;
+                    width: 50%;
+                    flex-direction: column;
+                    align-content: flex-start;
+                    height: 100%
+                }
+                .zaklecie-list {
+                    width: 50%;
+                    display: flex;
+                    flex-direction: column;
+                    align-content: flex-start;
+                }
+                .list-header {
+                    display: flex;
+                    flex-direction: row;
+                    width: 100%;
+                    justify-content: space-between;
+                    align-items: center;
+                    font-weight: bold;
+                    border-bottom: 1px solid;
+                    border-left: 1px dashed;
+                    border-right: 1px dashed;
+                    padding: 3px;
+                }
+                .magia-card {
+                    padding: 3px;
+                    border-bottom: 1px dotted;
+                    border-left: 1px dashed;
+                    border-right: 1px dashed;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: flex-start;
+                    .magia-name {
+                        font-weight: bold;
+                        width: 100%;
+                    }
+                    .magia-cechy {
+                        font-size: small;
+                        text-align:justify;
+                    }
+                }
+            }
+            .osiagniecia {
+                padding: 3px;
+                border: 1px solid;
+                font-size: smaller;
+                font-weight: bold;
+                overflow-y: auto;
+                .osiagniecia-list {
+                    display: flex;
+                    flex-flow: row wrap;
+                    justify-content: flex-start;
+                    .osiagniecie-item {
+                        width: 50%;
+                    }
+                }
+            }
+            .archetypy-karty {
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+                height: 100%;
+                border: 1px solid;
+                .archetypy {
+                    height: 65%;
+                    display: flex;
+                    flex-flow: row wrap;
+                    justify-content: flex-start;
+                    border-bottom: 1px solid;
+                    .archetyp {
+                        padding: 3px;
+                        width: 50%;
+                        height: 50%;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: flex-start;
+                        h3 {
+                            text-align: center;
+                            font-weight: bold;
+                            margin-block-end: 3px;
+                        }
+                        span {
+                            text-align: justify;
+                        }
+                    }
+                    .tl {
+                        border-right: 1px dotted;
+                        border-bottom: 1px dotted;
+                    }
+                    .tr {
+                        border-left: 1px dotted rgba(0, 0, 0, 0);
+                        border-bottom: 1px dotted;
+                    }
+                    .bl {
+                        border-right: 1px dotted;
+                        border-top: 1px dotted rgba(0, 0, 0, 0);
+                    }
+                    .br {
+                        border-left: 1px dotted rgba(0, 0, 0, 0);
+                        border-top: 1px dotted rgba(0, 0, 0, 0);
+                    }
+                }
+                .karty {
+                    height: 35%;
+                    width: 100%;
+                    table {
+                        text-align: center;
+                        font-size: smaller;
+                        margin: 0px;
+                        border-top: none;
+                        border-bottom: none;
+                    }
+                }
+            }
+        }
+    }
+}

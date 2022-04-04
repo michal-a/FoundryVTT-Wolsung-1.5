@@ -1,0 +1,29 @@
+<div class="umiejetnosci">
+    {{#each data.umiejetnosci}}
+        <div class="umiejetnosci-entry">
+            <div class="umiejetnosci-row">
+                <a class="umiejetnosc-roll" data-umiejetnoscname="{{this.name}}">
+                    <b>{{localizeKey "wolsung.umiejetnosci" this.name}}</b> ({{localizeKey "wolsung.bohater.atrybuty.skrot" this.atrybut}})
+                </a>
+                <div class="umiejetnosc-values">
+                    <select name="data.umiejetnosci.{{this.name}}.podstawa">
+                        {{#select this.podstawa}}
+                        <option value="3">3</option>
+                        <option value="6">6</option>
+                        {{/select}}
+                    </select>
+                    +
+                    <input name="data.umiejetnosci.{{this.name}}.modyfikator" type="text" data-dtype="Number" value="{{this.modyfikator}}"/>
+                    =&nbsp;{{this.total}}
+                </div>
+            </div>
+            <div class="umiejetnosci-row">
+                <input class="specjalizacja" name="data.umiejetnosci.{{this.name}}.specjalizacja" type="text" value="{{this.specjalizacja}}"/>
+                <a class="specializacja-roll" data-umiejetnoscname="{{this.name}}"><b>{{this.specjalizacjaTotal}}</b></a>
+            </div>
+        </div>
+    {{/each}}
+    <div class="umiejetnosci-entry">
+        <div class="umiejetnosci-entry-empty"></div>
+    </div>
+</div>

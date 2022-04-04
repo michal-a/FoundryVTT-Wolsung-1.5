@@ -1,0 +1,18 @@
+<form class="{{cssClass}}" autocomplete="off">
+    <header class="umiejetnosc-header">
+                <select name="data.konfrontacja">
+                    {{#select data.konfrontacja}}
+                    {{#each config.typKonfrontacji as |name type|}}
+                    <option value="{{type}}">{{localize name}}</option>
+                    {{/each}}
+                    {{/select}}
+                </select>
+                &nbsp;
+                <input name="name" type="text" value="{{item.name}}" placeholder="{{ localize 'wolsung.umiejetnoscObsady.name' }}"/>
+                &nbsp;
+                <input class="number-input" name="data.podstawa" type="text" value="{{data.podstawa}}" data-dtype="Number"/>
+                <span>/</span>
+                <input class="number-input" name="data.przerzut" type="text" value="{{data.przerzut}}" data-dtype="Number"/>
+                <span>+</span>
+    </header>
+</form>

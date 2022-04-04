@@ -1,0 +1,61 @@
+<div class="konfrontacja">
+    <div class="konfrontacja-header">
+        <span>{{data.personalia.slawa}}: {{data.pula}}{{localize "wolsung.diceShort"}}10</span>
+        <span>{{localize "wolsung.konfrontacja.odpornosc"}}: <input name="data.konfrontacja.odpornosc.value" type="text" value="{{data.konfrontacja.odpornosc.value}}" data-dtype="Number"/>/{{data.konfrontacja.odpornosc.max}}</span>
+    </div>
+    <div class="konfrontacja-content">
+        <div class="konfrontacja-content-column">
+            <span class="konfrontacja-content-cell"><b>{{localize "wolsung.konfrontacja.reputacja"}}</b></span>
+            <span class="konfrontacja-content-cell"><b>{{localize "wolsung.konfrontacja.kondycja"}}</b></span>
+            <span class="konfrontacja-content-cell"><b>{{localize "wolsung.konfrontacja.obrona"}}</b></span>
+            <span class="konfrontacja-content-cell"><b>{{localize "wolsung.konfrontacja.wytrwalosc"}}</b></span>
+            <span class="konfrontacja-content-cell"><b>{{localize "wolsung.konfrontacja.pewnoscSiebie"}}</b></span>
+        </div>
+        <div class="konfrontacja-content-column">
+            <span class="konfrontacja-content-cell">{{data.konfrontacja.reputacja.max}}</span>
+            <span class="konfrontacja-content-cell">{{data.konfrontacja.kondycja.max}}</span>
+            <span class="konfrontacja-content-cell">{{data.konfrontacja.obrona.max}}</span>
+            <span class="konfrontacja-content-cell">{{data.konfrontacja.wytrwalosc.max}}</span>
+            <span class="konfrontacja-content-cell">{{data.konfrontacja.pewnoscSiebie.max}}</span>
+        </div>
+        <div class="konfrontacja-content-column">
+            <span class="konfrontacja-content-cell">+</span>
+            <span class="konfrontacja-content-cell">+</span>
+            <span class="konfrontacja-content-cell">+</span>
+            <span class="konfrontacja-content-cell">+</span>
+            <span class="konfrontacja-content-cell">+</span>
+        </div>
+        <div class="konfrontacja-content-column">
+            <span class="konfrontacja-content-cell">
+                <input name="data.konfrontacja.reputacja.mod" type="text" value="{{data.konfrontacja.reputacja.mod}}" data-dtype="Number"/>
+            </span>
+            <span class="konfrontacja-content-cell">
+                <input name="data.konfrontacja.kondycja.mod" type="text" value="{{data.konfrontacja.kondycja.mod}}" data-dtype="Number"/>
+            </span>
+            <span class="konfrontacja-content-cell">
+                <input name="data.konfrontacja.obrona.mod" type="text" value="{{data.konfrontacja.obrona.mod}}" data-dtype="Number"/>
+            </span>
+            <span class="konfrontacja-content-cell">
+                <input name="data.konfrontacja.wytrwalosc.mod" type="text" value="{{data.konfrontacja.wytrwalosc.mod}}" data-dtype="Number"/>
+            </span>
+            <span class="konfrontacja-content-cell">
+                <input name="data.konfrontacja.pewnoscSiebie.mod" type="text" value="{{data.konfrontacja.pewnoscSiebie.mod}}" data-dtype="Number"/>
+            </span>
+        </div>
+        <div class="konfrontacja-content-column">
+            <span class="konfrontacja-content-cell">=</span>
+            <span class="konfrontacja-content-cell">=</span>
+            <span class="konfrontacja-content-cell">=</span>
+            <span class="konfrontacja-content-cell">=</span>
+            <span class="konfrontacja-content-cell">=</span>
+        </div>
+        <div class="konfrontacja-content-column">
+            <span class="konfrontacja-content-cell"><b>{{data.konfrontacja.reputacja.value}}</b></span>
+            <span class="konfrontacja-content-cell"><b>{{data.konfrontacja.kondycja.value}}</b></span>
+            <span class="konfrontacja-content-cell"><b>{{data.konfrontacja.obrona.value}}</b></span>
+            <span class="konfrontacja-content-cell"><b>{{data.konfrontacja.wytrwalosc.value}}</b></span>
+            <span class="konfrontacja-content-cell"><b>{{data.konfrontacja.pewnoscSiebie.value}}</b></span>
+        </div>
+    </div>
+    <a class="konfrontacja-button" title="{{localize 'wolsung.konfrontacja.opis'}}"><span>{{localize "wolsung.konfrontacja.name"}}</span></a>
+</div>

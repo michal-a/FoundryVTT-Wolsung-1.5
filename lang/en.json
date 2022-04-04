@@ -1,0 +1,426 @@
+{
+    "wolsung": {
+        "archetyp": {
+            "eksplorator": "Eksplorator",
+            "ryzykant": "Ryzykant",
+            "salonowiec": "Salonowiec",
+            "sledczy": "Śledczy"
+        },
+        "opisString": "Opis:",
+        "atut": {
+            "koszt": "Koszt: ",
+            "wymagania": "Wymagania: ",
+            "name": "Nazwa atutu"
+        },
+        "gadzet": {
+            "cechy": "Cechy:",
+            "name": "Nazwa gadżetu"
+        },
+        "zdolnosc": {
+            "name": "Nazwa zdolności"
+        },
+        "osiagniecie": {
+            "name": "Nazwa osiągnięcia"
+        },
+        "czestotliwosc": {
+            "sesja": "Raz na sesję:",
+            "scena": "Raz na scenę:"
+        },
+        "blizna": {
+            "name": "Rodzaj blizny",
+            "kara": "Kara: ",
+            "bonus": "Bonus: "
+        },
+        "moc": {
+            "name": "Nazwa mocy",
+            "descTab": "Opis",
+            "efekt": "Gdy moc jest aktywna",
+            "karta": "Karty z ręki",
+            "bonus": "Bonus"
+        },
+        "zaklecie": {
+            "name": "Nazwa zaklęcia",
+            "descTab": "Opis",
+            "wymagania": "Wymagania",
+            "efekty": "Efekty"
+        },
+        "umiejetnoscObsady": {
+            "name": "Nazwa umiejętności"
+        },
+        "koszt": {
+            "pd3": "3 PD",
+            "pd5": "5 PD",
+            "pd10": "10 PD",
+            "pd15": "15 PD",
+            "pd20": "20 PD"
+        },
+        "typKonfrontacji": {
+            "brak": "",
+            "walka": "Walka",
+            "dyskusja": "Dyskusja",
+            "poscig": "Poscig"
+        },
+        "konfrontacja": {
+            "name": "Konfrontacja",
+            "opis": "Przygotuj do konfrontacji",
+            "odpornosc": "Odporność",
+            "kondycja": "Kondycja",
+            "reputacja": "Reputacja",
+            "obrona": "Obrona",
+            "wytrwalosc": "Wytrwałość",
+            "pewnoscSiebie": "Pewność siebie",
+            "mod": "Modifikatory",
+            "value": "Bieżąca"
+        },
+        "umiejetnosci": {
+            "analiza": "Analiza",
+            "blef": "Blef",
+            "ekspresja": "Ekspresja",
+            "empatia": "Empatia",
+            "odwaga": "Odwaga",
+            "okultyzm": "Okultyzm",
+            "perswazja": "Perswazja",
+            "pojazdy": "Pojazdy",
+            "polswiatek": "Półswiatek",
+            "przyroda": "Przyroda",
+            "spostrzegawczosc": "Spostrzegawczość",
+            "strzelanie": "Strzelanie",
+            "technika": "Technika",
+            "ukrywanieSie": "Ukrywanie się",
+            "walka": "Walka",
+            "wiedzaAkademicka": "Wiedza akademicka",
+            "wysportowanie": "Wysportowanie",
+            "zastraszanie": "Zastraszanie",
+            "zlodziejstwo": "Złodziejstwo"
+        },
+        "bohater": {
+            "name": "Imię i nazwisko",
+            "rasa": "Rasa",
+            "profesja": "Profesja",
+            "narodowosc": "Narodowość",
+            "opis": "Opis postaci",
+            "blizny": "Blizny",
+            "prestiz": "Prestiż",
+            "atrybuty": {
+                "nazwa": "Atrybuty",
+                "krz": "Krzepa",
+                "zr": "Zręczność",
+                "prz": "Przenikliwość",
+                "op": "Opanowanie",
+                "cha": "Charyzma",
+                "skrot": {
+                    "krz": "Krz",
+                    "zr": "Zr",
+                    "prz": "Prz",
+                    "op": "Op",
+                    "cha": "Cha"
+                }
+            },
+            "tabs": {
+                "opis": "Opis",
+                "umiejetnosci": "Umiejetności",
+                "atuty": "Atuty",
+                "zdolnosci": "Zdolności",
+                "gadzety": "Gadżety",
+                "magia": "Magia",
+                "osiagniecia": "Osiągnięcia",
+                "archetyp": "Archetyp"
+            },
+            "slawa": {
+                "nikt": "Nikt",
+                "znany": "Znany",
+                "slawny": "Sławny",
+                "legenda": "Legenda"
+            },
+            "bogactwo": {
+                "name": "Bogactwo",
+                "biezace": "Bieżące",
+                "zamozny": "Zamożny",
+                "bogaty": "Bogaty",
+                "bBogaty": "B. bogaty",
+                "krezus": "Krezus"
+            },
+            "pd": "PD",
+            "nowaBlizna": "Dodaj nową Bliznę",
+            "nowyAtut": "Dodaj nowy Atut",
+            "nowaZdolnosc": "Dodaj nową Zdolność",
+            "nowyGadzet": "Dodaj nowy Gadżet",
+            "nowaMoc": "Dodaj nową Moc",
+            "noweZaklecie": "Dodaj nowe Zaklęcie",
+            "noweOsiagniecie": "Dodaj nowe Osiągnięcie"
+        },
+        "contextMenu": {
+            "edit": "Szczegóły/Edytuj",
+            "delete": "Usuń"
+        },
+        "diceShort": "k",
+        "karta": {
+            "pik": {
+                "name": "Pik",
+                "eksplorator": {
+                    "name": "Doświadczenie:",
+                    "desc": " elementy oraz okoliczności, w których doświadczenie daje przewagę nad przeciwnikiem, wiedza o słabych stronach potworów czy zwyczajach obcych kultur."
+                },
+                "ryzykant": {
+                    "name": "Dywersja:",
+                    "desc": " element otoczenia, który umożliwia zaskoczenie przeciwnika, rozproszenie go, odwrócenie uwagi itp."
+                },
+                "salonowiec": {
+                    "name": "Intrygi:",
+                    "desc": " rozpuszczanie i poznawanie plotek, gafy towarzyskie, które przytrafiają się konkurentom, okazja do podsłuchania ważnej informacji, kontakty w prasie itp."
+                },
+                "sledczy": {
+                    "name": "Podejrzani:",
+                    "desc": " poszlaki i okoliczności pozwalające poznać pochodzenie, zawód, charakter i przeszłość osoby, przewidzieć jej działania, zrozumieć motywy itp."
+                }
+            },
+            "kier": {
+                "name": "Kier",
+                "eksplorator": {
+                    "name": "Przetrwanie:",
+                    "desc": " elementy i okoliczności pozwalające uniknąć obrażeń, choroby i szkodliwego wpływu otoczenia albo przetrwać w nieprzyjaznym środowisku."
+                },
+                "ryzykant": {
+                    "name": "Osłona;",
+                    "desc": " sposób na uniknięcie wykrycia, schowek, miejsce w którym można ukryć przedmiot itp."
+                },
+                "salonowiec": {
+                    "name": "Emocje:",
+                    "desc": " rodzina i przyjaciele gotowi pospieszyć z pomocą, okazje pozwalające wmieszać się w tłum: np.: śluby i pogrzeby, przebłyski sympatii lub tłumionych uczuć zmiękczające czyjeś serce itp."
+                },
+                "sledczy": {
+                    "name": "Renoma:",
+                    "desc": " poszlaki i okoliczności pozwalające przykuć uwagę publiki, wygłosić przemowę, z zimną krwią stawić czoła zagrożeniu, podkreślić i wykorzystać opinię, którą cieszy się postać itp."
+                }
+            },
+            "karo": {
+                "name": "Karo",
+                "eksplorator": {
+                    "name": "Odkrycia:",
+                    "desc": " elementy, które pozwalają zdobyć i wykorzystać rozgłos – pamiątki z podróży, wynalazki itp."
+                },
+                "ryzykant": {
+                    "name": "Narzędzia:",
+                    "desc": " sposób na pokonanie fizycznej przeszkody, pułapki, zamka, kłódki, zabezpieczenia itp."
+                },
+                "salonowiec": {
+                    "name": "Formalności:",
+                    "desc": " metody ominięcia procedur, pomocni policjanci i żołnierze, przydatne kontakty biznesowe lub okazje do zrobienia interesów itp."
+                },
+                "sledczy": {
+                    "name": "Przedmioty:",
+                    "desc": " poszlaki i okoliczności pozwalające poznać pochodzenie, cechy, historię przedmiotu, znaleźć narzędzie zbrodni, zrozumieć zasady działania, przewidzieć usterkę itp."
+                }
+            },
+            "trefl": {
+                "name": "Trefl",
+                "eksplorator": {
+                    "name": "Orientacja:",
+                    "desc": " elementy, które pomagają dotrzeć do celu, wyznaczyć trasę, znaleźć drogę, odnaleźć zaginione miejsce itp."
+                },
+                "ryzykant": {
+                    "name": "Transport:",
+                    "desc": " elementy związane z ruchem: pojazdy, zjeżdżalnie, alternatywna trasa, sposób opuszczenia sceny itp."
+                },
+                "salonowiec": {
+                    "name": "Rozrywka;",
+                    "desc": " kontakty w bohemie, sposoby wejścia na imprezy lub do lokali, elementy pomagające w występach publicznych itp."
+                },
+                "sledczy": {
+                    "name": "Czas i miejsce:",
+                    "desc": " poszlaki pozwalające odtworzyć sekwencję wydarzeń, zrozumieć okoliczności zbrodni, poznać odpowiedzi na pytania: gdzie i kiedy?"
+                }
+            },
+            "tabela": {
+                "karta": "Karta",
+                "st": "ST",
+                "sukces": "sukces",
+                "podbicie": "podbicie",
+                "do": "do",
+                "wdk": "W, D, K",
+                "as": "As",
+                "joker": "Joker"
+            }
+        },
+        "obsada": {
+            "name": "Nazwa postaci",
+            "konfrontacja": {
+                "name": "Domyślna konfrontacja:",
+                "walka": "walka",
+                "poscig": "pościg",
+                "dyskusja": "dyskusja"
+            },
+            "typ": {
+                "przeciwnik": "Przeciwnik",
+                "statysta": "Statysta",
+                "sojusznik": "Sojusznik, statysta"
+            },
+            "rasa": "rasa",
+            "pula": {
+                "start": ", pula ",
+                "end" : "k10"
+            },
+            "grupa": ", grupa ",
+            "czyja": "czyja?",
+            "odpornosc": "; odporność: ",
+            "tabs": {
+                "opis": "Opis",
+                "zdolnosci": "Zdolności",
+                "walka": "Walka",
+                "poscig": "Pościg",
+                "dyskusja": "Dyskusja",
+                "umiejetnosci": "Pozostałe umiejętności"
+            },
+            "opis" : "Opis",
+            "umiejetnosci": "Umiejętności:",
+            "uwagi": "Uwagi:",
+            "nowaZdolnosc": "Nowa zdolność",
+            "nowaUmiejetnosc": "Dodaj umiejętność"
+        },
+        "chat": {
+            "konfrontacja":{
+                "title": "Wybierz typ konfrontacji",
+                "normal": "Przygotuj",
+                "cancel": "Anuluj",
+                "typ": "Typ konfrontacji",
+                "vabanque": "Va banque?",
+                "walka": "Walka",
+                "poscig": "Poscig",
+                "dyskusja": "Dyskusja"
+            },
+            "prepareRoll": {
+                "title": "Modyfikuj rzut",
+                "normal": "Rzuć",
+                "cancel": "Anuluj",
+                "rzutNa": "Rzut na:",
+                "liczbaKosci": "Liczba kości:",
+                "mod": "Modyfikatory:",
+                "przerzut": "Przerzut:"
+            }
+        },
+        "cards": {
+            "deckDescription": "Karty do Wolsunga (52 standardowe + 2 Jokery)",
+            "clubs": {
+                "suit": "Trefl",
+                "two": "Dwójka Trefl",
+                "three": "Trójka Trefl",
+                "four": "Czwórka Trefl",
+                "five": "Piątka Trefl",
+                "six": "Szóstka Trefl",
+                "seven": "Siódemka Trefl",
+                "eight": "Ósemka Trefl",
+                "nine": "Dziewiątka Trefl",
+                "ten": "Dziesiątka Trefl",
+                "jack": "Walet Trefl",
+                "queen": "Królowa Trefl",
+                "king": "Król Trefl",
+                "ace": "As Trefl"
+            },
+            "hearts": {
+                "suit": "Kier",
+                "two": "Dwójka Kier",
+                "three": "Trójka Kier",
+                "four": "Czwórka Kier",
+                "five": "Piątka Kier",
+                "six": "Szóstka Kier",
+                "seven": "Siódemka Kier",
+                "eight": "Ósemka Kier",
+                "nine": "Dziewiątka Kier",
+                "ten": "Dziesiątka Kier",
+                "jack": "Walet Kier",
+                "queen": "Królowa Kier",
+                "king": "Król Kier",
+                "ace": "As Kier"
+            } ,
+            "diamonds": {
+                "suit": "Karo",
+                "two": "Dwójka Karo",
+                "three": "Trójka Karo",
+                "four": "Czwórka Karo",
+                "five": "Piątka Karo",
+                "six": "Szóstka Karo",
+                "seven": "Siódemka Karo",
+                "eight": "Ósemka Karo",
+                "nine": "Dziewiątka Karo",
+                "ten": "Dziesiątka Karo",
+                "jack": "Walet Karo",
+                "queen": "Królowa Karo",
+                "king": "Król Karo",
+                "ace": "As Karo"
+            },
+            "spades": {
+                "suit": "Pik",
+                "two": "Dwójka Pik",
+                "three": "Trójka Pik",
+                "four": "Czwórka Pik",
+                "five": "Piątka Pik",
+                "six": "Szóstka Pik",
+                "seven": "Siódemka Pik",
+                "eight": "Ósemka Pik",
+                "nine": "Dziewiątka Pik",
+                "ten": "Dziesiątka Pik",
+                "jack": "Walet Pik",
+                "queen": "Królowa Pik",
+                "king": "Król Pik",
+                "ace": "As Pik"
+            },
+            "joker": {
+                "red": {
+                    "name": "Czerwony Joker",
+                    "suit": "Czerwony"
+                },
+                "black": {
+                    "name": "Czarny Joker",
+                    "suit": "Czarny"
+                }
+            },
+            "initiative": {
+                "ace": "A",
+                "jack": "W",
+                "queen": "D",
+                "king": "K",
+                "joker": "JOKER"
+            },
+            "zeton": "Żeton",
+            "hand": {
+                "bonus": "Bonus do testu: +",
+                "sukces": "Sukces przy ST ≤ ", 
+                "odrzuc": "Odrzuć",
+                "uzyj": "Użyj",
+                "dobierz": "Dobierz karty"
+            },
+            "chat": {
+                "useZeton": "Używa Żetonu",
+                "drawCards": "Dobiera karty ({number}) za Żeton",
+                "errorDraw": "Posiadasz maksymalną liczbę kart na ręku",
+                "useCard": "Używa karty {name}<br/>Bonus: +{bonus}<br/>Sukces przy ST ≤ {sukces})"
+            }
+        }
+    },
+    "SETTINGS": {
+        "wolsungDeck": {
+            "name": "Talia kart",
+            "label": "Nazwa talii kart wykorzystywanej do gry w Wolsunga (typ - deck)"
+        },
+        "initiativePile": {
+            "name": "Stos kart inicjatywy",
+            "label": "Nazwa stosu kart wykorzystywanego do odczytywania inicjatywy (typ - pile)"
+        },
+        "discardPile": {
+            "name": "Stos kart odrzuconych",
+            "label": "Nazwa stosu kart odrzuconych (typ - pile)"
+        },
+        "zetonDeck": {
+            "name": "Pula żetonów",
+            "label": "Nazwa puli żetonów wykorzystywanej do gry w Wolsunga (typ - deck)"
+        },
+        "cardScale": {
+            "name": "Skalowanie kart",
+            "label": "Skalowanie wymiaru kart wyświetlanych na ręce, 1 - wysokość 300px"
+        },
+        "numberOfPlayers": {
+            "name": "Liczba graczy",
+            "label": "Liczba graczy używana do wyliczania liczby kart na ręce MG"
+        }
+    }
+}

@@ -1,0 +1,40 @@
+{
+    "name": "wolsung",
+    "title": "Wolsung 1.5",
+    "description": "The Wolsung 1.5 system for FoundryVTT",
+    "version": 0.15,
+    "minimumCoreVersion": "9",
+    "compatibleCoreVersion": "9",
+    "author": "Feanir",
+    "esmodules": [
+        "/module/wolsung.mjs"
+    ],
+    "styles": [
+        "css/wolsung.css"
+    ],
+    "scripts": [
+
+    ],
+    "packs": [
+        {
+            "name": "wolsung-cards",
+            "label": "Cards for Wolsung",
+            "path": "./packs/wolsung-cards.db",
+            "type": "Cards"
+        }
+    ],
+    "languages": [
+        {
+            "lang": "en",
+            "name": "English",
+            "path": "lang/en.json"
+        }
+    ],
+    "primaryTokenAttribute": "konfrontacja.odpornosc",
+    "gridDistance": 5,
+    "gridUnits": "ft",
+    "url": "",
+    "manifest": "",
+    "download": "",
+    "license": ""
+}

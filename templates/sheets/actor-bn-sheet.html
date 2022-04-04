@@ -1,0 +1,11 @@
+<form class="{{cssClass}} bn" autocomplete="off">
+    <header class="sheet-header">
+        <div class="image-container">
+            <img src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height=223px width=223px/>
+        </div>
+        <h1><input name="name" type="text" value="{{actor.name}}" placeholder="{{ localize 'wolsung.bohater.name' }}"/></h1>
+    </header>
+    <section class="sheet-content">
+        {{editor content=data.opis target="data.opis" button=true owner=owner editable=editable content="{{localize 'wolsung.bohater.opis'}}"}}
+    </section>
+</form>

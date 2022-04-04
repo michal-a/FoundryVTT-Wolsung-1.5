@@ -1,0 +1,35 @@
+.wolsung.sheet.actor {
+    .bn {
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        .sheet-header {
+            min-height: 223px;
+            max-height: 223px;
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            .image-container {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                height: 223px;
+                img {
+                    height: 223px;
+                    border: none;
+                }
+            }
+            h1 {
+                flex-grow: 2.5;
+            }
+        }
+        .sheet-content {
+            margin-top: 5px;
+            height: 325px;
+            .editor {
+                height: 100%;
+            }
+        }
+    }
+}
