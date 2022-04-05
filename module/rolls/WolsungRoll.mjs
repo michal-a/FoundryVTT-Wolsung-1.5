@@ -4,7 +4,7 @@ export default async function rollFromChatMessageWolsungCommand(messageText, dat
         ui.notifications.error(
             `<div>Failed parsing your command:</div>
             <div><p style="font-family: monospace">${messageText}</p></div>
-            <div>Try instead: <p style="font-family: monospace">/wr 2d9 #something</p></div>
+            <div>Try instead: <p style="font-family: monospace">/wr 2d9 + 3 #something</p></div>
             `,
         );
         return null;

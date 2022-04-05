@@ -12,6 +12,7 @@ import WolsungCards from "./cards/WolsungCards.mjs";
 import WolsungCardsHand from "./cards/WolsungCardsHand.mjs";
 import WolsungCardsDeck from "./cards/WolsungCardsDeck.mjs";
 import WolsungCardsPile from "./cards/WolsungCardsPile.mjs";
+import WolsungSessionStart from "./cards/WolsungSessionStart.mjs";
 import WolsungCombat from "./combat/combat.mjs";
 import WolsungCombatTracker from "./combat/combatTracker.mjs";
 
@@ -55,6 +56,16 @@ Hooks.once("init", function(){
 Hooks.on('chatMessage', (_, messageText, data) => {
     if (messageText !== undefined && messageText.startsWith('/wr')) {
         rollFromChatMessageWolsungCommand(messageText, data);
+        return false;
+    }
+    else {
+        return true;
+    }
+});
+
+Hooks.on('chatMessage', (_, messageText, data) => {
+    if (messageText !== undefined && messageText.startsWith('/wss')) {
+        WolsungSessionStart(messageText, data);
         return false;
     }
     else {

@@ -2,7 +2,7 @@
     "name": "wolsung",
     "title": "Wolsung 1.5",
     "description": "The Wolsung 1.5 system for FoundryVTT",
-    "version": 0.17,
+    "version": 0.18,
     "minimumCoreVersion": "9",
     "compatibleCoreVersion": "9",
     "author": "Feanir",

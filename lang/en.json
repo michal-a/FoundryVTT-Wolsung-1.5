@@ -400,6 +400,14 @@
                 "useCard": "Używa karty {name}<br/>Bonus: +{bonus}<br/>Sukces przy ST ≤ {sukces})",
                 "initiativeCard": "Używa karty {name} jako inicjatywę {tokenName} ({actorName})"
             }
+        },
+        "wss" : {
+            "undefinedHand": "Jedna z podanych rąk nie istnieje:",
+            "gmHandError": "GM może mieć tylko jedną rękę:",
+            "playerHandError": "Musisz podać przynajmniej jedną rękę gracza (kontrolowaną przez gracza):",
+            "notGM": "Komenda dostępna tylko dla GM",
+            "pleaseSpecify": "Proszę sprecyzuj ręcę poprzez:", 
+            "success": "Rozdano karty i żetony na rozpoczęcie sesji"
         }
     },
     "SETTINGS": {
