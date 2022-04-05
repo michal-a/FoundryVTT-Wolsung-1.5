@@ -1,4 +1,10 @@
 export default async function WolsungSessionStart(messageText, data) {
+    //Checking if user is GM
+    if (game.user.data.role != 4) {
+        ui.notifications.error("<div>" + game.i18n.localize("wolsung.wss.notGM") + "</div>");
+        return null;
+    }
+
     let hands = [];
 
     if (messageText == "/wss") {
