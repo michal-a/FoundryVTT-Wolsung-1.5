@@ -24,7 +24,7 @@ export default class WolsungCardsHand extends CardsHand {
         html.find(".draw-cards").click(this._onDrawCards.bind(this));
         html.find(".use-card").click(this._onUseCard.bind(this));
         html.find(".discard-card").click(this._onDiscardCard.bind(this));
-
+        html.find(".initiative-card").click(this._onInitiativeCard.bind(this));
         super.activateListeners(html);
     }
 
@@ -76,6 +76,16 @@ export default class WolsungCardsHand extends CardsHand {
         const hand = this.object;
         const discard = game.cards.getName(game.settings.get("wolsung", "discardPile"));
         const card = this.object.cards.get(element.dataset.cardid);
+        await hand.pass(discard, [card.id], {chatNotification: false});
+        this._postChatNotification(card, "wolsung.cards.chat.useCard", {
+            name: this._getCardName(card),
+            bonus: card.data.data.testBonus,
+            sukces: card.data.data.st
+        });
+
+    }
+
+    _getCardName(card) {
         let cardName = card.data.value;
         if (cardName == 11) cardName = game.i18n.localize("wolsung.cards.initiative.jack");
         if (cardName == 12) cardName = game.i18n.localize("wolsung.cards.initiative.queen");
@@ -87,13 +97,7 @@ export default class WolsungCardsHand extends CardsHand {
         if (card.data.suit == "wolsung.cards.hearts.suit") cardName += '<span style="color: #A52A2A;">♥</span>';
         if (card.data.suit == "wolsung.cards.diamonds.suit") cardName += '<span style="color: #A52A2A;">♦</span>';
         if (card.data.suit == "wolsung.cards.joker.red.suit") cardName = '<span style="color: #A52A2A;">' + cardName + '</span>';
-        await hand.pass(discard, [card.id], {chatNotification: false});
-        this._postChatNotification(card, "wolsung.cards.chat.useCard", {
-            name: cardName,
-            bonus: card.data.data.testBonus,
-            sukces: card.data.data.st
-        });
-
+        return cardName;
     }
 
     async _onDiscardCard(event) {
@@ -103,6 +107,41 @@ export default class WolsungCardsHand extends CardsHand {
         const discard = game.cards.getName(game.settings.get("wolsung", "discardPile"));
         const card = this.object.cards.get(element.dataset.cardid);
         await hand.pass(discard, [card.id], {chatNotification: false});
+    }
+
+    async _onInitiativeCard(event) {
+        event.preventDefault();
+        let element = event.currentTarget;
+        const hand = this.object;
+        const discard = game.cards.getName(game.settings.get("wolsung", "discardPile"));
+        const card = this.object.cards.get(element.dataset.cardid);
+        let initiativeValue = card.data.value;
+        if (card.data.suit == "wolsung.cards.joker.black.suit") initiativeValue += 0.6;
+        if (card.data.suit == "wolsung.cards.joker.red.suit") initiativeValue += 0.5;
+        if (card.data.suit == "wolsung.cards.spades.suit") initiativeValue += 0.4;
+        if (card.data.suit == "wolsung.cards.hearts.suit") initiativeValue += 0.3;
+        if (card.data.suit == "wolsung.cards.diamonds.suit") initiativeValue += 0.2;
+        if (card.data.suit == "wolsung.cards.clubs.suit") initiativeValue += 0.1;
+        const combatants = game.combat.turns.filter(combatant => combatant.isOwner);
+        const html = await renderTemplate("systems/wolsung/templates/cards/dialog-initiative.hbs", {card: card, combatants: combatants});
+        return Dialog.prompt({
+            title: game.i18n.localize("wolsung.cards.hand.inicjatywaTitle"),
+            label: game.i18n.localize("wolsung.cards.hand.inicjatywaLabel"),
+            content: html,
+            callback: html => {
+                const form = html.querySelector("form.cards-dialog");
+                const fd = new FormDataExtended(form).toObject();
+                game.combat.updateEmbeddedDocuments("Combatant", [{_id: fd.postac, initiative: initiativeValue}]);
+                hand.pass(discard, [card.id], {chatNotification: false});
+                this._postChatNotification(card, "wolsung.cards.chat.initiativeCard", {
+                    name: this._getCardName(card),
+                    tokenName: game.combat.getEmbeddedDocument("Combatant", fd.postac).token.name,
+                    actorName: game.combat.getEmbeddedDocument("Combatant", fd.postac).actor.name
+                });
+            },
+            rejectClose: false,
+            options: {jQuery: false}
+        });
     }
 
     _postChatNotification(source, action, context) {

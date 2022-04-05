@@ -1,0 +1,16 @@
+<form class="cards-dialog">
+    <figure>
+        <img class="thumbnail" src="{{card.img}}" height="300"/>
+        <figcaption>{{localize card.name}}</figcaption>
+    </figure>
+    <div class="form-group stacked">
+        <label>{{localize "wolsung.cards.hand.inicjatywaPostac"}}</label>
+        <div class="form-fields">
+            <select name="postac">
+                {{#each combatants as |combatant|}}
+                    <option value="{{combatant.id}}">{{combatant.token.name}} ({{combatant.actor.name}})</option>
+                {{/each}}
+            </select>
+        </div>
+    </div>
+</form>

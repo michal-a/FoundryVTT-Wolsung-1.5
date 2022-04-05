@@ -387,13 +387,18 @@
                 "sukces": "Sukces przy ST ≤ ", 
                 "odrzuc": "Odrzuć",
                 "uzyj": "Użyj",
-                "dobierz": "Dobierz karty"
+                "dobierz": "Dobierz karty",
+                "inicjatywa": "Za inicjatywę",
+                "inicjatywaTitle": "Wybierz postać",
+                "inicjatywaLabel": "Wybierz postać",
+                "inicjatywaPostac": "Postać:"
             },
             "chat": {
                 "useZeton": "Używa Żetonu",
                 "drawCards": "Dobiera karty ({number}) za Żeton",
                 "errorDraw": "Posiadasz maksymalną liczbę kart na ręku",
-                "useCard": "Używa karty {name}<br/>Bonus: +{bonus}<br/>Sukces przy ST ≤ {sukces})"
+                "useCard": "Używa karty {name}<br/>Bonus: +{bonus}<br/>Sukces przy ST ≤ {sukces})",
+                "initiativeCard": "Używa karty {name} jako inicjatywę {tokenName} ({actorName})"
             }
         }
     },
