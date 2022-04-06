@@ -63,5 +63,5 @@ Rzuty można wykonywać również poprzez komendę `/wr`. Pisząc na czacie np.
 Wykonujemy rzut 2 kośćmi z umiejętnością 6/8+
 
 ## UWAGI
-System jest wersją bez dokładnych testów, także mogą pojawiać. Wszelkie uwagi oraz zgłoszenia błędów są mile widziane.
+System jest wersją bez dokładnych testów, także mogą pojawiać się błędy. Wszelkie uwagi oraz zgłoszenia błędów są mile widziane.
 
