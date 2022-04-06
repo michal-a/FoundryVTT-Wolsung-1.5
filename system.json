@@ -1,7 +1,7 @@
 {
     "name": "wolsung",
     "title": "Wolsung 1.5",
-    "description": "Wolsung 1.5 unofficial implementation for FoundryVTT (Polish only)",
+    "description": "Unofficial Wolsung 1.5 implementation for FoundryVTT (Polish only)",
     "version": 0.2,
     "minimumCoreVersion": "9",
     "compatibleCoreVersion": "9",
