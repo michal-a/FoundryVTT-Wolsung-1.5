@@ -60,7 +60,7 @@
             </div>
         </div>
         <div class="tab" data-group="primary" data-tab="tabInitial">
-            <div class="zdolnosci">
+            <div class="zdolnosci item-list">
                 {{#each zdolnosci as |zdolnosc id|}}
                 {{> "systems/wolsung/templates/partials/obsada-zdolnosc-card.hbs"}}
                 {{/each}}
@@ -79,7 +79,7 @@
                     <input class="number left" name="data.konfrontacja.obrona.max" type="text" value="{{data.konfrontacja.obrona.max}}" data-dtype="Number"/>
                 </div>
                 <p>{{localize "wolsung.obsada.umiejetnosci"}}</p>
-                <div class="konfrontacja-block">
+                <div class="konfrontacja-block item-list">
                     {{#each umiejetnosciWalka as |walka id|}}
                     {{> "systems/wolsung/templates/partials/obsada-umiejetnosc-card.hbs"}}
                     {{/each}}
@@ -102,7 +102,7 @@
                     <input class="number left" name="data.konfrontacja.wytrwalosc.max" type="text" value="{{data.konfrontacja.wytrwalosc.max}}" data-dtype="Number"/>
                 </div>
                 <p>{{localize "wolsung.obsada.umiejetnosci"}}</p>
-                <div class="konfrontacja-block">
+                <div class="konfrontacja-block item-list">
                     {{#each umiejetnosciPoscig as |poscig id|}}
                     {{> "systems/wolsung/templates/partials/obsada-umiejetnosc-card.hbs"}}
                     {{/each}}
@@ -125,7 +125,7 @@
                     <input class="number left" name="data.konfrontacja.pewnoscSiebie.max" type="text" value="{{data.konfrontacja.pewnoscSiebie.max}}" data-dtype="Number"/>
                 </div>
                 <p>{{localize "wolsung.obsada.umiejetnosci"}}</p>
-                <div class="konfrontacja-block">
+                <div class="konfrontacja-block item-list">
                     {{#each umiejetnosciDyskusja as |dyskusja id|}}
                     {{> "systems/wolsung/templates/partials/obsada-umiejetnosc-card.hbs"}}
                     {{/each}}
@@ -142,7 +142,7 @@
         <div class="tab" data-group="primary" data-tab="umiejetnosci">
             <div class="umiejetnosci">
                 <p>{{localize "wolsung.obsada.umiejetnosci"}}</p>
-                <div class="umiejetnosci-block">
+                <div class="umiejetnosci-block item-list">
                     {{#each umiejetnosciBrak as |brak id|}}
                     {{> "systems/wolsung/templates/partials/obsada-umiejetnosc-card.hbs"}}
                     {{/each}}

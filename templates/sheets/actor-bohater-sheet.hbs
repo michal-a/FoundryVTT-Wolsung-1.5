@@ -43,7 +43,7 @@
             </div>
             <div class="blizny">
                 <span class="title"><b>{{localize "wolsung.bohater.blizny"}}</b></span>
-                <div class="blizny-content">
+                <div class="blizny-content item-list">
                     {{#each blizny as |blizna id|}}
                     {{> "systems/wolsung/templates/partials/blizna-card.hbs"}}
                     {{/each}}
@@ -57,7 +57,7 @@
             {{> "systems/wolsung/templates/partials/bohater-umiejetnosci-block.hbs"}}
         </div>
         <div class="tab" data-group="primary" data-tab="atuty">
-            <div class="atuty-list">
+            <div class="atuty-list item-list">
                 {{#each atuty as |atut id|}}
                 {{> "systems/wolsung/templates/partials/atut-card.hbs"}}
                 {{/each}}
@@ -71,7 +71,7 @@
                 <p>{{localize "wolsung.bohater.prestiz"}}:</p>
                 <textarea class="textarea" name="data.personalia.prestiz">{{data.personalia.prestiz}}</textarea>
             </div>
-            <div class="zdolnosc-list">
+            <div class="zdolnosc-list item-list">
                 {{#each zdolnosci as |zdolnosc id|}}
                 {{> "systems/wolsung/templates/partials/zdolnosc-card.hbs"}}
                 {{/each}}
@@ -81,7 +81,7 @@
             </div>
         </div>
         <div class="tab" data-group="primary" data-tab="gadzety">
-            <div class="gadzet-list">
+            <div class="gadzet-list item-list">
                 {{#each gadzety as |gadzet id|}}
                 {{> "systems/wolsung/templates/partials/gadzet-card.hbs"}}
                 {{/each}}
@@ -92,7 +92,7 @@
         </div>
         <div class="tab" data-group="primary" data-tab="magia">
             <div class="magia">
-                <div class="moc-list">
+                <div class="moc-list item-list">
                     <div class="list-header">
                         <span>Moce</span>
                         <a class="item-create" data-type="moc" title="{{localize 'wolsung.bohater.nowaMoc'}}">
@@ -103,7 +103,7 @@
                     {{> "systems/wolsung/templates/partials/moc-card.hbs"}}
                     {{/each}}
                 </div>
-                <div class="zaklecie-list">
+                <div class="zaklecie-list item-list">
                     <div class="list-header">
                         <span>Zaklecia</span>
                         <a class="item-create" data-type="zaklecie" title="{{localize 'wolsung.bohater.noweZaklecie'}}">
@@ -118,7 +118,8 @@
         </div>
         <div class="tab" data-group="primary" data-tab="osiagniecia">
             <div class="osiagniecia">
-                <ol class="osiagniecia-list">
+                <ol class="osiagniecia-list item-list">
+                    <section class="item-list"></section>
                     {{#each osiagniecia as |osiagniecie id|}}
                     {{> "systems/wolsung/templates/partials/osiagniecie-card.hbs"}}
                     {{/each}}

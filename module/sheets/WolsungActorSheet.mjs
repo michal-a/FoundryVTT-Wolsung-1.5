@@ -273,4 +273,64 @@ export default class WolsungActorSheet extends ActorSheet{
         await r.evaluate();
         r.toMessage(messageData)
     }
+
+    // somehow the itemId does not work as dataset is converted to lowercases. Using itemid instead.
+    _onDragStart(event) {
+        const li = event.currentTarget;
+        if ( event.target.classList.contains("content-link") ) return;
+
+        // Create drag data
+        const dragData = {
+            actorId: this.actor.id,
+            sceneId: this.actor.isToken ? canvas.scene?.id : null,
+            tokenId: this.actor.isToken ? this.actor.token.id : null,
+            pack: this.actor.pack
+        };
+
+        // Owned Items
+        if ( li.dataset.itemid ) {
+            const item = this.actor.items.get(li.dataset.itemid);
+            dragData.type = "Item";
+            dragData.data = item.data;
+        }
+
+        // Active Effect
+        if ( li.dataset.effectId ) {
+            const effect = this.actor.effects.get(li.dataset.effectId);
+            dragData.type = "ActiveEffect";
+            dragData.data = effect.data;
+        }
+
+        // Set data transfer
+        event.dataTransfer.setData("text/plain", JSON.stringify(dragData));
+    }
+
+    _onSortItem(event, itemData) {
+
+        // Get the drag source and its siblings
+        const source = this.actor.items.get(itemData._id);
+        const siblings = this.actor.items.filter(i => {
+          return (i.data.type === source.data.type) && (i.data._id !== source.data._id);
+        });
+    
+        // Get the drop target
+        const dropTarget = event.target.closest(".item");
+        const targetId = dropTarget ? dropTarget.dataset.itemid : null;
+        const target = siblings.find(s => s.data._id === targetId);
+    
+        // Ensure we are only sorting like-types
+        if (target && (source.data.type !== target.data.type)) return;
+    
+        // Perform the sort
+        const sortUpdates = SortingHelpers.performIntegerSort(source, {target: target, siblings});
+        const updateData = sortUpdates.map(u => {
+          const update = u.update;
+          update._id = u.target.data._id;
+          return update;
+        });
+    
+        // Perform the update
+        return this.actor.updateEmbeddedDocuments("Item", updateData);
+    }
+    
 }

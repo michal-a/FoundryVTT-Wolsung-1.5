@@ -48,7 +48,6 @@ Hooks.once("init", function(){
     DocumentSheetConfig.unregisterSheet(Cards, "core", CardsPile);
     DocumentSheetConfig.registerSheet(Cards, "wolsung", WolsungCardsPile, {types: ["pile"], makeDefault: true});
 
-    console.log(CONFIG);
     preloadWolsungTemplates();
     Object.keys(wolsungSettings).map(key => game.settings.register("wolsung", key, wolsungSettings[key]));
 });
