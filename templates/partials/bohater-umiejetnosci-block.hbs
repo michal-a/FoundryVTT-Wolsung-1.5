@@ -1,4 +1,8 @@
-<div class="umiejetnosci">
+{{#if (gameSetting "wolsung" "sortingOfSkillsBoolean")}}
+<div class="umiejetnosci sortRow">
+{{else}}
+<div class="umiejetnosci sortColumn">
+{{/if}}
     {{#each data.umiejetnosci}}
         <div class="umiejetnosci-entry">
             <div class="umiejetnosci-row">

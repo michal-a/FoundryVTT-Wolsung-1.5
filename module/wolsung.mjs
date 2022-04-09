@@ -115,3 +115,7 @@ Handlebars.registerHelper("cardWidth", function(height, width){
     result = result.toString() + "px";
     return result;
 });
+
+Handlebars.registerHelper("gameSetting", function(namespace, key){
+    return game.settings.get(namespace, key);
+});

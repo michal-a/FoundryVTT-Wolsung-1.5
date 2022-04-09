@@ -53,3 +53,27 @@ wolsungSettings.numberOfPlayers = {
     type: Number,
     default: 4
 };
+
+wolsungSettings.sortingOfSkills = {
+    config: true,
+    scope: "client",
+    name: "SETTINGS.sortingOfSkills.name",
+    label: "SETTINGS.sortingOfSkills.label",
+    type: String,
+    choices: {
+        "row": "SETTINGS.sortingOfSkills.row",
+        "column": "SETTINGS.sortingOfSkills.column"
+    },
+    default: "row",
+    onChange: value => {
+        if (value == "row") game.settings.set("wolsung", "sortingOfSkillsBoolean", true);
+        else game.settings.set("wolsung", "sortingOfSkillsBoolean", false);
+    }
+};
+
+wolsungSettings.sortingOfSkillsBoolean = {
+    config: false,
+    scope: "client",
+    type: Boolean,
+    default: true
+}

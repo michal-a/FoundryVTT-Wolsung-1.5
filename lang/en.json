@@ -434,6 +434,12 @@
         "numberOfPlayers": {
             "name": "Liczba graczy",
             "label": "Liczba graczy używana do wyliczania liczby kart na ręce MG"
+        },
+        "sortingOfSkills": {
+            "name": "Sortowanie umiejętności:",
+            "label": "Alfabetyczne sortowanie listy umiejętności na karcie postaci wzdłuż kolumn lub rzędów. Wymaga zamknięcia i ponownego otwarcia karty postaci.",
+            "row": "rzędami",
+            "column": "kolumnami"
         }
     }
 }
