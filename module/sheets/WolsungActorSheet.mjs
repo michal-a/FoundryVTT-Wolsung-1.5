@@ -2,6 +2,7 @@ export default class WolsungActorSheet extends ActorSheet{
 
     static get defaultOptions(){
         return mergeObject(super.defaultOptions, {
+            resizable: false,
             width: 800,
             height: 600,
             classes: ["wolsung", "sheet", "actor"],
@@ -9,10 +10,23 @@ export default class WolsungActorSheet extends ActorSheet{
         });
     }
 
-    itemContextMenu = [
+    itemMenu = [
+        {
+            name: game.i18n.localize("wolsung.contextMenu.print"),
+            icon: '<i class="fas fa-comments"></i>',
+            condition: element => {
+                return element[0].classList.contains("printable");
+            },
+            callback: element => {
+                this._onItemPrint(element[0]);
+            }
+        },
         {
             name: game.i18n.localize("wolsung.contextMenu.delete"),
             icon: '<i class="fas fa-trash"></i>',
+            condition: element => {
+                return element[0].classList.contains("removable");
+            },
             callback: element => {
                 this.actor.deleteEmbeddedDocuments("Item", [element.data("itemid")]);
             }
@@ -47,47 +61,93 @@ export default class WolsungActorSheet extends ActorSheet{
     }
 
     activateListeners(html) {
-        html.find(".item-create").click(this._onItemCreate.bind(this));
-        html.find(".item-edit").click(this._onItemEdit.bind(this));
-        html.find(".item-delete").click(this._onItemDelete.bind(this));
-        html.find(".konfrontacja-button").click(this._onGenerujKonfrontacje.bind(this));
-        html.find(".umiejetnosc-roll").click(this._onUmiejetnoscRoll.bind(this));
-        html.find(".specializacja-roll").click(this._onSpecjalizacjaRoll.bind(this));
-        html.find(".bogactwo-roll").click(this._onBogactwoRoll.bind(this));
-        html.find(".inline-edit").change(this._onUmiejetnoscEdit.bind(this));
-        html.find(".obsada-roll").click(this._onObsadaRoll.bind(this));
 
-        new ContextMenu(html, ".removeble", this.itemContextMenu);
+        html.find(".item-create").click(this._onItemCreate.bind(this));
+        html.find(".item-click").click(this._onItemClick.bind(this));
+        html.find(".item-delete").click(this._onItemDelete.bind(this));
+        html.find(".inline-edit").change(this._onUmiejetnoscEdit.bind(this));
+        
+        //Owner only Listeners
+        if (this.actor.isOwner) {
+            html.find(".konfrontacja-button").click(this._onGenerujKonfrontacje.bind(this));
+            html.find(".umiejetnosc-roll").click(this._onUmiejetnoscRoll.bind(this));
+            html.find(".specializacja-roll").click(this._onSpecjalizacjaRoll.bind(this));
+            html.find(".bogactwo-roll").click(this._onBogactwoRoll.bind(this));
+            html.find(".obsada-roll").click(this._onObsadaRoll.bind(this));
+
+            new ContextMenu(html, ".item-context", this.itemMenu);
+        }
 
         super.activateListeners(html);
     }
 
+    /**
+     * Handle a cration of new embedded Item
+     * @param {Event} event 
+     * @private
+     */
     async _onItemCreate(event) {
         event.preventDefault();
         let element = event.currentTarget;
 
+        // Define Item name and type based of data-type attribute of the target HTML tag
         let itemData = {
             name: game.i18n.localize("wolsung." + element.dataset.type + ".name"),
             type: element.dataset.type
         }
 
+        // Create the embedded Item
         let result = await this.actor.createEmbeddedDocuments("Item", [itemData]);
 
+        // Get the embedded Item object
         let item = this.actor.items.get(result[0].data._id);
 
+        // Render the Item sheet for all Item's types except umiejetnoscObsady
         if (element.dataset.konfrontacja == undefined) item.sheet.render(true);
+        // Update data.konfrontacja of umiejetnoscObsady Item type
         else item.update({ ["data.konfrontacja"]: element.dataset.konfrontacja });
     }
 
-    _onItemEdit(event) {
+    /**
+     * Handle click on the embedded Item
+     * @param {Event} event 
+     */
+    _onItemClick(event) {
         event.preventDefault();
         let element = event.currentTarget;
-        let itemId = element.dataset.itemid;
-        let item = this.actor.items.get(itemId);
-        
-        item.sheet.render(true);
+        // Print element on the chat if ctrl is pushed down and Item is printable
+        if (event.ctrlKey && element.classList.contains("printable") && this.actor.isOwner) {
+            this._onItemPrint(element);
+        }
+        // Show Item sheet
+        else {
+            this._onShowItemSheet(element);
+        }
     }
 
+    /**
+     * Render sheet of the embedded Item for editing and detailed view
+     * @param {Object} element 
+     */
+    _onShowItemSheet(element) {
+        const itemId = element.dataset.itemid;
+        const item = this.actor.items.get(itemId);
+        item.sheet.render(true);
+    }
+    /**
+     * Print Item on Chat
+     * @param {Object} element 
+     */
+    _onItemPrint(element) {
+        const itemId = element.dataset.itemid;
+        const item = this.actor.items.get(itemId);
+        item.printOnChat();
+    }
+
+    /**
+     * Delete embedded Item
+     * @param {Event} event 
+     */
     _onItemDelete(event) {
         event.preventDefault();
         let element = event.currentTarget;
@@ -95,16 +155,25 @@ export default class WolsungActorSheet extends ActorSheet{
         this.actor.deleteEmbeddedDocuments("Item", [itemId]);
     }
 
+    /**
+     * Handle inline edit of umiejetnoscObsady Item's type
+     * @param {Event} event 
+     * @returns 
+     */
     _onUmiejetnoscEdit(event) {
         event.preventDefault();
         let element = event.currentTarget;
         let itemId = element.dataset.itemid;
         let item = this.actor.items.get(itemId);
         let field = element.dataset.field;
-
         return item.update({ [field]: element.value });
     }
 
+    /**
+     * Provide Dialog window for calculating odpornosc based on the type of the konfrontacja
+     * @param {Event} event 
+     * @returns 
+     */
     async _onGenerujKonfrontacje(event) {
         event.preventDefault();
 
@@ -131,6 +200,10 @@ export default class WolsungActorSheet extends ActorSheet{
         });
     }
 
+    /**
+     * Update odpornosc of the actor based of the selected konfrontacja type in Dialog
+     * @param {Object} form 
+     */
     _updateKonfrontacja(form){
         let odpornosc = 11 - parseInt(this.actor.data.data.atrybuty[form.typ.value]["wartosc"]) - Math.abs(this.actor.data.data.atrybuty[form.typ.value]["rany"]) + 2;
         if (form.vabanque.checked) {

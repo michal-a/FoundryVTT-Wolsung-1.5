@@ -868,6 +868,20 @@
 .wolsung.cards.hand .hand-content .karty .hidden {
   display: none;
 }
+.chat-message .message-content .item-chat .flexrow {
+  align-items: center;
+}
+.chat-message .message-content .item-chat .icon {
+  flex: 0 0 32px;
+  height: 32px;
+  margin-right: 8px;
+}
+.chat-message .message-content .item-chat h4 {
+  font-weight: bold;
+}
+.chat-message .message-content .item-chat p {
+  text-align: justify;
+}
 textarea {
   font-family: var(--font-primary);
 }

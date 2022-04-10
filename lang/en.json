@@ -150,7 +150,7 @@
             "noweOsiagniecie": "Dodaj nowe Osiągnięcie"
         },
         "contextMenu": {
-            "edit": "Szczegóły/Edytuj",
+            "print": "Wyślij na Chat",
             "delete": "Usuń"
         },
         "diceShort": "k",
