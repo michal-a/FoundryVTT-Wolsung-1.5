@@ -2,7 +2,7 @@
     "name": "wolsung",
     "title": "Wolsung 1.5",
     "description": "Unofficial Wolsung 1.5 implementation for FoundryVTT (Polish only)",
-    "version": 0.21,
+    "version": 0.23,
     "minimumCoreVersion": "9",
     "compatibleCoreVersion": "9",
     "author": "Feanir",
