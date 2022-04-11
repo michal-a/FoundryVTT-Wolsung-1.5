@@ -11,6 +11,7 @@ export default class WolsungCardsHand extends CardsHand {
     getData() {
         const baseData = super.getData();
         let sheetData = baseData;
+        sheetData.hasPlayerOwner = sheetData.document.hasPlayerOwner;
         const wolsungDeckId = game.cards.getName(game.settings.get("wolsung", "wolsungDeck")).id;
         const zetonDeckId = game.cards.getName(game.settings.get("wolsung", "zetonDeck")).id;
         sheetData.wolsungCards = baseData.cards.filter(card => card.data.origin == wolsungDeckId);

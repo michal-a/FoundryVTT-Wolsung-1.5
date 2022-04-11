@@ -304,6 +304,7 @@
         },
         "cards": {
             "deckDescription": "Karty do Wolsunga (52 standardowe + 2 Jokery)",
+            "name": "Karta",
             "clubs": {
                 "suit": "Trefl",
                 "two": "Dwójka Trefl",

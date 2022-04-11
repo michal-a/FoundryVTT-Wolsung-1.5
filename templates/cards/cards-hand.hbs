@@ -4,16 +4,19 @@
             {{#each zetony as |zeton|}}
                 <div class="zeton reveal">
                     <img src="{{zeton.img}}" alt="{{localize zeton.name}}" height="100px" width="100px">
+                    {{#if (cardsVisibility hasPlayerOwner)}}
                     <div class="zeton-details hidden details">
                             <a class="button use-zeton" data-cardid="{{zeton.id}}">{{localize "wolsung.cards.hand.uzyj"}}</a>
                             <a class="button draw-cards" data-cardid="{{zeton.id}}">{{localize "wolsung.cards.hand.dobierz"}}</a>
                     </div>
+                    {{/if}}
                 </div>
             {{/each}}
         </div>
         <section class="karty">
             {{#each wolsungCards as |card|}}
                 <div class="karta reveal">
+                    {{#if (cardsVisibility hasPlayerOwner)}}
                     <img class="karta-background" src="{{card.img}}" alt="{{localize card.name}}" height="{{cardHeight}}" width="{{cardWidth card.data.height card.data.width}}">
                     <div class="karta-details hidden details" style="height: {{cardHeight}}; width: {{cardWidth card.data.height card.data.width}};">
                         <div class="karta-buttons">
@@ -28,6 +31,9 @@
                             <h3>{{localize "wolsung.cards.hand.sukces"}}{{card.data.data.st}}</h3>
                         </div>
                     </div>
+                    {{else}}
+                    <img class="karta-background" src="{{card.backImg}}" alt="{{localize 'wolsung.cards.name'}}" height="{{cardHeight}}" width="{{cardWidth card.data.height card.data.width}}">
+                    {{/if}}
                 </div>
             {{/each}}
         </section>

@@ -46,4 +46,8 @@ export default function registerHandlebars() {
     Handlebars.registerHelper("gameSetting", function(namespace, key){
         return game.settings.get(namespace, key);
     });
+
+    Handlebars.registerHelper("cardsVisibility", function(hasPlayerOwner){
+        return (hasPlayerOwner && !game.user.isGM) || (!hasPlayerOwner && game.user.isGM);
+    });
 }
