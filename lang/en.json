@@ -151,7 +151,11 @@
         },
         "contextMenu": {
             "print": "Wyślij na Chat",
-            "delete": "Usuń"
+            "delete": "Usuń",
+            "giveToken": "Nagródź Żetonem",
+            "giveTokenNotify": "Przekazano Żeton do ręki:",
+            "dealCard": "Rozdaj Kartę",
+            "dealCardNotify": "Rozdano Kartę do ręki:"
         },
         "diceShort": "k",
         "karta": {
