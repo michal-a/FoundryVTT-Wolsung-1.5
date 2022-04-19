@@ -84,7 +84,7 @@
   flex-direction: row;
   justify-content: center;
   height: 223px;
-  margin-right: 10px;
+  margin-right: 4px;
 }
 .wolsung.sheet.actor .bohater .sheet-header .image-container img {
   height: 223px;
@@ -110,6 +110,7 @@
   margin-left: 3px;
   margin-right: 3px;
   margin-top: 3px;
+  margin-bottom: 7px;
   border-bottom: none;
 }
 .wolsung.sheet.actor .bohater .sheet-header .header-fields .personal-details {
@@ -393,6 +394,7 @@
   justify-content: flex-start;
   align-content: flex-start;
   overflow-y: auto;
+  min-height: 290px;
 }
 .wolsung.sheet.actor .bohater .sheet-content .atuty-list .atut-card {
   width: 33.3%;
@@ -436,6 +438,7 @@
   justify-content: flex-start;
   align-content: flex-start;
   overflow-y: auto;
+  min-height: 230px;
 }
 .wolsung.sheet.actor .bohater .sheet-content .zdolnosc-list .zdolnosc-card {
   width: 50%;
@@ -460,6 +463,7 @@
   justify-content: flex-start;
   align-content: flex-start;
   overflow-y: auto;
+  min-height: 290px;
 }
 .wolsung.sheet.actor .bohater .sheet-content .gadzet-list .gadzet-card {
   width: 33.3%;
@@ -482,6 +486,7 @@
   flex-direction: row;
   border: 1px solid;
   overflow-y: auto;
+  min-height: 290px;
 }
 .wolsung.sheet.actor .bohater .sheet-content .magia .moc-list {
   display: flex;
@@ -531,6 +536,7 @@
   font-size: smaller;
   font-weight: bold;
   overflow-y: auto;
+  min-height: 290px;
 }
 .wolsung.sheet.actor .bohater .sheet-content .osiagniecia .osiagniecia-list {
   display: flex;
