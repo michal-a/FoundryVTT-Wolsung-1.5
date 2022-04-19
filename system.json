@@ -2,7 +2,7 @@
     "name": "wolsung",
     "title": "Wolsung 1.5",
     "description": "Unofficial Wolsung 1.5 implementation for FoundryVTT (Polish only)",
-    "version": 0.25,
+    "version": 0.26,
     "minimumCoreVersion": "9",
     "compatibleCoreVersion": "9",
     "author": "Feanir",
@@ -19,6 +19,12 @@
             "label": "Cards for Wolsung",
             "path": "./packs/wolsung-cards.db",
             "type": "Cards"
+        },
+        {
+            "name": "instrukcje-do-systemu-wolsung",
+            "label": "Instrukcje do systemu Wolsung 1.5",
+            "path": "./packs/instrukcje-do-systemu-wolsung.db",
+            "type": "JournalEntry"
         }
     ],
     "languages": [
