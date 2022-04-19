@@ -15,5 +15,8 @@ export default async function rollFromChatMessageWolsungCommand(messageText, dat
     }
     let r = new Roll(rollFormule);
     await r.evaluate();
-    r.toMessage();
+    if (typeof match[4] !== "undefined") {
+        r.toMessage({flavor: match[4].replace(/^#\s/, '')});
+    }
+    else r.toMessage();
 }
