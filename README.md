@@ -21,6 +21,7 @@ This is a Wolsung 1.5 unofficial implementation for Foundry VTT. There is no con
 - Inicjatywa losowana poprzez ciągniecie kart w każdej turze. Możliwość użycia karty z ręki by zastąpić kartę inicjatywy.
 - Komenda /wss rozdająca karty i żetony na rozpoczęcie sesji
 - Obsługa rzutów według zasad Wolsunga wraz z traktowaniem przerzutu jako 10. Rzuty dostępne są z karty postaci, karty obsady oraz chatu poprzez komendę /wr. Dice so Nice jest również obsługiwany.
+- Instrukcje dla graczy oraz MG dostępne w Compendium.
 
 ### Tworzenie nowej gry
 Po utworzeniu nowej gry należy dokonać wstępnej konfiguracji:
@@ -29,9 +30,8 @@ Po utworzeniu nowej gry należy dokonać wstępnej konfiguracji:
 3. Utworzyć Card Stack, typ Hand dla każdego gracza oraz MG. Card Stack danego gracza powinien należeć do niego (Configure Permissions).
 
 ### Funkcje karty postaci bohatera
-![Karta postaci](https://lh3.googleusercontent.com/ttvHefmOuA46_qcei7GqtqM4r9suTAHfCJJPl-A31UCNhxH8sE9zwfPKGrxL_lY4NfFolZZEbKFQZfMiVoRToIG94erAnJYFKNWSlSMFrcbPOdT79evBU10iwgAso4y9igmZRX11LkQ=w2400)
-- Blizny, Atuty, Zdolności (poprzez zdolności rozumiem zdolności z profesji, rasy oraz słabości), Gadżety, Moce, Zaklęcia oraz Osiągnięcia mogą być dodawanie poprzez przycisk +. Można je otworzyć lub zmodyfikować poprzez kliknięcie w ich nazwę. Aby je usunąć należy kliknąć prawym przyciskiem w nazwę i wybrać Usuń. Powyższe można również przeciągać z kompendium czy zakładki Items. Uwaga, system nie posiada żadnej automatyzacji w kontekście cech np. atutu czy gadżetu.
-- Umiejętności można testować poprzez kliknięcie w nazwe umiejętności. Jeśli wpisana jest specjalizacja liczba po prawej stronie od nazwy specjalizacji pozwala na wykonanie testu specjalizacji. Domyślnie otwiera się okno dialogowe, gdzie można zmodyfikować parametru testu (np. dodając modyfikator, czy zmienić liczbę kości). Szybki test bez otwierania okna dialogowego jest możliwy poprzez kliknięcie przytrzymując klawisz SHIFT.
+- Blizny, Atuty, Zdolności (poprzez zdolności rozumiem zdolności z profesji, rasy oraz słabości), Gadżety, Moce, Zaklęcia oraz Osiągnięcia mogą być dodawanie poprzez przycisk +. Można je otworzyć lub zmodyfikować poprzez kliknięcie w ich nazwę. Aby je usunąć należy kliknąć prawym przyciskiem w nazwę i wybrać Usuń. Można je również wypisać na chat poprzez menu z prawego kliknięcia lub poprzez kliknięcie przytrzymując CTRL. Powyższe można również przeciągać z kompendium czy z i do zakładki Items. Uwaga, system nie posiada żadnej automatyzacji w kontekście cech np. atutu czy gadżetu.
+- Umiejętności można testować poprzez kliknięcie w nazwe umiejętności. Jeśli wpisana jest specjalizacja liczba po prawej stronie od nazwy specjalizacji jest klikalna i pozwala na wykonanie testu specjalizacji. Domyślnie otwiera się okno dialogowe, gdzie można zmodyfikować parametru testu (np. dodając modyfikator, czy zmienić liczbę kości). Szybki test bez otwierania okna dialogowego jest możliwy poprzez kliknięcie przytrzymując klawisz SHIFT.
 - Bogactwo można testować klikając w nagłówek Bogactwo
 - Przycisk Konfrontacja pozwala wygenerować Odporność postaci w zależności od wybranego typu konfrontacji.
 
@@ -64,4 +64,5 @@ Wykonujemy rzut 2 kośćmi z umiejętnością 6/8+
 
 ## UWAGI
 System jest wersją bez dokładnych testów, także mogą pojawiać się błędy. Wszelkie uwagi oraz zgłoszenia błędów są mile widziane.
+Moduły modyfikujące zachowanie kart nie będą działały z tym systemem.
 
