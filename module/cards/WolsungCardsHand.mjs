@@ -128,11 +128,22 @@ export default class WolsungCardsHand extends CardsHand {
             title: game.i18n.localize("wolsung.cards.hand.inicjatywaTitle"),
             label: game.i18n.localize("wolsung.cards.hand.inicjatywaLabel"),
             content: html,
-            callback: html => {
+            callback: async (html) => {
                 const form = html.querySelector("form.cards-dialog");
                 const fd = new FormDataExtended(form).toObject();
+                console.log(fd.postac)
+                if (!fd.postac) {
+                    ui.notifications.error("<div>" + game.i18n.localize("wolsung.cards.hand.inicjatywaError.noCombatant") + "</div>");
+                    return false;
+                }
+                try {
+                    await hand.pass(discard, [card.id], {chatNotification: false});
+                }
+                catch (e) {
+                    ui.notifications.error("<div>" + game.i18n.localize("wolsung.cards.hand.inicjatywaError.noCard") + "</div>");
+                    return false;
+                }
                 game.combat.updateEmbeddedDocuments("Combatant", [{_id: fd.postac, initiative: initiativeValue}]);
-                hand.pass(discard, [card.id], {chatNotification: false});
                 this._postChatNotification(card, "wolsung.cards.chat.initiativeCard", {
                     name: this._getCardName(card),
                     tokenName: game.combat.getEmbeddedDocument("Combatant", fd.postac).token.name,
