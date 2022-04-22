@@ -131,7 +131,6 @@ export default class WolsungCardsHand extends CardsHand {
             callback: async (html) => {
                 const form = html.querySelector("form.cards-dialog");
                 const fd = new FormDataExtended(form).toObject();
-                console.log(fd.postac)
                 if (!fd.postac) {
                     ui.notifications.error("<div>" + game.i18n.localize("wolsung.cards.hand.inicjatywaError.noCombatant") + "</div>");
                     return false;
