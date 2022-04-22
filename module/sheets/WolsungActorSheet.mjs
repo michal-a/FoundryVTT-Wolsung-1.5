@@ -194,9 +194,9 @@ export default class WolsungActorSheet extends ActorSheet{
                     }
                 },
                 default: "normal",
+                close: () => resolve({cancelled: true})
             };
             new Dialog(data, null).render(true);
-            close: () => resolve({cancelled: true});
         });
     }
 

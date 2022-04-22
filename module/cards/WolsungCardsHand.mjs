@@ -40,7 +40,6 @@ export default class WolsungCardsHand extends CardsHand {
         event.preventDefault();
         const element = event.currentTarget;
         const card = this.object.cards.get(element.dataset.cardid);
-        console.log(this.object);
         await card.reset();
         this._postChatNotification(card, "wolsung.cards.chat.useZeton", {});
     }

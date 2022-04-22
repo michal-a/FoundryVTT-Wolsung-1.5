@@ -155,7 +155,10 @@
             "giveToken": "Nagródź Żetonem",
             "giveTokenNotify": "Przekazano Żeton do ręki:",
             "dealCard": "Rozdaj Kartę",
-            "dealCardNotify": "Rozdano Kartę do ręki:"
+            "dealCardNotify": "Rozdano Kartę do ręki:",
+            "useToken": "Użyj Żeton",
+            "useCard": "Użyj Kartę",
+            "modifyRoll": "Modyfikuj rzut"
         },
         "diceShort": "k",
         "karta": {
@@ -300,6 +303,17 @@
                 "liczbaKosci": "Liczba kości:",
                 "mod": "Modyfikatory:",
                 "przerzut": "Przerzut:"
+            },
+            "rollFlavor": {
+                "addTokenDice": " używa Żetonu dorzucając kość",
+                "addTokenBonus": " używa Żetonu zwiększając wynik o: "
+            },
+            "useToken": {
+                "title": "Użyj Żetonu, aby zmodyfikować rzut {modificator}/{explodeOn}+ pulą {numberOfDices} kości.",
+                "bonus": "Dodaj do wyniku",
+                "modificator": "Modyfikator:",
+                "dice": "Dorzuć kość",
+                "empty": "Nie posiadasz Żetonów na ręcę"
             }
         },
         "cards": {

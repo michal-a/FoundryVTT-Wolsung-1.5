@@ -8,6 +8,7 @@ import WolsungActorSheet from "./sheets/WolsungActorSheet.mjs";
 import WolsungActor from "./documents/WolsungActor.mjs";
 import WolsungDiceTerm from "./rolls/WolsungDiceTerm.mjs";
 import rollFromChatMessageWolsungCommand from "./rolls/WolsungRoll.mjs";
+import { useTokenOnRollContexCondition, useTokenOnRollDialog } from "./rolls/useTokenOnRoll.mjs";
 import WolsungCardConfig from "./cards/WolsungCardConfig.mjs";
 import WolsungCards from "./cards/WolsungCards.mjs";
 import WolsungCardsHand from "./cards/WolsungCardsHand.mjs";
@@ -52,10 +53,13 @@ Hooks.once("init", function(){
 
     preloadWolsungTemplates();
     Object.keys(wolsungSettings).map(key => game.settings.register("wolsung", key, wolsungSettings[key]));
-
+    
     registerHandlebars();
+
+    var socket;
 });
 
+// Hook for /wr (Wolsung Roll) command
 Hooks.on('chatMessage', (_, messageText, data) => {
     if (messageText !== undefined && messageText.startsWith('/wr')) {
         rollFromChatMessageWolsungCommand(messageText, data);
@@ -66,6 +70,7 @@ Hooks.on('chatMessage', (_, messageText, data) => {
     }
 });
 
+// Hook for /wss (Wolsung Start of Session) command
 Hooks.on('chatMessage', (_, messageText, data) => {
     if (messageText !== undefined && messageText.startsWith('/wss')) {
         WolsungSessionStart(messageText, data);
@@ -74,4 +79,22 @@ Hooks.on('chatMessage', (_, messageText, data) => {
     else {
         return true;
     }
+});
+
+// Create options to modify roll in Chat Context Menu
+Hooks.on("getChatLogEntryContext", (html, options) => {
+    options.push({
+        name: "wolsung.contextMenu.useToken",
+        icon: '<object style="margin-right: 5px; width: 17.5px;" data="systems/wolsung/icons/zeton.svg"></object>',
+        condition: message => useTokenOnRollContexCondition(message),
+        callback: message => useTokenOnRollDialog(game.messages.get(message.data("messageId")), 3)
+    });
+});
+
+Hooks.once("socketlib.ready", () => {
+	socket = socketlib.registerSystem("wolsung");
+    socket.register("updateChatMessage", async (messageId, data) => {
+        const message = game.messages.get(messageId);
+        message.update(data);
+    });
 });

@@ -9,9 +9,12 @@ export default async function rollFromChatMessageWolsungCommand(messageText, dat
         );
         return null;
     }
-    var rollFormule = "{" + Array(parseInt(match[1])).fill("1d10x>=" + match[2]).join() + "}kh";
+    let rollFormule = "{" + Array(parseInt(match[1])).fill("1d10x>=" + match[2]).join() + "}kh";
     if (typeof match[3] !== "undefined") {
-        rollFormule += match[3].replace(/\s/g, '')
+        rollFormule += match[3].replace(/\s/g, '');
+    }
+    else {
+        rollFormule += "+ 0";
     }
     let r = new Roll(rollFormule);
     await r.evaluate();
