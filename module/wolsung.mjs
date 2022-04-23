@@ -2,7 +2,6 @@ import {wolsung} from "./config.mjs";
 import {wolsungSettings} from "./settings.mjs";
 import registerHandlebars from "./handlebars.mjs";
 import loadWolsung from "./load.mjs";
-import preloadWolsungTemplates from "./sheets/preloadWolsungTemplates.mjs";
 import WolsungItemSheet from "./sheets/WolsungItemSheet.mjs";
 import WolsungItem from "./documents/WolsungItem.mjs";
 import WolsungActorSheet from "./sheets/WolsungActorSheet.mjs";
