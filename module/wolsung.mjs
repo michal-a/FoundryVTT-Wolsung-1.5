@@ -1,6 +1,7 @@
 import {wolsung} from "./config.mjs";
 import {wolsungSettings} from "./settings.mjs";
 import registerHandlebars from "./handlebars.mjs";
+import loadWolsung from "./load.mjs";
 import preloadWolsungTemplates from "./sheets/preloadWolsungTemplates.mjs";
 import WolsungItemSheet from "./sheets/WolsungItemSheet.mjs";
 import WolsungItem from "./documents/WolsungItem.mjs";
@@ -52,7 +53,7 @@ Hooks.once("init", function(){
     DocumentSheetConfig.unregisterSheet(Cards, "core", CardsPile);
     DocumentSheetConfig.registerSheet(Cards, "wolsung", WolsungCardsPile, {types: ["pile"], makeDefault: true});
 
-    preloadWolsungTemplates();
+    loadWolsung();
     Object.keys(wolsungSettings).map(key => game.settings.register("wolsung", key, wolsungSettings[key]));
     
     registerHandlebars();
@@ -86,13 +87,13 @@ Hooks.on('chatMessage', (_, messageText, data) => {
 Hooks.on("getChatLogEntryContext", (html, options) => {
     options.push({
         name: "wolsung.contextMenu.useToken",
-        icon: '<object style="margin-right: 5px; width: 17.5px;" data="systems/wolsung/icons/zeton.svg"></object>',
+        icon: "<i>" + CONFIG.wolsung.icons.zeton + "</i>",
         condition: message => useTokenOnRollContextCondition(game.messages.get(message.data("messageId"))),
         callback: message => useTokenOnRollDialog(game.messages.get(message.data("messageId")))
     });
     options.push({
         name: "wolsung.contextMenu.useCard",
-        icon: '<object style="margin-right: 5px; width: 17.5px;" data="systems/wolsung/icons/play_card.svg"></object>',
+        icon: "<i>" + CONFIG.wolsung.icons.playCard + "</i>",
         condition: message => useCardOnRollContextCondition(game.messages.get(message.data("messageId"))),
         callback: message => useCardOnRollDialog(game.messages.get(message.data("messageId")))
     });

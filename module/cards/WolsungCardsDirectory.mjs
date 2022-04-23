@@ -6,7 +6,7 @@ export default class WolsungCardsDirectory extends CardsDirectory {
         return [
             {
                 name: "wolsung.contextMenu.giveToken",
-                icon: '<object style="margin-right: 5px; width: 17.5px;" data="systems/wolsung/icons/zeton.svg"></object>',
+                icon: "<i>" + CONFIG.wolsung.icons.zeton + "</i>",
                 condition: li => {
                     const type = this.constructor.collection.get(li.data("documentId")).type;
                     return game.user.isGM && type == "hand"
@@ -25,7 +25,7 @@ export default class WolsungCardsDirectory extends CardsDirectory {
             },
             {
                 name: "wolsung.contextMenu.dealCard",
-                icon: '<object style="margin-right: 5px; width: 17.5px;" data="systems/wolsung/icons/deal_card.svg"></object>',
+                icon: "<i>" + CONFIG.wolsung.icons.dealCard + "</i>",
                 condition: li => {
                     const type = this.constructor.collection.get(li.data("documentId")).type;
                     return game.user.isGM && type == "hand"
