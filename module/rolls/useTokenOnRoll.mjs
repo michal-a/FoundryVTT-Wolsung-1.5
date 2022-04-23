@@ -1,8 +1,13 @@
 import wolsungRollFormat from "./wolsungRollFormat.mjs";
 
-export function useTokenOnRollContexCondition(message) {
+/**
+ * Check if Context Menu Entry could be shown
+ * @param {ChatMessage} message 
+ * @returns {boolean} can Context Menu Entry be shown
+ */
+export function useTokenOnRollContextCondition(message) {
     //check if message is Roll
-    if (!game.messages.get(message.data("messageId")).isRoll) return false;
+    if (!message.isRoll) return false;
 
     //check if socketlib is active
     try {
@@ -24,6 +29,11 @@ export function useTokenOnRollContexCondition(message) {
     return  haveTokens;
 }
 
+/**
+ * Render Dialog for selecting Token's effect on Roll
+ * @param {ChatMessage} message 
+ * @returns 
+ */
 export async function useTokenOnRollDialog(message) {
     //define user hand
     let hand
@@ -33,7 +43,7 @@ export async function useTokenOnRollDialog(message) {
     //render html for Dialog
     const html = await renderTemplate("systems/wolsung/templates/chat/use-token-dialog.hbs", {});
 
-    //define and render Dialog
+    //render Dialog
     return new Dialog({
         title: game.i18n.format("wolsung.chat.useToken.title", wolsungRollFormat(message.roll)),
         content: html,
@@ -57,6 +67,11 @@ export async function useTokenOnRollDialog(message) {
     }).render(true);
 }
 
+/**
+ * Add Bonus to the Roll result from the ChatMessage
+ * @param {ChatMessage} message 
+ * @param {Number} bonus 
+ */
 export async function useTokenOnRollBonus(message, bonus) {
     let modRoll = message.roll;
     let diceFormula = modRoll.terms[0].terms[0];
@@ -79,7 +94,11 @@ export async function useTokenOnRollBonus(message, bonus) {
     
 
     //add Roll flavor to note the Token usage
-    const modFlavor = "+ " + (game.user.charname ? game.user.charname : game.user.name) + game.i18n.localize("wolsung.chat.rollFlavor.addTokenBonus") + bonus;
+    const modFlavor = game.i18n.format("wolsung.chat.rollFlavor.addTokenBonus", {
+        user: (game.user.charname ? game.user.charname : game.user.name),
+        what: game.i18n.localize(bonus >= 0 ? "wolsung.chat.rollFlavor.increase": "wolsung.chat.rollFlavor.decrease"),
+        bonus: (bonus >=0 ? bonus : -bonus)
+    });
     modRoll.flavor = message.data.flavor ? (message.data.flavor + "<br>" + modFlavor) : modFlavor;
 
     //update Roll formula
@@ -100,6 +119,10 @@ export async function useTokenOnRollBonus(message, bonus) {
     });
 }
 
+/**
+ * Add Dice to the Roll from the Chat Message
+ * @param {ChatMessage} message 
+ */
 export async function useTokenOnRollDice(message) {
     let modRoll = message.roll;
     let diceFormula = modRoll.terms[0].terms[0];
@@ -116,7 +139,9 @@ export async function useTokenOnRollDice(message) {
     modRoll.terms[0].rolls.push(additionalDice);
 
     //add Roll flavor to note the Token usage
-    const modFlavor = "+ " + (game.user.charname ? game.user.charname : game.user.name) + game.i18n.localize("wolsung.chat.rollFlavor.addTokenDice");
+    const modFlavor = game.i18n.format("wolsung.chat.rollFlavor.addTokenDice", {
+        user: (game.user.charname ? game.user.charname : game.user.name)
+    });
     modRoll.flavor = message.data.flavor ? (message.data.flavor + "<br>" + modFlavor) : modFlavor;
 
     //update Roll formula
@@ -139,6 +164,11 @@ export async function useTokenOnRollDice(message) {
     });
 }
 
+/**
+ * Try to discard one Token from the Cards Hand and return status
+ * @param {WolsungCards} hand 
+ * @returns {boolean} was a success
+ */
 export async function discardToken(hand) {
     const zetonDeckId = game.cards.getName(game.settings.get("wolsung", "zetonDeck")).id;
     try {

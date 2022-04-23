@@ -1,0 +1,19 @@
+<img src="{{content.selectedCard.img}}" title="{{content.selectedCard.name}}" class="flex0 card-image"/>
+<ul>
+    <li>
+        <h3>{{localize "wolsung.cards.hand.bonus"}}{{content.selectedCard.data.data.testBonus}}</h3>
+    </li>
+    <li>
+        <h3>{{localize "wolsung.cards.hand.sukces"}}{{content.selectedCard.data.data.st}}</h3>
+    </li>
+    {{#if content.selectedCard.data.data.podbicie}}
+    <li>
+        <h3>{{localize "wolsung.cards.hand.podbicie"}}{{content.selectedCard.data.data.podbicie}}</h3>
+    </li>
+    {{/if}}
+    {{#if (isJoker content.selectedCard)}}
+        <li>
+            <h3>{{localize "wolsung.cards.hand.jocker"}}</h3>
+        </li>
+    {{/if}}
+</ul>

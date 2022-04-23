@@ -13,7 +13,8 @@ export default async function preloadWolsungTemplates() {
         "systems/wolsung/templates/partials/zaklecie-card.hbs",
         "systems/wolsung/templates/partials/osiagniecie-card.hbs",
         "systems/wolsung/templates/partials/obsada-zdolnosc-card.hbs",
-        "systems/wolsung/templates/partials/obsada-umiejetnosc-card.hbs"
+        "systems/wolsung/templates/partials/obsada-umiejetnosc-card.hbs",
+        "systems/wolsung/templates/chat/card-selector-dialog-inner.hbs"
     ];
 
     return loadTemplates(templatePaths);

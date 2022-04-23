@@ -157,8 +157,7 @@
             "dealCard": "Rozdaj Kartę",
             "dealCardNotify": "Rozdano Kartę do ręki:",
             "useToken": "Użyj Żeton",
-            "useCard": "Użyj Kartę",
-            "modifyRoll": "Modyfikuj rzut"
+            "useCard": "Użyj Kartę"
         },
         "diceShort": "k",
         "karta": {
@@ -305,8 +304,12 @@
                 "przerzut": "Przerzut:"
             },
             "rollFlavor": {
-                "addTokenDice": " używa Żetonu dorzucając kość",
-                "addTokenBonus": " używa Żetonu zwiększając wynik o: "
+                "addTokenDice": "+ {user} używa Żetonu dorzucając kość",
+                "addTokenBonus": "+ {user} używa Żetonu {what} wynik o {bonus}",
+                "increase": "zwiększając",
+                "decrease": "zmniejszając",
+                "addCard": "+ {user} używa Karty {cardShortName} zwiekszajac wynik o {bonus}{joker}", 
+                "joker": " i zwiększając zakres przerzutu o 1"
             },
             "useToken": {
                 "title": "Użyj Żetonu, aby zmodyfikować rzut {modificator}/{explodeOn}+ pulą {numberOfDices} kości.",
@@ -314,6 +317,10 @@
                 "modificator": "Modyfikator:",
                 "dice": "Dorzuć kość",
                 "empty": "Nie posiadasz Żetonów na ręcę"
+            },
+            "useCard": {
+                "title": "Wybierz kartę, aby zmodyfikować rzut {modificator}/{explodeOn}+ pulą {numberOfDices} kości.",
+                "label": "Zagraj kartę"
             }
         },
         "cards": {
@@ -403,14 +410,19 @@
             "zeton": "Żeton",
             "hand": {
                 "bonus": "Bonus do testu: +",
-                "sukces": "Sukces przy ST ≤ ", 
+                "sukces": "Sukces przy ST ≤ ",
+                "podbicie": "Podbicie przy ST ≤ ",
+                "jocker": "Zwiększa o jeden zakres przerzutu.",
                 "odrzuc": "Odrzuć",
                 "uzyj": "Użyj",
                 "dobierz": "Dobierz karty",
                 "inicjatywa": "Za inicjatywę",
                 "inicjatywaTitle": "Wybierz postać",
-                "inicjatywaLabel": "Wybierz postać",
-                "inicjatywaPostac": "Postać:"
+                "inicjatywaLabel": "Zagraj kartę",
+                "inicjatywaPostac": "Postać:",
+                "inicjatywaError": {
+                    "noCombatant": "Żadna postać nie została wybrana",
+                    "noCard": "Wybrana Karta została wcześniej użyta"}
             },
             "chat": {
                 "useZeton": "Używa Żetonu",

@@ -8,7 +8,8 @@ import WolsungActorSheet from "./sheets/WolsungActorSheet.mjs";
 import WolsungActor from "./documents/WolsungActor.mjs";
 import WolsungDiceTerm from "./rolls/WolsungDiceTerm.mjs";
 import rollFromChatMessageWolsungCommand from "./rolls/WolsungRoll.mjs";
-import { useTokenOnRollContexCondition, useTokenOnRollDialog } from "./rolls/useTokenOnRoll.mjs";
+import { useTokenOnRollContextCondition, useTokenOnRollDialog } from "./rolls/useTokenOnRoll.mjs";
+import { useCardOnRollContextCondition, useCardOnRollDialog } from "./rolls/useCardOnRoll.mjs";
 import WolsungCardConfig from "./cards/WolsungCardConfig.mjs";
 import WolsungCards from "./cards/WolsungCards.mjs";
 import WolsungCardsHand from "./cards/WolsungCardsHand.mjs";
@@ -86,8 +87,14 @@ Hooks.on("getChatLogEntryContext", (html, options) => {
     options.push({
         name: "wolsung.contextMenu.useToken",
         icon: '<object style="margin-right: 5px; width: 17.5px;" data="systems/wolsung/icons/zeton.svg"></object>',
-        condition: message => useTokenOnRollContexCondition(message),
-        callback: message => useTokenOnRollDialog(game.messages.get(message.data("messageId")), 3)
+        condition: message => useTokenOnRollContextCondition(game.messages.get(message.data("messageId"))),
+        callback: message => useTokenOnRollDialog(game.messages.get(message.data("messageId")))
+    });
+    options.push({
+        name: "wolsung.contextMenu.useCard",
+        icon: '<object style="margin-right: 5px; width: 17.5px;" data="systems/wolsung/icons/play_card.svg"></object>',
+        condition: message => useCardOnRollContextCondition(game.messages.get(message.data("messageId"))),
+        callback: message => useCardOnRollDialog(game.messages.get(message.data("messageId")))
     });
 });
 

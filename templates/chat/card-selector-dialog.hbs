@@ -1,0 +1,22 @@
+<div class="dialog-content">
+    <form>
+        <div class="form-group">
+            <select name="cardId" class="card-selector">
+                {{#each content.cards as |card|}}
+                    <option value="{{card.id}}">{{localize card.name}}</option>
+                {{/each}}
+            </select>
+        </div>
+    </form>
+</div>
+<div class="flexrow wolsung-card-info">
+    {{> "systems/wolsung/templates/chat/card-selector-dialog-inner.hbs"}}
+</div>
+<div class="dialog-buttons">
+    {{#each buttons as |button id|}}
+    <button class="dialog-button {{cssClass}}" data-button="{{id}}">
+        {{{button.icon}}}
+        {{{button.label}}}
+    </button>
+    {{/each}}
+</div>

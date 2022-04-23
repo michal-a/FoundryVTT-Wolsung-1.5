@@ -50,4 +50,8 @@ export default function registerHandlebars() {
     Handlebars.registerHelper("cardsVisibility", function(hasPlayerOwner){
         return (hasPlayerOwner && !game.user.isGM) || (!hasPlayerOwner && game.user.isGM);
     });
+
+    Handlebars.registerHelper("isJoker", function(card){
+        return (card.data.value == 15)
+    });
 }
