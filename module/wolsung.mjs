@@ -41,7 +41,7 @@ Hooks.once("init", function(){
     CONFIG.Dice.termTypes.DiceTerm = WolsungDiceTerm;
     CONFIG.Dice.terms.d = WolsungDie;
     CONFIG.Dice.types[0] = WolsungDie;
-    Roll.CHAT_TEMPLATE = "systems/wolsung/templates/dice/roll.html";
+    Roll.CHAT_TEMPLATE = "systems/wolsung/templates/dice/roll.hbs";
 
     //Configure Cards
     CONFIG.Cards.documentClass = WolsungCards;
