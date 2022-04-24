@@ -1,25 +1,10 @@
-export default async function rollFromChatMessageWolsungCommand(messageText, data) {
-    let match = messageText.match(new RegExp(`^/wr\\s*(\\d+)\\s*d\\s*(\\d+)\\s*([\+\-]\\s*\\d+)?\\s*(#.*)?$`));
-    if (!match) return (messageText) => {
-        ui.notifications.error(
-            `<div>Failed parsing your command:</div>
-            <div><p style="font-family: monospace">${messageText}</p></div>
-            <div>Try instead: <p style="font-family: monospace">/wr 2d9 + 3 #something</p></div>
-            `,
-        );
-        return null;
-    }
-    let rollFormule = "{" + Array(parseInt(match[1])).fill("1d10x>=" + match[2]).join() + "}kh";
-    if (typeof match[3] !== "undefined") {
-        rollFormule += match[3].replace(/\s/g, '');
-    }
-    else {
-        rollFormule += "+ 0";
-    }
-    let r = new Roll(rollFormule);
-    await r.evaluate();
-    if (typeof match[4] !== "undefined") {
-        r.toMessage({flavor: match[4].replace(/^#\s/, '')});
-    }
-    else r.toMessage();
+/**
+ * @inheritdoc
+ */
+export default class WolsungRoll extends Roll {
+
+    /**
+     * @inheritdoc
+     */
+    static CHAT_TEMPLATE = "systems/wolsung/templates/dice/roll.html";
 }

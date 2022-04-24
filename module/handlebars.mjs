@@ -1,3 +1,5 @@
+import { isWolsungRoll, wolsungRollFormat } from "./rolls/wolsungRollFormat.mjs";
+
 export default function registerHandlebars() {
     Handlebars.registerHelper("cleartext", function(content){
         let result = "";
@@ -54,4 +56,16 @@ export default function registerHandlebars() {
     Handlebars.registerHelper("isJoker", function(card){
         return (card.data.value == 15)
     });
+
+    Handlebars.registerHelper("rollFormula", function(formula){
+        if (isWolsungRoll(formula)) {
+            const rollInfo = wolsungRollFormat(formula);
+            const dices = game.i18n.localize("wolsung.chat.rollMessage." + (rollInfo.numberOfDices == 1 ? "dice" : "dices"))
+            return game.i18n.format("wolsung.chat.rollMessage.formula", {
+                dices: dices,
+                ...rollInfo
+            })
+        }
+        else return formula;
+    })
 }

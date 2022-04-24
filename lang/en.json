@@ -303,6 +303,11 @@
                 "mod": "Modyfikatory:",
                 "przerzut": "Przerzut:"
             },
+            "rollMessage": {
+                "formula": "{numberOfDices} {dices}, {modificator}/{explodeOn}+",
+                "dice": "kość",
+                "dices": "kości"
+            },
             "rollFlavor": {
                 "addTokenDice": "+ {user} używa Żetonu dorzucając kość",
                 "addTokenBonus": "+ {user} używa Żetonu {what} wynik o {bonus}",

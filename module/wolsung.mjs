@@ -7,7 +7,8 @@ import WolsungItem from "./documents/WolsungItem.mjs";
 import WolsungActorSheet from "./sheets/WolsungActorSheet.mjs";
 import WolsungActor from "./documents/WolsungActor.mjs";
 import WolsungDiceTerm from "./rolls/WolsungDiceTerm.mjs";
-import rollFromChatMessageWolsungCommand from "./rolls/WolsungRoll.mjs";
+import WolsungDie from "./rolls/WolsungDie.mjs";
+import { wolsungRollCommand } from "./rolls/wolsungRollFormat.mjs";
 import { useTokenOnRollContextCondition, useTokenOnRollDialog } from "./rolls/useTokenOnRoll.mjs";
 import { useCardOnRollContextCondition, useCardOnRollDialog } from "./rolls/useCardOnRoll.mjs";
 import WolsungCardConfig from "./cards/WolsungCardConfig.mjs";
@@ -20,50 +21,63 @@ import WolsungSessionStart from "./cards/WolsungSessionStart.mjs";
 import WolsungCombat from "./combat/combat.mjs";
 import WolsungCombatTracker from "./combat/combatTracker.mjs";
 
-
 Hooks.once("init", function(){
     console.log("Wolsung | Initialising Wolsung 1.5 System");
 
-    Die.prototype.__proto__ = WolsungDiceTerm.prototype;
+    //Import Wolsung Config
     CONFIG.wolsung = wolsung;
-    CONFIG.Item.documentClass = WolsungItem;
-    CONFIG.Actor.documentClass = WolsungActor;
-    CONFIG.Dice.termTypes.DiceTerm = WolsungDiceTerm;
-    CONFIG.Cards.documentClass = WolsungCards;
-    CONFIG.ui.cards = WolsungCardsDirectory;
-    CONFIG.Combat.documentClass = WolsungCombat;
-    CONFIG.ui.combat = WolsungCombatTracker;
 
+    //Configure Item
+    CONFIG.Item.documentClass = WolsungItem;
     Items.unregisterSheet("core", ItemSheet);
     Items.registerSheet("wolsung", WolsungItemSheet, {makeDefault: true});
 
+    //Configure Actor
+    CONFIG.Actor.documentClass = WolsungActor;
     Actors.unregisterSheet("core", ActorSheet);
     Actors.registerSheet("wolsung", WolsungActorSheet, {makeDefault: true});
 
+    //Configure Rolls
+    CONFIG.Dice.termTypes.DiceTerm = WolsungDiceTerm;
+    CONFIG.Dice.terms.d = WolsungDie;
+    CONFIG.Dice.types[0] = WolsungDie;
+    Roll.CHAT_TEMPLATE = "systems/wolsung/templates/dice/roll.html";
+
+    //Configure Cards
+    CONFIG.Cards.documentClass = WolsungCards;
+    CONFIG.ui.cards = WolsungCardsDirectory;
     DocumentSheetConfig.unregisterSheet(Card, "core", CardConfig);
     DocumentSheetConfig.registerSheet(Card, "wolsung", WolsungCardConfig, {makeDefault: true});
-
     DocumentSheetConfig.unregisterSheet(Cards, "core", CardsHand);
     DocumentSheetConfig.registerSheet(Cards, "wolsung", WolsungCardsHand, {types: ["hand"], makeDefault: true});
-
     DocumentSheetConfig.unregisterSheet(Cards, "core", CardsConfig);
     DocumentSheetConfig.registerSheet(Cards, "wolsung", WolsungCardsDeck, {types: ["deck"], makeDefault: true});
-
     DocumentSheetConfig.unregisterSheet(Cards, "core", CardsPile);
     DocumentSheetConfig.registerSheet(Cards, "wolsung", WolsungCardsPile, {types: ["pile"], makeDefault: true});
 
+    //Configure Combat
+    CONFIG.Combat.documentClass = WolsungCombat;
+    CONFIG.ui.combat = WolsungCombatTracker;
+
+    //Load Templates
     loadWolsung();
-    Object.keys(wolsungSettings).map(key => game.settings.register("wolsung", key, wolsungSettings[key]));
     
+    //Register Handlebars
     registerHandlebars();
 
+    //Create System Settings
+    Object.keys(wolsungSettings).map(key => game.settings.register("wolsung", key, wolsungSettings[key]));
+
+    //Create socket for socketlib
     var socket;
+
+    console.log("Wolsung | Wolsung 1.5 System is initialized");
 });
 
 // Hook for /wr (Wolsung Roll) command
 Hooks.on('chatMessage', (_, messageText, data) => {
     if (messageText !== undefined && messageText.startsWith('/wr')) {
-        rollFromChatMessageWolsungCommand(messageText, data);
+        wolsungRollCommand(messageText, data);
         return false;
     }
     else {
@@ -98,6 +112,7 @@ Hooks.on("getChatLogEntryContext", (html, options) => {
     });
 });
 
+// Register wolsung socketlib functions
 Hooks.once("socketlib.ready", () => {
 	socket = socketlib.registerSystem("wolsung");
     socket.register("updateChatMessage", async (messageId, data) => {

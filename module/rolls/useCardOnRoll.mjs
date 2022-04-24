@@ -1,4 +1,4 @@
-import wolsungRollFormat from "./wolsungRollFormat.mjs";
+import { isWolsungRoll, wolsungRollFormat } from "./wolsungRollFormat.mjs";
 import WolsungCardSelectDialog from "../applications/WolsungCardSelectDialog.mjs";
 
 /**
@@ -7,9 +7,8 @@ import WolsungCardSelectDialog from "../applications/WolsungCardSelectDialog.mjs
  * @returns {boolean} can Contex Menu Entry be shown
  */
 export function useCardOnRollContextCondition(message) {
-    //check if message is Roll
-    if (!message.isRoll) return false;
-
+    //check if message is Wolsung Roll
+    if (!message.isRoll || !isWolsungRoll(message._roll._formula)) return false;
     //check if socketlib is active
     try {
         if (!game.modules.get('socketlib').active) return false;
@@ -47,7 +46,7 @@ export async function useCardOnRollDialog(message) {
 
     //render Dialog
     return WolsungCardSelectDialog.prompt({
-        title: game.i18n.format("wolsung.chat.useCard.title", wolsungRollFormat(message.roll)),
+        title: game.i18n.format("wolsung.chat.useCard.title", wolsungRollFormat(message.roll._formula)),
         label: game.i18n.localize("wolsung.chat.useCard.label"),
         content: {
             cards: cardsList,

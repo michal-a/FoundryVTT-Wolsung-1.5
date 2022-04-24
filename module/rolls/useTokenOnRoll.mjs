@@ -1,4 +1,4 @@
-import wolsungRollFormat from "./wolsungRollFormat.mjs";
+import { isWolsungRoll, wolsungRollFormat } from "./wolsungRollFormat.mjs";
 
 /**
  * Check if Context Menu Entry could be shown
@@ -6,8 +6,8 @@ import wolsungRollFormat from "./wolsungRollFormat.mjs";
  * @returns {boolean} can Context Menu Entry be shown
  */
 export function useTokenOnRollContextCondition(message) {
-    //check if message is Roll
-    if (!message.isRoll) return false;
+    //check if message is Wolsung Roll
+    if (!message.isRoll || !isWolsungRoll(message._roll._formula)) return false;
 
     //check if socketlib is active
     try {
@@ -45,7 +45,7 @@ export async function useTokenOnRollDialog(message) {
 
     //render Dialog
     return new Dialog({
-        title: game.i18n.format("wolsung.chat.useToken.title", wolsungRollFormat(message.roll)),
+        title: game.i18n.format("wolsung.chat.useToken.title", wolsungRollFormat(message.roll._formula)),
         content: html,
         buttons: {
             bonus: {
