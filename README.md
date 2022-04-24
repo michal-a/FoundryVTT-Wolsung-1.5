@@ -21,6 +21,7 @@ This is a Wolsung 1.5 unofficial implementation for Foundry VTT. There is no con
 - Inicjatywa losowana poprzez ciągniecie kart w każdej turze. Możliwość użycia karty z ręki by zastąpić kartę inicjatywy.
 - Komenda /wss rozdająca karty i żetony na rozpoczęcie sesji
 - Obsługa rzutów według zasad Wolsunga wraz z traktowaniem przerzutu jako 10. Rzuty dostępne są z karty postaci, karty obsady oraz chatu poprzez komendę /wr. Dice so Nice jest również obsługiwany.
+- Modyfikowanie rzutów kartami i żetonami poprzez kliknięciem prawym przyciskiem na wiadomość w Chacie. UWAGA: wymaga zainstalowania modułu _socketlib_ i aktywowania go w ustawieniach.
 - Instrukcje dla graczy oraz MG dostępne w Compendium.
 
 ### Tworzenie nowej gry
