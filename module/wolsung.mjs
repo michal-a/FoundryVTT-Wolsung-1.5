@@ -8,7 +8,7 @@ import WolsungActorSheet from "./sheets/WolsungActorSheet.mjs";
 import WolsungActor from "./documents/WolsungActor.mjs";
 import WolsungDiceTerm from "./rolls/WolsungDiceTerm.mjs";
 import WolsungDie from "./rolls/WolsungDie.mjs";
-import { wolsungRollCommand } from "./rolls/wolsungRollFormat.mjs";
+import { wolsungRollCommand } from "./rolls/wolsungRollFunctions.mjs";
 import { useTokenOnRollContextCondition, useTokenOnRollDialog } from "./rolls/useTokenOnRoll.mjs";
 import { useCardOnRollContextCondition, useCardOnRollDialog } from "./rolls/useCardOnRoll.mjs";
 import WolsungCardConfig from "./cards/WolsungCardConfig.mjs";

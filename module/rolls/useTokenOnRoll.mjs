@@ -1,4 +1,4 @@
-import { isWolsungRoll, wolsungRollFormat } from "./wolsungRollFormat.mjs";
+import { isWolsungRoll, wolsungRollFormat } from "./wolsungRollFunctions.mjs";
 
 /**
  * Check if Context Menu Entry could be shown
