@@ -68,4 +68,14 @@ export default function registerHandlebars() {
         }
         else return formula;
     })
+
+    Handlebars.registerHelper("cardDetails", function(card) {
+        let title = `${game.i18n.localize("wolsung.cards.hand.bonus")}${card.data.data.testBonus}
+${game.i18n.localize("wolsung.cards.hand.sukces")}${card.data.data.st}`;
+        if (card.data.data.podbicie) title += `
+${game.i18n.localize("wolsung.cards.hand.podbicie")}${card.data.data.podbicie}`;
+        if (card.data.value == 15) title += `
+${game.i18n.localize("wolsung.cards.hand.jocker")}`
+        return title
+    })
 }

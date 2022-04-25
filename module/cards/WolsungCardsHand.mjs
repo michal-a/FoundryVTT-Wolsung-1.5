@@ -2,11 +2,43 @@ export default class WolsungCardsHand extends CardsHand {
     static get defaultOptions() {
         return mergeObject(super.defaultOptions, {
             width: 800,
-            height: 600,
+            height: 700,
             classes: ["wolsung", "cards", "hand"],
             template: "systems/wolsung/templates/cards/cards-hand.hbs",
+            dragDrop: [{dragSelector: ".item-list .item", dropSelector: null}]
         });
     }
+
+    cardMenu = [
+        {
+            name: game.i18n.localize("wolsung.cards.hand.useChat"),
+            icon: '<i class="fas fa-comments"></i>',
+            callback: element => {
+                this._onUseCard(element[0]);
+            }
+        },
+        {
+            name: game.i18n.localize("wolsung.cards.hand.modifyRoll"),
+            icon: "<i>" + CONFIG.wolsung.icons.d10 + "</i>",
+            callback: element => {
+                this._onUseCard(element[0]);
+            }
+        },
+        {
+            name: game.i18n.localize("wolsung.cards.hand.inicjatywa"),
+            icon: '<i class="fas fa-fist-raised"></i>',
+            callback: element => {
+                this._onInitiativeCard(element[0]);
+            }
+        },
+        {
+            name: game.i18n.localize("wolsung.cards.hand.discard"),
+            icon: "<i>" + CONFIG.wolsung.icons.discardCard + "</i>",
+            callback: element => {
+                this._onDiscardCard(element[0]);
+            }
+        },
+    ]
 
     getData() {
         const baseData = super.getData();
@@ -26,6 +58,9 @@ export default class WolsungCardsHand extends CardsHand {
         html.find(".use-card").click(this._onUseCard.bind(this));
         html.find(".discard-card").click(this._onDiscardCard.bind(this));
         html.find(".initiative-card").click(this._onInitiativeCard.bind(this));
+        if (this.object.isOwner) {
+            new ContextMenu(html, ".karta-active", this.cardMenu);
+        }
         super.activateListeners(html);
     }
 
@@ -34,6 +69,43 @@ export default class WolsungCardsHand extends CardsHand {
         $.each(details, function (index, value) {
             $(value).toggleClass("hidden");
         });
+    }
+
+    /** @inheritdoc */
+    _canDragStart(selector) {
+        return this.object.isOwner;
+    }
+
+    /** @inheritdoc */
+    _onDragStart(event) {
+        const element = event.currentTarget;
+
+        // Create drag data
+        const dragData = {
+            handId: this.object.id,
+            cardId: element.dataset.cardid
+        };
+
+        // Wolsung Cards
+        if (element.classList.contains("karta")) {
+            dragData.type = "Karta";
+        }
+        else if (element.classList.contains("zeton")) {
+            dragData.type = "Zeton";
+        }
+
+        event.dataTransfer.setData("text/plain", JSON.stringify(dragData));
+    }
+
+    async _onDrop(event) {
+        const data = TextEditor.getDragEventData(event);
+
+        switch ( data.type ) {
+            case "Karta":
+                return this._onDropKarta(event, data);
+            case "Zeton":
+                return this._onDropZeton(event, data);
+        }
     }
 
     async _onUseZeton(event) {
@@ -70,9 +142,7 @@ export default class WolsungCardsHand extends CardsHand {
         
     }
 
-    async _onUseCard(event) {
-        event.preventDefault();
-        let element = event.currentTarget;
+    async _onUseCard(element) {
         const hand = this.object;
         const discard = game.cards.getName(game.settings.get("wolsung", "discardPile"));
         const card = this.object.cards.get(element.dataset.cardid);
@@ -100,18 +170,14 @@ export default class WolsungCardsHand extends CardsHand {
         return cardName;
     }
 
-    async _onDiscardCard(event) {
-        event.preventDefault();
-        let element = event.currentTarget;
+    async _onDiscardCard(element) {
         const hand = this.object;
         const discard = game.cards.getName(game.settings.get("wolsung", "discardPile"));
         const card = this.object.cards.get(element.dataset.cardid);
         await hand.pass(discard, [card.id], {chatNotification: false});
     }
 
-    async _onInitiativeCard(event) {
-        event.preventDefault();
-        let element = event.currentTarget;
+    async _onInitiativeCard(element) {
         const hand = this.object;
         const discard = game.cards.getName(game.settings.get("wolsung", "discardPile"));
         const card = this.object.cards.get(element.dataset.cardid);

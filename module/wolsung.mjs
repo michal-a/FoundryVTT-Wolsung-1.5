@@ -9,41 +9,40 @@ import WolsungActor from "./documents/WolsungActor.mjs";
 import WolsungDiceTerm from "./rolls/WolsungDiceTerm.mjs";
 import WolsungDie from "./rolls/WolsungDie.mjs";
 import { wolsungRollCommand } from "./rolls/wolsungRollFunctions.mjs";
-import { useTokenOnRollContextCondition, useTokenOnRollDialog } from "./rolls/useTokenOnRoll.mjs";
-import { useCardOnRollContextCondition, useCardOnRollDialog } from "./rolls/useCardOnRoll.mjs";
 import WolsungCardConfig from "./cards/WolsungCardConfig.mjs";
 import WolsungCards from "./cards/WolsungCards.mjs";
 import WolsungCardsHand from "./cards/WolsungCardsHand.mjs";
 import WolsungCardsDeck from "./cards/WolsungCardsDeck.mjs";
 import WolsungCardsPile from "./cards/WolsungCardsPile.mjs";
-import WolsungCardsDirectory from "./cards/WolsungCardsDirectory.mjs";
+import WolsungCardsDirectory from "./applications/WolsungCardsDirectory.mjs";
 import WolsungSessionStart from "./cards/WolsungSessionStart.mjs";
+import WolsungChatLog from "./applications/WolsungChatLog.mjs";
 import WolsungCombat from "./combat/combat.mjs";
 import WolsungCombatTracker from "./combat/combatTracker.mjs";
 
 Hooks.once("init", function(){
     console.log("Wolsung | Initialising Wolsung 1.5 System");
 
-    //Import Wolsung Config
+    // Import Wolsung Config
     CONFIG.wolsung = wolsung;
 
-    //Configure Item
+    // Configure Item
     CONFIG.Item.documentClass = WolsungItem;
     Items.unregisterSheet("core", ItemSheet);
     Items.registerSheet("wolsung", WolsungItemSheet, {makeDefault: true});
 
-    //Configure Actor
+    // Configure Actor
     CONFIG.Actor.documentClass = WolsungActor;
     Actors.unregisterSheet("core", ActorSheet);
     Actors.registerSheet("wolsung", WolsungActorSheet, {makeDefault: true});
 
-    //Configure Rolls
+    // Configure Rolls
     CONFIG.Dice.termTypes.DiceTerm = WolsungDiceTerm;
     CONFIG.Dice.terms.d = WolsungDie;
     CONFIG.Dice.types[0] = WolsungDie;
     Roll.CHAT_TEMPLATE = "systems/wolsung/templates/dice/roll.hbs";
 
-    //Configure Cards
+    // Configure Cards
     CONFIG.Cards.documentClass = WolsungCards;
     CONFIG.ui.cards = WolsungCardsDirectory;
     DocumentSheetConfig.unregisterSheet(Card, "core", CardConfig);
@@ -55,20 +54,23 @@ Hooks.once("init", function(){
     DocumentSheetConfig.unregisterSheet(Cards, "core", CardsPile);
     DocumentSheetConfig.registerSheet(Cards, "wolsung", WolsungCardsPile, {types: ["pile"], makeDefault: true});
 
-    //Configure Combat
+    // Configure Chat
+    CONFIG.ui.chat = WolsungChatLog;
+
+    // Configure Combat
     CONFIG.Combat.documentClass = WolsungCombat;
     CONFIG.ui.combat = WolsungCombatTracker;
 
-    //Load Templates
+    // Load Templates
     loadWolsung();
     
-    //Register Handlebars
+    // Register Handlebars
     registerHandlebars();
 
-    //Create System Settings
+    // Create System Settings
     Object.keys(wolsungSettings).map(key => game.settings.register("wolsung", key, wolsungSettings[key]));
 
-    //Create socket for socketlib
+    // Create socket for socketlib
     var socket;
 
     console.log("Wolsung | Wolsung 1.5 System is initialized");
@@ -94,22 +96,6 @@ Hooks.on('chatMessage', (_, messageText, data) => {
     else {
         return true;
     }
-});
-
-// Create options to modify roll in Chat Context Menu
-Hooks.on("getChatLogEntryContext", (html, options) => {
-    options.push({
-        name: "wolsung.contextMenu.useToken",
-        icon: "<i>" + CONFIG.wolsung.icons.zeton + "</i>",
-        condition: message => useTokenOnRollContextCondition(game.messages.get(message.data("messageId"))),
-        callback: message => useTokenOnRollDialog(game.messages.get(message.data("messageId")))
-    });
-    options.push({
-        name: "wolsung.contextMenu.useCard",
-        icon: "<i>" + CONFIG.wolsung.icons.playCard + "</i>",
-        condition: message => useCardOnRollContextCondition(game.messages.get(message.data("messageId"))),
-        callback: message => useCardOnRollDialog(game.messages.get(message.data("messageId")))
-    });
 });
 
 // Register wolsung socketlib functions

@@ -839,40 +839,10 @@
   margin: 20px;
 }
 .wolsung.cards.hand .hand-content .karty .karta {
-  position: relative;
+  box-shadow: 10px 5px 5px rgba(0, 0, 0, 0.2);
 }
-.wolsung.cards.hand .hand-content .karty .karta-details {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  position: absolute;
-  padding: 3px;
-  top: 0;
-  left: 0;
-  background-color: rgba(255, 255, 255, 0.7);
-}
-.wolsung.cards.hand .hand-content .karty .karta-details .karta-buttons {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-.wolsung.cards.hand .hand-content .karty .karta-details .karta-buttons .button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  border: 2px groove;
-  background-color: rgba(0, 0, 0, 0.2);
-  padding: 3px;
-  font-weight: bold;
-  width: 80px;
-  height: 44px;
-}
-.wolsung.cards.hand .hand-content .karty .karta-details .karta-opis {
-  font-weight: bold;
-}
-.wolsung.cards.hand .hand-content .karty .hidden {
-  display: none;
+.wolsung.cards.hand .hand-content .karty .karta-active:hover {
+  box-shadow: 0 5px 15px #ff6400;
 }
 .chat-message .message-content .item-chat .flexrow {
   align-items: center;

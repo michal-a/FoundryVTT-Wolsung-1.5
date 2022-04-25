@@ -10,7 +10,7 @@ export default class WolsungActorSheet extends ActorSheet{
         });
     }
 
-    itemMenu = [
+    staticitemMenu = [
         {
             name: game.i18n.localize("wolsung.contextMenu.print"),
             icon: '<i class="fas fa-comments"></i>',
