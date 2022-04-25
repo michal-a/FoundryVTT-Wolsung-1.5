@@ -1,4 +1,4 @@
-import { isWolsungRoll, wolsungRollFormat } from "./rolls/wolsungRollFunctions.mjs";
+import { isWolsungRoll, wolsungRollFormat } from "./functions.mjs";
 
 export default function registerHandlebars() {
     Handlebars.registerHelper("cleartext", function(content){

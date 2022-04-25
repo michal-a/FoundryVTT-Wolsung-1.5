@@ -1,5 +1,6 @@
-import {wolsung} from "./config.mjs";
+import {wolsungCFG} from "./config.mjs";
 import {wolsungSettings} from "./settings.mjs";
+import {wolsungRollCommand, wolsungSessionStart} from "./functions.mjs";
 import registerHandlebars from "./handlebars.mjs";
 import loadWolsung from "./load.mjs";
 import WolsungItemSheet from "./sheets/WolsungItemSheet.mjs";
@@ -8,14 +9,12 @@ import WolsungActorSheet from "./sheets/WolsungActorSheet.mjs";
 import WolsungActor from "./documents/WolsungActor.mjs";
 import WolsungDiceTerm from "./rolls/WolsungDiceTerm.mjs";
 import WolsungDie from "./rolls/WolsungDie.mjs";
-import { wolsungRollCommand } from "./rolls/wolsungRollFunctions.mjs";
 import WolsungCardConfig from "./cards/WolsungCardConfig.mjs";
 import WolsungCards from "./cards/WolsungCards.mjs";
 import WolsungCardsHand from "./cards/WolsungCardsHand.mjs";
 import WolsungCardsDeck from "./cards/WolsungCardsDeck.mjs";
 import WolsungCardsPile from "./cards/WolsungCardsPile.mjs";
 import WolsungCardsDirectory from "./applications/WolsungCardsDirectory.mjs";
-import WolsungSessionStart from "./cards/WolsungSessionStart.mjs";
 import WolsungChatLog from "./applications/WolsungChatLog.mjs";
 import WolsungCombat from "./combat/combat.mjs";
 import WolsungCombatTracker from "./combat/combatTracker.mjs";
@@ -24,7 +23,7 @@ Hooks.once("init", function(){
     console.log("Wolsung | Initialising Wolsung 1.5 System");
 
     // Import Wolsung Config
-    CONFIG.wolsung = wolsung;
+    CONFIG.wolsung = wolsungCFG;
 
     // Configure Item
     CONFIG.Item.documentClass = WolsungItem;
@@ -90,7 +89,7 @@ Hooks.on('chatMessage', (_, messageText, data) => {
 // Hook for /wss (Wolsung Start of Session) command
 Hooks.on('chatMessage', (_, messageText, data) => {
     if (messageText !== undefined && messageText.startsWith('/wss')) {
-        WolsungSessionStart(messageText, data);
+        wolsungSessionStart(messageText, data);
         return false;
     }
     else {

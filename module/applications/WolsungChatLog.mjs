@@ -1,5 +1,5 @@
-import { isWolsungRoll, wolsungRollFormat } from "../rolls/wolsungRollFunctions.mjs";
 import WolsungCardSelectDialog from "./WolsungCardSelectDialog.mjs";
+import { isWolsungRoll, wolsungRollFormat } from "../functions.mjs";
 
 /** @inheritdoc */
 export default class WolsungChatLog extends ChatLog {
