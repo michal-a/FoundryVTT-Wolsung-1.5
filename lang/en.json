@@ -153,9 +153,9 @@
             "print": "Wyślij na Chat",
             "delete": "Usuń",
             "giveToken": "Nagródź Żetonem",
-            "giveTokenNotify": "Przekazano Żeton do ręki:",
+            "giveTokenNotify": "Przekazano Żeton do ręki: {hand}",
             "dealCard": "Rozdaj Kartę",
-            "dealCardNotify": "Rozdano Kartę do ręki:",
+            "dealCardNotify": "Rozdano Kartę do ręki: {hand}",
             "useToken": "Użyj Żeton",
             "useCard": "Użyj Kartę"
         },
@@ -439,11 +439,8 @@
             }
         },
         "wss" : {
-            "undefinedHand": "Jedna z podanych rąk nie istnieje:",
-            "gmHandError": "GM może mieć tylko jedną rękę:",
-            "playerHandError": "Musisz podać przynajmniej jedną rękę gracza (kontrolowaną przez gracza):",
+            "undefinedHand": "Podano nieistniejące/błędne ręce: {hands}",
             "notGM": "Komenda dostępna tylko dla GM",
-            "pleaseSpecify": "Proszę sprecyzuj ręcę poprzez:", 
             "success": "Rozdano karty i żetony na rozpoczęcie sesji"
         }
     },

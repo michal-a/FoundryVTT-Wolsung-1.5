@@ -52,60 +52,42 @@ export async function wolsungSessionStart(messageText, data) {
         return null;
     }
 
-    let hands = [];
+    let playersHands = []
 
     if (messageText == "/wss") {
-        //Finding all hands in world if the command was run without arguments
-        hands = game.cards.filter(cards => cards.type == "hand");
+        // Get Players Hands
+        for (let player of game.users.players) playersHands.push(game.cards.get(player.getFlag('wolsung', 'handId')));
     }
     else {
-        //Parsing arguments to array of hands objects
-        hands = messageText.match(/(?:[^\s"']+|['"][^'"]*["'])+/g).slice(1).map(handName =>{
+        // Get Players Hands' Ids
+        let playersHandsIds = []
+        for (let player of game.users.players) playersHandsIds.push(player.getFlag('wolsung', 'handId'));
+
+        let errorHands = [];
+
+        // Parse arguments to array of hands objects
+        playersHands = messageText.match(/(?:[^\s"']+|['"][^'"]*["'])+/g).slice(1).map(handName =>{
             if ((handName.charAt(0) == "'" || handName.charAt(0) == '"') && (handName.charAt(handName.length - 1) == "'" || handName.charAt(handName.length - 1) == '"')) handName = handName.substring(1,handName.length - 1);
-            return game.cards.getName(handName);
+            let hand;
+            try { 
+                hand = game.cards.getName(handName);
+                if (!playersHandsIds.includes(hand.id)) errorHands.push(handName);
+            }
+            catch (e) {
+                errorHands.push(handName);
+            }
+            return hand;
         });
-        //Checking for undefined hands
-        if (hands.filter(hand => hand == undefined).length > 0) {
-            const uiText1 = game.i18n.localize("wolsung.wss.undefinedHand");
-            ui.notifications.error(
-                `<div>${uiText1}</div>
-                <div><p style="font-family: monospace">${messageText}</p></div>
-                `,
-            );
+
+        // Check for errors
+        if (errorHands.length > 0) {
+            ui.notifications.error(game.i18n.format("wolsung.wss.undefinedHand", {hands: errorHands.join(', ')}));
             return null;
         }
     }
 
-    //Filtering players owned hands
-    const playersHands = hands.filter(cards => cards.hasPlayerOwner);
     //Filtering GM hand
-    const gmHand = hands.filter(cards => !cards.hasPlayerOwner);
-
-    //GM has to have one hand
-    if (gmHand.length != 1) {
-        const uiText1 = game.i18n.localize("wolsung.wss.gmHandError");
-        const uiText2 = game.i18n.localize("wolsung.wss.pleaseSpecify");
-        ui.notifications.error(
-            `<div>${uiText1}</div>
-            <div><p style="font-family: monospace">${messageText}</p></div>
-            <div>${uiText2} <p style="font-family: monospace">/wss "gm hand1" "player1 hand" "player2 hand" "player3 hand"</p></div>
-            `,
-        );
-        return null;
-    }
-
-    //There should be at least one player hand
-    if (playersHands.length < 1) {
-        const uiText1 = game.i18n.localize("wolsung.wss.playerHandError");
-        const uiText2 = game.i18n.localize("wolsung.wss.pleaseSpecify");
-        ui.notifications.error(
-            `<div>${uiText1}</div>
-            <div><p style="font-family: monospace">${messageText}</p></div>
-            <div>${uiText2} <p style="font-family: monospace">/wss "gm hand1" "player1 hand" "player2 hand" "player3 hand"</p></div>
-            `,
-        );
-        return null;
-    }
+    const gmHand = [game.cards.get(game.settings.get('wolsung', 'GMHandId'))];
 
     //Reading system settings
     const wolsungDeck = game.cards.getName(game.settings.get("wolsung", "wolsungDeck"));
@@ -132,10 +114,10 @@ export async function wolsungSessionStart(messageText, data) {
     for (let i = 0; i < gmMaxCards; i++) await wolsungDeck.deal(gmHand, 1, {how: 2, chatNotification: false});
 
     //Inform about success
-    const uiText1 = game.i18n.localize("wolsung.wss.success");
-    ui.notifications.info(
-        `
-        <div>${uiText1}</div>
-        `,
-    );
+    ui.notifications.info(game.i18n.localize("wolsung.wss.success"));
+}
+
+export function wolsungGetHand() {
+    if (game.user.role == 4) return game.cards.get(game.settings.get('wolsung', 'GMHandId'));
+    else return game.cards.get(game.user.getFlag('wolsung', 'handId'))
 }

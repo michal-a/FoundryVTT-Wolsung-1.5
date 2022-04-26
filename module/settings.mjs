@@ -76,4 +76,18 @@ wolsungSettings.sortingOfSkillsBoolean = {
     scope: "client",
     type: Boolean,
     default: true
-}
+};
+
+wolsungSettings.wereCardsImported = {
+    config: false,
+    scope: "world",
+    type: Boolean,
+    default: false
+};
+
+wolsungSettings.GMHandId = {
+    config: false,
+    scope: "world",
+    type: String,
+    default: ""
+};

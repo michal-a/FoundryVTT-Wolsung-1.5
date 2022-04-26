@@ -75,6 +75,43 @@ Hooks.once("init", function(){
     console.log("Wolsung | Wolsung 1.5 System is initialized");
 });
 
+Hooks.on('ready', async function(){
+    if (game.user.isGM) {
+
+        // Import Cards for Wolsung pack during first start
+        if (!game.settings.get('wolsung', 'wereCardsImported')) {
+            game.packs.get('wolsung.wolsung-cards').importAll();
+            game.settings.set('wolsung', 'wereCardsImported', true);
+        }
+
+        // Create Cards Hand for GM if there is none
+        if (!game.settings.get('wolsung', 'GMHandId') || !game.cards.get(game.settings.get('wolsung', 'GMHandId'))) {
+            const hand = await WolsungCards.create({
+                name: "GM hand",
+                img: "icons/svg/card-hand.svg",
+                type: "hand"
+            });
+            game.settings.set('wolsung', 'GMHandId', hand.id);
+        }
+
+        // Create Cards Hand for each player which doesn't have one
+        for (let player of game.users.players) {
+            if (!player.getFlag('wolsung', 'handId') || !game.cards.get(player.getFlag('wolsung', 'handId'))) {
+                const hand = await WolsungCards.create({
+                    name: player.name,
+                    img: "icons/svg/card-hand.svg",
+                    type: "hand"
+                });
+                let permission = {}
+                permission[player.id] = 3
+                hand.update({ permission: permission })
+                player.setFlag('wolsung', 'handId', hand.id);
+            }
+        }
+
+    }
+});
+
 // Hook for /wr (Wolsung Roll) command
 Hooks.on('chatMessage', (_, messageText, data) => {
     if (messageText !== undefined && messageText.startsWith('/wr')) {

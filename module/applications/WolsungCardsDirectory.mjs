@@ -15,12 +15,9 @@ export default class WolsungCardsDirectory extends CardsDirectory {
                     const hand = this.constructor.collection.get(li.data("documentId"));
                     const deck = game.cards.getName(game.settings.get("wolsung", "zetonDeck"));
                     deck.deal([hand], 1, {how: 0, chatNotification: false});
-                    const notify = game.i18n.localize("wolsung.contextMenu.giveTokenNotify");
-                    ui.notifications.info(
-                        `
-                        <div>${notify} ${hand.name}.</div>
-                        `,
-                    );
+                    ui.notifications.info(game.i18n.format("wolsung.contextMenu.giveTokenNotify", {
+                        hand: hand.name
+                    }));
                 }
             },
             {
@@ -34,12 +31,9 @@ export default class WolsungCardsDirectory extends CardsDirectory {
                     const hand = this.constructor.collection.get(li.data("documentId"));
                     const deck = game.cards.getName(game.settings.get("wolsung", "wolsungDeck"));
                     deck.deal([hand], 1, {how: 2, chatNotification: false});
-                    const notify = game.i18n.localize("wolsung.contextMenu.dealCardNotify");
-                    ui.notifications.info(
-                        `
-                        <div>${notify} ${hand.name}.</div>
-                        `,
-                    );
+                    ui.notifications.info(game.i18n.format("wolsung.contextMenu.dealCardNotify", {
+                        hand: hand.name
+                    }));
                 }
             }
         ].concat(options);

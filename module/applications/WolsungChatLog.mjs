@@ -1,5 +1,5 @@
 import WolsungCardSelectDialog from "./WolsungCardSelectDialog.mjs";
-import { isWolsungRoll, wolsungRollFormat } from "../functions.mjs";
+import { isWolsungRoll, wolsungRollFormat, wolsungGetHand } from "../functions.mjs";
 
 /** @inheritdoc */
 export default class WolsungChatLog extends ChatLog {
@@ -97,9 +97,7 @@ export default class WolsungChatLog extends ChatLog {
 
         //check if user have Tokens in hand
         let haveZetons = false;
-        let hand
-        if (game.user.role == 4) hand = game.cards.filter(cards => (cards.type == "hand") && !cards.hasPlayerOwner)[0];
-        else hand = game.cards.filter(cards => (cards.type == "hand") && cards.isOwner)[0];
+        const hand = wolsungGetHand();
         if (hand != undefined) {
             const zetonDeckId = game.cards.getName(game.settings.get("wolsung", "zetonDeck")).id;
             haveZetons = (hand.cards.filter(card => card.data.origin == zetonDeckId).length > 0);
@@ -112,9 +110,7 @@ export default class WolsungChatLog extends ChatLog {
 
         //check if user have Cards in hand
         let haveCards = false;
-        let hand
-        if (game.user.role == 4) hand = game.cards.filter(cards => (cards.type == "hand") && !cards.hasPlayerOwner)[0];
-        else hand = game.cards.filter(cards => (cards.type == "hand") && cards.isOwner)[0];
+        const hand = wolsungGetHand()
         if (hand != undefined) {
             const cardsDeckId = game.cards.getName(game.settings.get("wolsung", "wolsungDeck")).id;
             haveCards = (hand.cards.filter(card => card.data.origin == cardsDeckId).length > 0);
@@ -131,9 +127,7 @@ export default class WolsungChatLog extends ChatLog {
         const message = game.messages.get(messageId);
 
         //define user hand
-        let hand
-        if (game.user.role == 4) hand = game.cards.filter(cards => (cards.type == "hand") && !cards.hasPlayerOwner)[0];
-        else hand = game.cards.filter(cards => (cards.type == "hand") && cards.isOwner)[0];
+        const hand = wolsungGetHand()
     
         //render html for Dialog
         const html = await renderTemplate("systems/wolsung/templates/chat/use-token-dialog.hbs", {});
@@ -286,9 +280,7 @@ export default class WolsungChatLog extends ChatLog {
         const message = game.messages.get(messageId);
 
         //define user hand
-        let hand
-        if (game.user.role == 4) hand = game.cards.filter(cards => (cards.type == "hand") && !cards.hasPlayerOwner)[0];
-        else hand = game.cards.filter(cards => (cards.type == "hand") && cards.isOwner)[0];
+        const hand = wolsungGetHand();
 
         //get list of Cards on hand
         const cardsDeckId = game.cards.getName(game.settings.get("wolsung", "wolsungDeck")).id;

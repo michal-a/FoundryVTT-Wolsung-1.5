@@ -10,7 +10,7 @@ export default class WolsungCombat extends Combat {
         const updates = [];
         const messages = [];
         let deck = game.cards.getName(game.settings.get("wolsung", "wolsungDeck"));
-        let hand = game.cards.getName(game.settings.get("wolsung", "initiativePile"));
+        let initiativePile = game.cards.getName(game.settings.get("wolsung", "initiativePile"));
         let pile = game.cards.getName(game.settings.get("wolsung", "discardPile"));
         for ( let [i, id] of ids.entries() ) {
     
@@ -18,8 +18,8 @@ export default class WolsungCombat extends Combat {
             const combatant = this.combatants.get(id);
             if ( !combatant?.isOwner ) continue;
             
-            await deck.deal([hand], 1, {how: 2, chatNotification: false});
-            let initiativeCard = hand.getEmbeddedCollection("Card").toObject()[0];
+            await deck.deal([initiativePile], 1, {how: 2, chatNotification: false});
+            let initiativeCard = initiativePile.getEmbeddedCollection("Card").toObject()[0];
             let initiativeValue = initiativeCard.value;
             if (initiativeCard.suit == "wolsung.cards.joker.black.suit") initiativeValue += 0.6;
             if (initiativeCard.suit == "wolsung.cards.joker.red.suit") initiativeValue += 0.5;
@@ -27,7 +27,7 @@ export default class WolsungCombat extends Combat {
             if (initiativeCard.suit == "wolsung.cards.hearts.suit") initiativeValue += 0.3;
             if (initiativeCard.suit == "wolsung.cards.diamonds.suit") initiativeValue += 0.2;
             if (initiativeCard.suit == "wolsung.cards.clubs.suit") initiativeValue += 0.1;
-            await hand.deal([pile], 1, {chatNotification: false});
+            await initiativePile.deal([pile], 1, {chatNotification: false});
             updates.push({_id: id, initiative: initiativeValue});
         }
         if ( !updates.length ) return this;
