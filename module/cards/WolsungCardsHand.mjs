@@ -1,6 +1,7 @@
 export default class WolsungCardsHand extends CardsHand {
     static get defaultOptions() {
         return mergeObject(super.defaultOptions, {
+            resizable: true,
             width: 800,
             height: 700,
             classes: ["wolsung", "cards", "hand"],
@@ -25,17 +26,27 @@ export default class WolsungCardsHand extends CardsHand {
             }
         },
         {
-            name: game.i18n.localize("wolsung.cards.hand.inicjatywa"),
-            icon: '<i class="fas fa-fist-raised"></i>',
-            callback: element => {
-                this._onInitiativeCard(element[0]);
-            }
-        },
-        {
             name: game.i18n.localize("wolsung.cards.hand.discard"),
             icon: "<i>" + CONFIG.wolsung.icons.discardCard + "</i>",
             callback: element => {
                 this._onDiscardCard(element[0]);
+            }
+        },
+    ]
+
+    zetonMenu = [
+        {
+            name: game.i18n.localize("wolsung.cards.hand.useChat"),
+            icon: '<i class="fas fa-comments"></i>',
+            callback: element => {
+                this._onUseZeton(element[0]);
+            }
+        },
+        {
+            name: game.i18n.localize("wolsung.cards.hand.dobierz"),
+            icon: "<i>" + CONFIG.wolsung.icons.dealCard + "</i>",
+            callback: element => {
+                this._onDrawCards(element[0]);
             }
         },
     ]
@@ -52,14 +63,9 @@ export default class WolsungCardsHand extends CardsHand {
     }
 
     activateListeners(html) {
-        html.find(".reveal").on("mouseover mouseout", this._onToggleDetails.bind(this));
-        html.find(".use-zeton").click(this._onUseZeton.bind(this));
-        html.find(".draw-cards").click(this._onDrawCards.bind(this));
-        html.find(".use-card").click(this._onUseCard.bind(this));
-        html.find(".discard-card").click(this._onDiscardCard.bind(this));
-        html.find(".initiative-card").click(this._onInitiativeCard.bind(this));
         if (this.object.isOwner) {
             new ContextMenu(html, ".karta-active", this.cardMenu);
+            new ContextMenu(html, ".zeton-active", this.zetonMenu);
         }
         super.activateListeners(html);
     }
@@ -108,17 +114,13 @@ export default class WolsungCardsHand extends CardsHand {
         }
     }
 
-    async _onUseZeton(event) {
-        event.preventDefault();
-        const element = event.currentTarget;
+    async _onUseZeton(element) {
         const card = this.object.cards.get(element.dataset.cardid);
         await card.reset();
         this._postChatNotification(card, "wolsung.cards.chat.useZeton", {});
     }
 
-    async _onDrawCards(event) {
-        event.preventDefault();
-        const element = event.currentTarget;
+    async _onDrawCards(element) {
         const card = this.object.cards.get(element.dataset.cardid);
         const hand = this.object;
         const deck = game.cards.getName(game.settings.get("wolsung", "wolsungDeck"));

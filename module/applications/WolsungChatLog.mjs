@@ -28,6 +28,20 @@ export default class WolsungChatLog extends ChatLog {
     }
 
     /**
+     * Handle Wolsung Token drops on Chat Message
+     * @param {Object} event 
+     * @param {Object} data 
+     */
+    _onDropZeton(event, data) {
+        const messageId = event.target.closest("[data-message-id]").dataset.messageId;
+
+        // Check if can be dropped
+        if (!this._useOnRollCondition(messageId)) return;
+
+        this._useZetonOnRollDialog(messageId);
+    }
+
+    /**
      * Handle Wolsung Card drops on Chat Message
      * @param {Object} event 
      * @param {Object} data 
@@ -42,20 +56,6 @@ export default class WolsungChatLog extends ChatLog {
         const hand = game.cards.get(data.handId)
         
         this._useCardOnRoll(message, hand, data.cardId)
-    }
-
-    /**
-     * Handle Wolsung Token drops on Chat Message
-     * @param {Object} event 
-     * @param {Object} data 
-     */
-    _onDropZeton(event, data) {
-        const messageId = event.target.closest("[data-message-id]").dataset.messageId;
-
-        // Check if can be dropped
-        if (!this._useOnRollCondition(messageId)) return;
-
-        this._useZetonOnRollDialog(messageId);
     }
 
     /** @inheritdoc */

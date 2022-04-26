@@ -1,26 +1,24 @@
 <form class="{{cssClass}}" autocomplete="off">
     <div class="hand-content">
-        <div class="zetony">
+        <div class="zetony item-list">
             {{#each zetony as |zeton|}}
-                <div class="zeton reveal">
+                {{#if (cardsVisibility hasPlayerOwner)}}
+                    <a class="zeton zeton-active item" data-cardid="{{zeton.id}}">
+                        <img class="zeton-img" src="{{zeton.img}}" alt="{{localize zeton.name}}" height="100px" width="100px">
+                    </a>
+                {{else}}
                     <img src="{{zeton.img}}" alt="{{localize zeton.name}}" height="100px" width="100px">
-                    {{#if (cardsVisibility hasPlayerOwner)}}
-                    <div class="zeton-details hidden details">
-                            <a class="button use-zeton" data-cardid="{{zeton.id}}">{{localize "wolsung.cards.hand.uzyj"}}</a>
-                            <a class="button draw-cards" data-cardid="{{zeton.id}}">{{localize "wolsung.cards.hand.dobierz"}}</a>
-                    </div>
-                    {{/if}}
-                </div>
+                {{/if}}
             {{/each}}
         </div>
         <section class="karty item-list">
             {{#each wolsungCards as |card|}}
                 {{#if (cardsVisibility hasPlayerOwner)}}
-                <a class="karta-active karta item" data-cardid="{{card.id}}" title="{{cardDetails card}}">
-                    <img src="{{card.img}}" alt="{{localize card.name}}" height="{{cardHeight}}" width="{{cardWidth card.data.height card.data.width}}">
-                </a>
+                    <a class="karta-active karta item" data-cardid="{{card.id}}" title="{{cardDetails card}}">
+                        <img class="karta-img" src="{{card.img}}" alt="{{localize card.name}}" height="{{cardHeight}}" width="{{cardWidth card.data.height card.data.width}}">
+                    </a>
                 {{else}}
-                <img class="karta" src="{{card.backImg}}" alt="{{localize 'wolsung.cards.name'}}" height="{{cardHeight}}" width="{{cardWidth card.data.height card.data.width}}">
+                <img src="{{card.backImg}}" alt="{{localize 'wolsung.cards.name'}}" height="{{cardHeight}}" width="{{cardWidth card.data.height card.data.width}}">
                 {{/if}}
             {{/each}}
         </section>
