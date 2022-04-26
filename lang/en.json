@@ -444,6 +444,10 @@
             "undefinedHand": "Podano nieistniejące/błędne ręce: {hands}",
             "notGM": "Komenda dostępna tylko dla GM",
             "success": "Rozdano karty i żetony na rozpoczęcie sesji"
+        },
+        "socketlib": {
+            "activate": "W celu umożliwiania modyfikowania rzutów kośćmi za pomocą kart i żetonów, proszę aktywuj moduł socketlib",
+            "install": "W celu umożliwiania modyfikowania rzutów kośćmi za pomocą kart i żetonów, proszę zainstaluj i aktywuj moduł socketlib"
         }
     },
     "SETTINGS": {

@@ -78,6 +78,34 @@ Hooks.once("init", function(){
 Hooks.on('ready', async function(){
     if (game.user.isGM) {
 
+        // Check for socketlib
+        if (!game.user.getFlag('wolsung', 'socketlibInfo')) {
+            try {
+                if (!game.modules.get('socketlib').active) {
+                    //Ask for socketlib activation
+                    const messageData = {
+                        type: CONST.CHAT_MESSAGE_TYPES.OTHER,
+                        speaker: {user: game.user},
+                        content: `<p>${game.i18n.localize("wolsung.socketlib.activate")}</p>`,
+                        whisper: [game.user.id]
+                    }
+                    ChatMessage.create(messageData);
+                    game.user.setFlag('wolsung', 'socketlibInfo', true);
+                }
+            }
+            catch (e) {
+                //Ask for socketlib installation
+                const messageData = {
+                    type: CONST.CHAT_MESSAGE_TYPES.OTHER,
+                    speaker: {user: game.user},
+                    content: `<p>${game.i18n.localize("wolsung.socketlib.install")}</p>`,
+                    whisper: [game.user.id]
+                }
+                ChatMessage.create(messageData);
+                game.user.setFlag('wolsung', 'socketlibInfo', true);
+            }
+        }
+
         // Import Cards for Wolsung pack during first start
         if (!game.settings.get('wolsung', 'wereCardsImported')) {
             game.packs.get('wolsung.wolsung-cards').importAll();
