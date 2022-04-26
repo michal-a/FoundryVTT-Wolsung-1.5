@@ -19,10 +19,10 @@ export default class WolsungCardsHand extends CardsHand {
             }
         },
         {
-            name: game.i18n.localize("wolsung.cards.hand.modifyRoll"),
-            icon: "<i>" + CONFIG.wolsung.icons.d10 + "</i>",
+            name: game.i18n.localize("wolsung.cards.hand.inicjatywa"),
+            icon: '<i class="fas fa-fist-raised"></i>',
             callback: element => {
-                this._onUseCard(element[0]);
+                this._onInitiativeCard(element[0]);
             }
         },
         {
@@ -103,14 +103,23 @@ export default class WolsungCardsHand extends CardsHand {
         event.dataTransfer.setData("text/plain", JSON.stringify(dragData));
     }
 
-    async _onDrop(event) {
-        const data = TextEditor.getDragEventData(event);
-
+    static async _onDropOnCanvas(canvas, data) {
         switch ( data.type ) {
-            case "Karta":
-                return this._onDropKarta(event, data);
+            case "Karta": 
+                const hand = game.cards.get(data.handId);
+                const discard = game.cards.getName(game.settings.get("wolsung", "discardPile"));
+                const card = hand.data.cards.get(data.cardId);
+                await hand.pass(discard, [data.cardId], {chatNotification: false});
+                return WolsungCardsHand._postChatNotification(card, "wolsung.cards.chat.useCard", {
+                    name: game.i18n.localize(card.name),
+                    bonus: card.data.data.testBonus,
+                    sukces: card.data.data.st
+                });
             case "Zeton":
-                return this._onDropZeton(event, data);
+                const hand2 = game.cards.get(data.handId);
+                const zeton = hand2.data.cards.get(data.cardId);
+                await zeton.reset();
+                return WolsungCardsHand._postChatNotification(zeton, "wolsung.cards.chat.useZeton", {});
         }
     }
 
@@ -222,7 +231,7 @@ export default class WolsungCardsHand extends CardsHand {
         });
     }
 
-    _postChatNotification(source, action, context) {
+    static _postChatNotification(source, action, context) {
         const messageData = {
             type: CONST.CHAT_MESSAGE_TYPES.OTHER,
             speaker: {user: game.user},
@@ -234,6 +243,6 @@ export default class WolsungCardsHand extends CardsHand {
         };
         ChatMessage.applyRollMode(messageData, game.settings.get("core", "rollMode"));
         return ChatMessage.create(messageData);
-      }
+    }
     
 }

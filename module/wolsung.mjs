@@ -142,3 +142,6 @@ Hooks.once("socketlib.ready", () => {
         message.update(data);
     });
 });
+
+// Handle dropping Cards and Wolsung Tokens on canvas
+Hooks.on("dropCanvasData", WolsungCardsHand._onDropOnCanvas);
