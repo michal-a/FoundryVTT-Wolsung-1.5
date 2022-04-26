@@ -2,7 +2,7 @@
     "name": "wolsung",
     "title": "Wolsung 1.5",
     "description": "Unofficial Wolsung 1.5 implementation for FoundryVTT (Polish only)",
-    "version": "0.4.8",
+    "version": "0.5.0",
     "minimumCoreVersion": "9",
     "compatibleCoreVersion": "9",
     "author": "Feanir",
@@ -41,6 +41,6 @@
     "socket": true,
     "url": "https://github.com/michal-a/FoundryVTT-Wolsung-1.5",
     "manifest": "https://github.com/michal-a/FoundryVTT-Wolsung-1.5/releases/latest/download/system.json",
-    "download": "https://github.com/michal-a/FoundryVTT-Wolsung-1.5/releases/download/v0.4.0/wolsung.zip",
+    "download": "https://github.com/michal-a/FoundryVTT-Wolsung-1.5/releases/download/v0.5.0/wolsung.zip",
     "license": "LICENSE.txt"
 }
