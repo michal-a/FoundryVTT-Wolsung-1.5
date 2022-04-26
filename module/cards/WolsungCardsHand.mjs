@@ -126,7 +126,7 @@ export default class WolsungCardsHand extends CardsHand {
     async _onUseZeton(element) {
         const card = this.object.cards.get(element.dataset.cardid);
         await card.reset();
-        this._postChatNotification(card, "wolsung.cards.chat.useZeton", {});
+        WolsungCardsHand._postChatNotification(card, "wolsung.cards.chat.useZeton", {});
     }
 
     async _onDrawCards(element) {
@@ -143,7 +143,7 @@ export default class WolsungCardsHand extends CardsHand {
         if (toDraw > 0) {
             for (let i = 0; i < toDraw; i++) await deck.deal([hand], 1, {how: 2, chatNotification: false});
             await card.reset();
-            this._postChatNotification(card, "wolsung.cards.chat.drawCards", {
+            WolsungCardsHand._postChatNotification(card, "wolsung.cards.chat.drawCards", {
                 number: toDraw
             });
         }
@@ -158,7 +158,7 @@ export default class WolsungCardsHand extends CardsHand {
         const discard = game.cards.getName(game.settings.get("wolsung", "discardPile"));
         const card = this.object.cards.get(element.dataset.cardid);
         await hand.pass(discard, [card.id], {chatNotification: false});
-        this._postChatNotification(card, "wolsung.cards.chat.useCard", {
+        WolsungCardsHand._postChatNotification(card, "wolsung.cards.chat.useCard", {
             name: this._getCardName(card),
             bonus: card.data.data.testBonus,
             sukces: card.data.data.st
@@ -220,7 +220,7 @@ export default class WolsungCardsHand extends CardsHand {
                     return false;
                 }
                 game.combat.updateEmbeddedDocuments("Combatant", [{_id: fd.postac, initiative: initiativeValue}]);
-                this._postChatNotification(card, "wolsung.cards.chat.initiativeCard", {
+                WolsungCardsHand._postChatNotification(card, "wolsung.cards.chat.initiativeCard", {
                     name: this._getCardName(card),
                     tokenName: game.combat.getEmbeddedDocument("Combatant", fd.postac).token.name,
                     actorName: game.combat.getEmbeddedDocument("Combatant", fd.postac).actor.name
