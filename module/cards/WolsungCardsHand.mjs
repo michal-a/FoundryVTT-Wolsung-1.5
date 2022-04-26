@@ -31,7 +31,7 @@ export default class WolsungCardsHand extends CardsHand {
             callback: element => {
                 this._onDiscardCard(element[0]);
             }
-        },
+        }
     ]
 
     zetonMenu = [
@@ -48,7 +48,7 @@ export default class WolsungCardsHand extends CardsHand {
             callback: element => {
                 this._onDrawCards(element[0]);
             }
-        },
+        }
     ]
 
     getData() {

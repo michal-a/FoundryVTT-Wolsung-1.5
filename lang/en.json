@@ -152,6 +152,7 @@
         "contextMenu": {
             "print": "Wyślij na Chat",
             "delete": "Usuń",
+            "rename": "Zmień nazwę",
             "giveToken": "Nagródź Żetonem",
             "giveTokenNotify": "Przekazano Żeton do ręki: {hand}",
             "dealCard": "Rozdaj Kartę",
@@ -414,6 +415,7 @@
             },
             "zeton": "Żeton",
             "hand": {
+                "name": "Nazwa ręki",
                 "bonus": "Bonus do testu: +",
                 "sukces": "Sukces przy ST ≤ ",
                 "podbicie": "Podbicie przy ST ≤ ",
