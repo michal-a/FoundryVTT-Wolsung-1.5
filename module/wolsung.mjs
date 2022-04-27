@@ -16,8 +16,8 @@ import WolsungCardsDeck from "./cards/WolsungCardsDeck.mjs";
 import WolsungCardsPile from "./cards/WolsungCardsPile.mjs";
 import WolsungCardsDirectory from "./applications/WolsungCardsDirectory.mjs";
 import WolsungChatLog from "./applications/WolsungChatLog.mjs";
-import WolsungCombat from "./combat/combat.mjs";
-import WolsungCombatTracker from "./combat/combatTracker.mjs";
+import WolsungCombat from "./combat/WolsungCombat.mjs";
+import WolsungCombatTracker from "./combat/WolsungCombatTracker.mjs";
 
 Hooks.once("init", function(){
     console.log("Wolsung | Initialising Wolsung 1.5 System");
