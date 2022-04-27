@@ -55,7 +55,12 @@ export default class WolsungCombatTracker extends CombatTracker {
                 const fd = new FormDataExtended(form).toObject();
                 let combat;
                 if (newCombat) combat = await this.newCombat();
-                else combat= this.viewed;
+                else {
+                    combat= this.viewed;
+                    if ((selected.type != fd.type || selected.vaBanque != fd.vabanque) && combat.rund != 0) {
+                        combat.combatants.map(c => {combat.generateOdpornosc(c, fd.type, fd.vabanque)});
+                    }
+                }
                 combat.setFlag("wolsung", "konfrontacja", fd.type);
                 combat.setFlag("wolsung", "vaBanque", fd.vabanque);
             },

@@ -205,7 +205,7 @@ export default class WolsungActorSheet extends ActorSheet{
      * @param {Object} form 
      */
     _updateKonfrontacja(form){
-        let odpornosc = 11 - parseInt(this.actor.data.data.atrybuty[form.typ.value]["wartosc"]) - Math.abs(this.actor.data.data.atrybuty[form.typ.value]["rany"]) + 2;
+        let odpornosc = 13 - parseInt(this.actor.data.data.atrybuty[form.typ.value]["wartosc"]) - Math.abs(this.actor.data.data.atrybuty[form.typ.value]["rany"]);
         if (form.vabanque.checked) {
             odpornosc += 3;
         }

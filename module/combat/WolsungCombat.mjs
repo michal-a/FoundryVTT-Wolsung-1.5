@@ -51,4 +51,40 @@ export default class WolsungCombat extends Combat {
         await this.rollInitiative(this.combatants.map(c => {return c.id}));
         super.nextRound();
     }
+
+    async generateOdpornosc(combatant, type, vaBanque) {
+        let actor = combatant.actor;
+        if (actor.type == "bohater") {
+            let value = 13
+            let atrybut
+            switch (type) {
+                case "walka":
+                    atrybut = "str";
+                case "poscig":
+                    atrybut = "zr";
+                case "dyskusja":
+                    atrybut = "op";
+            }
+            value += -parseInt(actor.data.data.atrybuty[atrybut]["wartosc"]) - Math.abs(actor.data.data.atrybuty[atrybut]["rany"]);
+            if (vaBanque) value += 3;
+            await actor.update({data: {konfrontacja: {odpornosc: {value: value, max: value}}}});
+        }
+    }
+
+    async startCombat() {
+        const type = this.getFlag("wolsung", "konfrontacja");
+        const vaBanque = this.getFlag("wolsung", "vaBanque");
+        this.combatants.map(c => {this.generateOdpornosc(c, type, vaBanque)});
+        super.startCombat();
+    }
+
+    /** @inheritdoc */
+    _onCreateEmbeddedDocuments(type, documents, result, options, userId) {
+        super._onCreateEmbeddedDocuments(type, documents, result, options, userId);
+        if (this.round != 0 && type == "Combatant") {
+            const cType = this.getFlag("wolsung", "konfrontacja");
+            const vaBanque = this.getFlag("wolsung", "vaBanque");
+            documents.map(c => {this.generateOdpornosc(c, cType, vaBanque)});
+        }
+    }
 }
