@@ -440,6 +440,19 @@
                 "initiativeCard": "Używa karty {name} jako inicjatywę {tokenName} ({actorName})"
             }
         },
+        "combat": {
+            "selectType": "Wybierz typ Konfrontacji",
+            "select": "Wybierz",
+            "edit": "Edytuj Konfrontację",
+            "Encounter": "Konfrontacja",
+            "Round": "Runda",
+            "NotStarted": "Nierozpoczęta",
+            "NotStartedM": "Nierozpoczęty",
+            "Begin": "Rozpocznij",
+            "End": "Zakończ",
+            "TurnEnd": "Zakończ turę"
+
+        },
         "wss" : {
             "undefinedHand": "Podano nieistniejące/błędne ręce: {hands}",
             "notGM": "Komenda dostępna tylko dla GM",

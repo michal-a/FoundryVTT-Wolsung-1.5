@@ -112,6 +112,14 @@ Hooks.on('ready', async function(){
             game.settings.set('wolsung', 'wereCardsImported', true);
         }
 
+        if (game.settings.get('wolsung', 'firstRun')) {
+            game.settings.set("core", Combat.CONFIG_SETTING, {
+                resource: 'konfrontacja.odpornosc.value',
+                skipDefeated: true
+              });
+              game.settings.set('wolsung', 'firstRun', false);
+        }
+
         // Create Cards Hand for GM if there is none
         if (!game.settings.get('wolsung', 'GMHandId') || !game.cards.get(game.settings.get('wolsung', 'GMHandId'))) {
             const hand = await WolsungCards.create({

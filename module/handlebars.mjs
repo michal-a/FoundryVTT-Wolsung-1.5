@@ -78,4 +78,67 @@ ${game.i18n.localize("wolsung.cards.hand.podbicie")}${card.data.data.podbicie}`;
 ${game.i18n.localize("wolsung.cards.hand.jocker")}`
         return title
     })
+
+    Handlebars.registerHelper("combatType", function(combat) {
+        const type = combat.getFlag("wolsung", "konfrontacja");
+        const name = game.i18n.localize(CONFIG.wolsung.domyslnaKonfrontacja[type]);
+        try {
+            return name.charAt(0).toUpperCase() + name.slice(1) + ": "
+        }
+        catch(e){
+            return ""
+        }
+    });
+
+    Handlebars.registerHelper("combatTypeNotStarted", function(combat) {
+        const type = combat.getFlag("wolsung", "konfrontacja");        
+        let name = game.i18n.localize(CONFIG.wolsung.domyslnaKonfrontacja[type]);
+        try {
+            name = name.charAt(0).toUpperCase() + name.slice(1) + ": "
+        }
+        catch(e){
+            return game.i18n.localize("wolsung.combat.NotStarted");
+        }
+        if (type == "poscig") name += game.i18n.localize("wolsung.combat.NotStartedM");
+        else name += game.i18n.localize("wolsung.combat.NotStarted");
+        return name;
+    });
+
+    Handlebars.registerHelper("isVaBanque", function(combat) {
+        return combat.getFlag("wolsung", "vaBanque");
+    })
+
+    Handlebars.registerHelper("isWalka", function(combat) {
+        const type = combat.getFlag("wolsung", "konfrontacja");
+        if (type == "walka") return true;
+        else return false;
+    });
+
+    Handlebars.registerHelper("isPoscig", function(combat) {
+        const type = combat.getFlag("wolsung", "konfrontacja");
+        if (type == "poscig") return true;
+        else return false;
+    });
+
+
+    Handlebars.registerHelper("isDyskusja", function(combat) {
+        const type = combat.getFlag("wolsung", "konfrontacja");
+        if (type == "dyskusja") return true;
+        else return false;
+    });
+
+
+    Handlebars.registerHelper("combatDef", function(combat, combatantId) {
+        const actor = combat.getEmbeddedDocument("Combatant", combatantId).actor;
+        const type = combat.getFlag("wolsung", "konfrontacja");
+        if (actor == undefined) return;
+        switch (type) {
+            case "walka":
+                return actor.data.data.konfrontacja.obrona.value;
+            case "poscig":
+                return actor.data.data.konfrontacja.wytrwalosc.value;
+            case "dyskusja":
+                return actor.data.data.konfrontacja.pewnoscSiebie.value;
+        }
+    });
 }

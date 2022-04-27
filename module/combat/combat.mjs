@@ -1,4 +1,7 @@
+/** @inheritdoc */
 export default class WolsungCombat extends Combat {
+
+    /** @inheritdoc */
     async rollInitiative(ids, {formula=null, updateTurn=true, messageOptions={}}={}) {
 
         // Structure input data
@@ -43,6 +46,7 @@ export default class WolsungCombat extends Combat {
         return this;
     }
 
+    /** @inheritdoc */
     async nextRound() {
         await this.rollInitiative(this.combatants.map(c => {return c.id}));
         super.nextRound();

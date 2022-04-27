@@ -1,0 +1,16 @@
+<form>
+    <div class="form-group">
+        <label>{{localize "wolsung.chat.konfrontacja.typ"}}</label>
+        <select name="type">
+            {{#select selected.type}}
+            {{#each types as |name type|}}
+            <option value="{{type}}">{{localize name}}</option>
+            {{/each}}
+            {{/select}}
+        </select>
+    </div>
+    <div class="form-group">
+        <label>{{localize "wolsung.chat.konfrontacja.vabanque"}}</label>
+        <input type="checkbox" name="vabanque" {{#if selected.vaBanque}}checked{{/if}}/>
+    </div>
+</form>

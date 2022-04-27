@@ -91,3 +91,10 @@ wolsungSettings.GMHandId = {
     type: String,
     default: ""
 };
+
+wolsungSettings.firstRun = {
+    config: false,
+    scope: "world",
+    type: Boolean,
+    default: true
+};
