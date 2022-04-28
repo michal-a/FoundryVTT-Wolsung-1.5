@@ -59,11 +59,14 @@ export default class WolsungCombat extends Combat {
             let atrybut
             switch (type) {
                 case "walka":
-                    atrybut = "str";
+                    atrybut = "krz";
+                    break;
                 case "poscig":
                     atrybut = "zr";
+                    break;
                 case "dyskusja":
                     atrybut = "op";
+                    break;
             }
             value += -parseInt(actor.data.data.atrybuty[atrybut]["wartosc"]) - Math.abs(actor.data.data.atrybuty[atrybut]["rany"]);
             if (vaBanque) value += 3;

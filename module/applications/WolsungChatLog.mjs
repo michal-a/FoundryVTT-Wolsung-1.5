@@ -23,7 +23,7 @@ export default class WolsungChatLog extends ChatLog {
             case "Karta":
                 return this._onDropKarta(event, data);
             case "Zeton":
-                return this._onDropZeton(event, data);
+                return this._onDropZeton(event);
         }
     }
 
@@ -32,8 +32,12 @@ export default class WolsungChatLog extends ChatLog {
      * @param {Object} event 
      * @param {Object} data 
      */
-    _onDropZeton(event, data) {
-        const messageId = event.target.closest("[data-message-id]").dataset.messageId;
+    _onDropZeton(event) {
+        let messageId
+        try {
+            messageId = event.target.closest("[data-message-id]").dataset.messageId;
+        }
+        catch (e) {return;}
 
         // Check if can be dropped
         if (!this._useOnRollCondition(messageId)) return;
@@ -47,7 +51,11 @@ export default class WolsungChatLog extends ChatLog {
      * @param {Object} data 
      */
     _onDropKarta(event, data) {
-        const messageId = event.target.closest("[data-message-id]").dataset.messageId;
+        let messageId
+        try {
+            messageId = event.target.closest("[data-message-id]").dataset.messageId;
+        }
+        catch (e) {return;}
 
         // Check if can be dropped
         if (!this._useOnRollCondition(messageId)) return;
@@ -368,43 +376,7 @@ export default class WolsungChatLog extends ChatLog {
         }
 
         //create short name of the Card
-        let cardShortName
-        switch (card.data.value) {
-            case 11:
-                cardShortName = game.i18n.localize("wolsung.cards.initiative.jack");
-                break;
-            case 12:
-                cardShortName = game.i18n.localize("wolsung.cards.initiative.queen");
-                break;
-            case 13:
-                cardShortName = game.i18n.localize("wolsung.cards.initiative.king");
-                break;
-            case 14:
-                cardShortName = game.i18n.localize("wolsung.cards.initiative.ace");
-                break;
-            case 15:
-                cardShortName = game.i18n.localize("wolsung.cards.initiative.joker");
-                break;
-            default:
-                cardShortName = card.data.value.toString();
-        }
-        switch (card.data.suit) {
-            case "wolsung.cards.spades.suit":
-                cardShortName += "♠";
-                break;
-            case "wolsung.cards.clubs.suit":
-                cardShortName += "♣";
-                break;
-            case "wolsung.cards.hearts.suit":
-                cardShortName += '<span style="color: #CF5353;">♥</span>';
-                break;
-            case "wolsung.cards.diamonds.suit":
-                cardShortName += '<span style="color: #CF5353;">♦</span>';
-                break;
-            case "wolsung.cards.joker.red.suit":
-                cardShortName = '<span style="color: #CF5353;">' + cardShortName + '</span>';
-                break;
-        }
+        const cardShortName = CONFIG.Cards.documentClass.getCardShortName(card);
         
         //add Roll flavor to note the Card usage
         const modFlavor = game.i18n.format("wolsung.chat.rollFlavor.addCard", {

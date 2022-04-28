@@ -1,5 +1,11 @@
 /** @inheritdoc */
 export default class WolsungCombatTracker extends CombatTracker {
+    /** @inheritdoc */
+    static get defaultOptions() {
+        return foundry.utils.mergeObject(super.defaultOptions, {
+            dragDrop: [{dragSelector: null, dropSelector: null}]
+        });
+    }
     
     /** @inheritdoc */
     get template() {
@@ -75,5 +81,40 @@ export default class WolsungCombatTracker extends CombatTracker {
         const combat = await cls.create({scene: scene?.id});
         await combat.activate({render: false});
         return combat
+    }
+
+    /** @inheritdoc */
+    _onDrop(event) {
+        const data = TextEditor.getDragEventData(event);
+
+        if (data.type == "Karta") return this._onDropKarta(event, data);
+    }
+
+    _onDropKarta(event, data) {
+        const combat = this.viewed;
+        let combatantId
+        try {
+            combatantId = event.target.closest("[data-combatant-id]").dataset.combatantId;
+        }
+        catch (e) {return;}
+        const combatant = combat.getEmbeddedDocument("Combatant", combatantId);
+        if (!combatant.isOwner) return;
+        const hand = game.cards.get(data.handId);
+        const discard = game.cards.getName(game.settings.get("wolsung", "discardPile"));
+        const card = hand.getEmbeddedDocument("Card", data.cardId);
+        let initiativeValue = card.data.value;
+        if (card.data.suit == "wolsung.cards.joker.black.suit") initiativeValue += 0.6;
+        if (card.data.suit == "wolsung.cards.joker.red.suit") initiativeValue += 0.5;
+        if (card.data.suit == "wolsung.cards.spades.suit") initiativeValue += 0.4;
+        if (card.data.suit == "wolsung.cards.hearts.suit") initiativeValue += 0.3;
+        if (card.data.suit == "wolsung.cards.diamonds.suit") initiativeValue += 0.2;
+        if (card.data.suit == "wolsung.cards.clubs.suit") initiativeValue += 0.1;
+        hand.pass(discard, [card.id], {chatNotification: false});
+        combat.updateEmbeddedDocuments("Combatant", [{_id: combatantId, initiative: initiativeValue}]);
+        CONFIG.Cards.documentClass._postChatNotification(card, "wolsung.cards.chat.initiativeCard", {
+            name: CONFIG.Cards.documentClass.getCardShortName(card),
+            tokenName: combatant.token.name,
+            actorName: combatant.actor.name
+        });
     }
 }

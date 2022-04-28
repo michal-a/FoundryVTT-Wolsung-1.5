@@ -110,8 +110,8 @@ export default class WolsungCardsHand extends CardsHand {
                 const discard = game.cards.getName(game.settings.get("wolsung", "discardPile"));
                 const card = hand.data.cards.get(data.cardId);
                 await hand.pass(discard, [data.cardId], {chatNotification: false});
-                return WolsungCardsHand._postChatNotification(card, "wolsung.cards.chat.useCard", {
-                    name: game.i18n.localize(card.name),
+                return CONFIG.Cards.documentClass._postChatNotification(card, "wolsung.cards.chat.useCard", {
+                    name: CONFIG.Cards.documentClass.getCardShortName(card),
                     bonus: card.data.data.testBonus,
                     sukces: card.data.data.st
                 });
@@ -119,14 +119,14 @@ export default class WolsungCardsHand extends CardsHand {
                 const hand2 = game.cards.get(data.handId);
                 const zeton = hand2.data.cards.get(data.cardId);
                 await zeton.reset();
-                return WolsungCardsHand._postChatNotification(zeton, "wolsung.cards.chat.useZeton", {});
+                return CONFIG.Cards.documentClass._postChatNotification(zeton, "wolsung.cards.chat.useZeton", {});
         }
     }
 
     async _onUseZeton(element) {
         const card = this.object.cards.get(element.dataset.cardid);
         await card.reset();
-        WolsungCardsHand._postChatNotification(card, "wolsung.cards.chat.useZeton", {});
+        CONFIG.Cards.documentClass._postChatNotification(card, "wolsung.cards.chat.useZeton", {});
     }
 
     async _onDrawCards(element) {
@@ -143,7 +143,7 @@ export default class WolsungCardsHand extends CardsHand {
         if (toDraw > 0) {
             for (let i = 0; i < toDraw; i++) await deck.deal([hand], 1, {how: 2, chatNotification: false});
             await card.reset();
-            WolsungCardsHand._postChatNotification(card, "wolsung.cards.chat.drawCards", {
+            CONFIG.Cards.documentClass._postChatNotification(card, "wolsung.cards.chat.drawCards", {
                 number: toDraw
             });
         }
@@ -158,8 +158,8 @@ export default class WolsungCardsHand extends CardsHand {
         const discard = game.cards.getName(game.settings.get("wolsung", "discardPile"));
         const card = this.object.cards.get(element.dataset.cardid);
         await hand.pass(discard, [card.id], {chatNotification: false});
-        WolsungCardsHand._postChatNotification(card, "wolsung.cards.chat.useCard", {
-            name: this._getCardName(card),
+        CONFIG.Cards.documentClass._postChatNotification(card, "wolsung.cards.chat.useCard", {
+            name: CONFIG.Cards.documentClass.getCardShortName(card),
             bonus: card.data.data.testBonus,
             sukces: card.data.data.st
         });
@@ -220,8 +220,8 @@ export default class WolsungCardsHand extends CardsHand {
                     return false;
                 }
                 game.combat.updateEmbeddedDocuments("Combatant", [{_id: fd.postac, initiative: initiativeValue}]);
-                WolsungCardsHand._postChatNotification(card, "wolsung.cards.chat.initiativeCard", {
-                    name: this._getCardName(card),
+                CONFIG.Cards.documentClass._postChatNotification(card, "wolsung.cards.chat.initiativeCard", {
+                    name: CONFIG.Cards.documentClass.getCardShortName(card),
                     tokenName: game.combat.getEmbeddedDocument("Combatant", fd.postac).token.name,
                     actorName: game.combat.getEmbeddedDocument("Combatant", fd.postac).actor.name
                 });
@@ -229,20 +229,6 @@ export default class WolsungCardsHand extends CardsHand {
             rejectClose: false,
             options: {jQuery: false}
         });
-    }
-
-    static _postChatNotification(source, action, context) {
-        const messageData = {
-            type: CONST.CHAT_MESSAGE_TYPES.OTHER,
-            speaker: {user: game.user},
-            content: `
-            <div class="cards-notification flexrow">
-            <img class="icon" src="${source.img}">
-            <p>${game.i18n.format(action, context)}</p>
-            </div>`
-        };
-        ChatMessage.applyRollMode(messageData, game.settings.get("core", "rollMode"));
-        return ChatMessage.create(messageData);
     }
     
 }

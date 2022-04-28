@@ -226,7 +226,7 @@ export default class WolsungActorSheet extends ActorSheet{
         let rollData = {
             name: rollName,
             podstawa: rollPodstawa,
-            kosc: rollKosc,
+            kosc: this._rollOnJoker() ? rollKosc - 1 : rollKosc,
             pula: rollPula
         };
         if (event.shiftKey) {
@@ -249,7 +249,7 @@ export default class WolsungActorSheet extends ActorSheet{
             let rollData = {
                 name: rollName,
                 podstawa: rollPodstawa,
-                kosc: rollKosc,
+                kosc: this._rollOnJoker() ? rollKosc - 1 : rollKosc,
                 pula: rollPula
             };
             if (event.shiftKey) {
@@ -268,7 +268,7 @@ export default class WolsungActorSheet extends ActorSheet{
             let rollData = {
                 name: rollName,
                 podstawa: rollPodstawa,
-                kosc: rollKosc,
+                kosc: this._rollOnJoker() ? rollKosc - 1 : rollKosc,
                 pula: rollPula
             };
             if (event.shiftKey) {
@@ -289,7 +289,7 @@ export default class WolsungActorSheet extends ActorSheet{
         let rollData = {
             name: rollName,
             podstawa: rollPodstawa,
-            kosc: rollKosc,
+            kosc: this._rollOnJoker() ? rollKosc - 1 : rollKosc,
             pula: rollPula
         };
         if (event.shiftKey) {
@@ -404,6 +404,15 @@ export default class WolsungActorSheet extends ActorSheet{
     
         // Perform the update
         return this.actor.updateEmbeddedDocuments("Item", updateData);
+    }
+
+    _rollOnJoker() {
+        if (game.combat && game.combat.round > 0) {
+            for (let combatant of game.combat.combatants.contents.filter(c => {return c.data.actorId == this.actor.id})) {
+                if (combatant.initiative >= 15) return true;
+            }
+        }
+        return false;
     }
     
 }

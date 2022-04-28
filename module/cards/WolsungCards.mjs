@@ -104,72 +104,126 @@ export default class WolsungCards extends Cards {
 
     async draw(from, number=1, {how=0, updateData={}, ...options}={}) {
         if ( !(from instanceof Cards) || (from === this) ) {
-          throw new Error("You must provide some other Cards document as the source for the Cards#draw operation");
+            throw new Error("You must provide some other Cards document as the source for the Cards#draw operation");
         }
         const toDraw = await from._drawCards(number, how);
         return from.pass(this, toDraw.map(c => c.id), {updateData, action: "draw", ...options});
     }
 
     async dealDialog() {
-      const hands = game.cards.filter(c => (c.type !== "deck") && (c.type !== "pile") && c.testUserPermission(game.user, "LIMITED"));
-      if ( !hands.length ) return ui.notifications.warn("CARDS.DealWarnNoTargets", {localize: true});
+        const hands = game.cards.filter(c => (c.type !== "deck") && (c.type !== "pile") && c.testUserPermission(game.user, "LIMITED"));
+        if ( !hands.length ) return ui.notifications.warn("CARDS.DealWarnNoTargets", {localize: true});
   
-      // Construct the dialog HTML
-      const html = await renderTemplate("systems/wolsung/templates/cards/dialog-deal.hbs", {
-        hands: hands,
-        modes: {
-          [CONST.CARD_DRAW_MODES.TOP]: "CARDS.DrawModeTop",
-          [CONST.CARD_DRAW_MODES.BOTTOM]: "CARDS.DrawModeBottom",
-          [CONST.CARD_DRAW_MODES.RANDOM]: "CARDS.DrawModeRandom",
-        }
-      });
+        // Construct the dialog HTML
+        const html = await renderTemplate("systems/wolsung/templates/cards/dialog-deal.hbs", {
+            hands: hands,
+            modes: {
+                [CONST.CARD_DRAW_MODES.TOP]: "CARDS.DrawModeTop",
+                [CONST.CARD_DRAW_MODES.BOTTOM]: "CARDS.DrawModeBottom",
+                [CONST.CARD_DRAW_MODES.RANDOM]: "CARDS.DrawModeRandom",
+            }
+        });
   
-      // Display the prompt
-      return Dialog.prompt({
-        title: game.i18n.localize("CARDS.DealTitle"),
-        label: game.i18n.localize("CARDS.Deal"),
-        content: html,
-        callback: html => {
-          const form = html.querySelector("form.cards-dialog");
-          const fd = new FormDataExtended(form).toObject();
-          if ( !fd.to ) return this;
-          if ( !(fd.to instanceof Array) ) fd.to = [html.querySelector('[name="to"]').value];
-          const to = fd.to.map(id => game.cards.get(id));
-          const options = {how: fd.how, updateData: fd.down ? {face: null} : {}};
-          return this.deal(to, fd.number, options).catch(err => {
-            ui.notifications.error(err.message);
-            return this;
-          });
-        },
-        rejectClose: false,
-        options: {jQuery: false}
-      });
+        // Display the prompt
+        return Dialog.prompt({
+            title: game.i18n.localize("CARDS.DealTitle"),
+            label: game.i18n.localize("CARDS.Deal"),
+            content: html,
+            callback: html => {
+                const form = html.querySelector("form.cards-dialog");
+                const fd = new FormDataExtended(form).toObject();
+                if ( !fd.to ) return this;
+                if ( !(fd.to instanceof Array) ) fd.to = [html.querySelector('[name="to"]').value];
+                const to = fd.to.map(id => game.cards.get(id));
+                const options = {how: fd.how, updateData: fd.down ? {face: null} : {}};
+                return this.deal(to, fd.number, options).catch(err => {
+                    ui.notifications.error(err.message);
+                    return this;
+                });
+            },
+            rejectClose: false,
+            options: {jQuery: false}
+        });
     }
 
     async playDialog(card) {
-      const cards = game.cards.filter(c => (c !== this) && (c.type !== "deck") && (c.name !== game.settings.get("wolsung", "initiativePile")) && c.testUserPermission(game.user, "LIMITED"));
-      if ( !cards.length ) return ui.notifications.warn("CARDS.PassWarnNoTargets", {localize: true});
+        const cards = game.cards.filter(c => (c !== this) && (c.type !== "deck") && (c.name !== game.settings.get("wolsung", "initiativePile")) && c.testUserPermission(game.user, "LIMITED"));
+        if ( !cards.length ) return ui.notifications.warn("CARDS.PassWarnNoTargets", {localize: true});
   
-      // Construct the dialog HTML
-      const html = await renderTemplate("systems/wolsung/templates/cards/dialog-play.hbs", {card, cards});
+        // Construct the dialog HTML
+        const html = await renderTemplate("systems/wolsung/templates/cards/dialog-play.hbs", {card, cards});
   
-      // Display the prompt
-      return Dialog.prompt({
-        title: game.i18n.localize("CARD.Play"),
-        label: game.i18n.localize("CARD.Play"),
-        content: html,
-        callback: html => {
-          const form = html.querySelector("form.cards-dialog");
-          const fd = new FormDataExtended(form).toObject();
-          const to = game.cards.get(fd.to);
-          const options = {action: "play", updateData: fd.down ? {face: null} : {}};
-          return this.pass(to, [card.id], options).catch(err => {
-            return ui.notifications.error(err.message);
-          });
-        },
-        rejectClose: false,
-        options: {jQuery: false}
-      });
+        // Display the prompt
+        return Dialog.prompt({
+            title: game.i18n.localize("CARD.Play"),
+            label: game.i18n.localize("CARD.Play"),
+            content: html,
+            callback: html => {
+                const form = html.querySelector("form.cards-dialog");
+                const fd = new FormDataExtended(form).toObject();
+                const to = game.cards.get(fd.to);
+                const options = {action: "play", updateData: fd.down ? {face: null} : {}};
+                return this.pass(to, [card.id], options).catch(err => {
+                    return ui.notifications.error(err.message);
+                });
+            },
+            rejectClose: false,
+            options: {jQuery: false}
+        });
     }
 
+    static getCardShortName(card) {
+        let cardShortName
+        switch (card.data.value) {
+            case 11:
+                cardShortName = game.i18n.localize("wolsung.cards.initiative.jack");
+                break;
+            case 12:
+                cardShortName = game.i18n.localize("wolsung.cards.initiative.queen");
+                break;
+            case 13:
+                cardShortName = game.i18n.localize("wolsung.cards.initiative.king");
+                break;
+            case 14:
+                cardShortName = game.i18n.localize("wolsung.cards.initiative.ace");
+                break;
+            case 15:
+                cardShortName = game.i18n.localize("wolsung.cards.initiative.joker");
+                break;
+            default:
+                cardShortName = card.data.value.toString();
+        }
+        switch (card.data.suit) {
+            case "wolsung.cards.spades.suit":
+                cardShortName += "♠";
+                break;
+            case "wolsung.cards.clubs.suit":
+                cardShortName += "♣";
+                break;
+            case "wolsung.cards.hearts.suit":
+                cardShortName += '<span style="color: #CF5353;">♥</span>';
+                break;
+            case "wolsung.cards.diamonds.suit":
+                cardShortName += '<span style="color: #CF5353;">♦</span>';
+                break;
+            case "wolsung.cards.joker.red.suit":
+                cardShortName = '<span style="color: #CF5353;">' + cardShortName + '</span>';
+                break;
+        }
+        return cardShortName;
+    }
+
+    static _postChatNotification(source, action, context) {
+        const messageData = {
+            type: CONST.CHAT_MESSAGE_TYPES.OTHER,
+            speaker: {user: game.user},
+            content: `
+            <div class="cards-notification flexrow">
+            <img class="icon" src="${source.img}">
+            <p>${game.i18n.format(action, context)}</p>
+            </div>`
+        };
+        ChatMessage.applyRollMode(messageData, game.settings.get("core", "rollMode"));
+        return ChatMessage.create(messageData);
+    }
 }
