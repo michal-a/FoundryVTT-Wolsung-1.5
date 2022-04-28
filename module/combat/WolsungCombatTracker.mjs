@@ -1,3 +1,6 @@
+import WolsungCardSelectDialog from "../applications/WolsungCardSelectDialog.mjs";
+import { wolsungGetHand } from "../functions.mjs";
+
 /** @inheritdoc */
 export default class WolsungCombatTracker extends CombatTracker {
     /** @inheritdoc */
@@ -7,6 +10,20 @@ export default class WolsungCombatTracker extends CombatTracker {
         });
     }
     
+    contextEntries = [
+        {
+            name: "wolsung.contextMenu.useCard",
+            icon: `<i>${CONFIG.wolsung.icons.playCard}</i>`,
+            condition: li => {
+                return this.viewed.combatants.get(li.data("combatant-id")).isOwner;
+            },
+            callback: li => {
+                const combatantId = li.data("combatant-id");
+                this._onCardContext(combatantId);
+            }
+        }
+    ]
+
     /** @inheritdoc */
     get template() {
         return "systems/wolsung/templates/combat/combat-tracker.hbs";
@@ -17,6 +34,12 @@ export default class WolsungCombatTracker extends CombatTracker {
         super.activateListeners(html);
 
         html.find('.combat-edit').click(event => this._onCombatEdit(event));
+        if (!game.user.isGM) ContextMenu.create(this, html, ".directory-item", this.contextEntries);
+    }
+
+    _getEntryContextOptions() {
+        let options = this.contextEntries;
+        return options.concat(super._getEntryContextOptions());
     }
 
     /** @inheritdoc */
@@ -97,24 +120,40 @@ export default class WolsungCombatTracker extends CombatTracker {
             combatantId = event.target.closest("[data-combatant-id]").dataset.combatantId;
         }
         catch (e) {return;}
-        const combatant = combat.getEmbeddedDocument("Combatant", combatantId);
-        if (!combatant.isOwner) return;
+        if (!combat.getEmbeddedDocument("Combatant", combatantId).isOwner) return;
         const hand = game.cards.get(data.handId);
-        const discard = game.cards.getName(game.settings.get("wolsung", "discardPile"));
         const card = hand.getEmbeddedDocument("Card", data.cardId);
-        let initiativeValue = card.data.value;
-        if (card.data.suit == "wolsung.cards.joker.black.suit") initiativeValue += 0.6;
-        if (card.data.suit == "wolsung.cards.joker.red.suit") initiativeValue += 0.5;
-        if (card.data.suit == "wolsung.cards.spades.suit") initiativeValue += 0.4;
-        if (card.data.suit == "wolsung.cards.hearts.suit") initiativeValue += 0.3;
-        if (card.data.suit == "wolsung.cards.diamonds.suit") initiativeValue += 0.2;
-        if (card.data.suit == "wolsung.cards.clubs.suit") initiativeValue += 0.1;
-        hand.pass(discard, [card.id], {chatNotification: false});
-        combat.updateEmbeddedDocuments("Combatant", [{_id: combatantId, initiative: initiativeValue}]);
-        CONFIG.Cards.documentClass._postChatNotification(card, "wolsung.cards.chat.initiativeCard", {
-            name: CONFIG.Cards.documentClass.getCardShortName(card),
-            tokenName: combatant.token.name,
-            actorName: combatant.actor.name
+        CONFIG.Cards.documentClass._cardForInitiative(card, hand, combat, combatantId);
+    }
+
+    _onCardContext(combatantId) {
+
+        //define user hand
+        const hand = wolsungGetHand();
+
+        //get list of Cards on hand
+        const cardsDeckId = game.cards.getName(game.settings.get("wolsung", "wolsungDeck")).id;
+        const cardsList = hand.cards.filter(card => card.data.origin == cardsDeckId);
+        const combat = this.viewed;
+
+        return WolsungCardSelectDialog.prompt({
+            title: game.i18n.format("wolsung.contextMenu.selectCardInitiative", {
+                token: combat.getEmbeddedDocument("Combatant", combatantId).token.name,
+                actor: combat.getEmbeddedDocument("Combatant", combatantId).actor.name
+            }),
+            label: game.i18n.localize("wolsung.chat.useCard.label"),
+            content: {
+                cards: cardsList,
+                selectedCard: cardsList[0],
+                cardId: cardsList[0].id
+            },
+            callback: html => {
+                const fd = new FormDataExtended(html.querySelector("form")).toObject();
+                const card = hand.getEmbeddedDocument("Card", fd.cardId);
+                CONFIG.Cards.documentClass._cardForInitiative(card, hand, combat, combatantId);
+            },
+            rejectClose: false,
+            options: {jQuery: false}
         });
     }
 }

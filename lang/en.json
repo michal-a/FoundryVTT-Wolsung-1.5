@@ -158,7 +158,8 @@
             "dealCard": "Rozdaj Kartę",
             "dealCardNotify": "Rozdano Kartę do ręki: {hand}",
             "useToken": "Użyj Żeton",
-            "useCard": "Użyj Kartę"
+            "useCard": "Użyj Kartę",
+            "selectCardInitiative": "Zagraj kartę jako inicjatywę {token} ({actor})"
         },
         "diceShort": "k",
         "karta": {
@@ -344,7 +345,7 @@
                 "nine": "Dziewiątka Trefl",
                 "ten": "Dziesiątka Trefl",
                 "jack": "Walet Trefl",
-                "queen": "Królowa Trefl",
+                "queen": "Dama Trefl",
                 "king": "Król Trefl",
                 "ace": "As Trefl"
             },
@@ -360,7 +361,7 @@
                 "nine": "Dziewiątka Kier",
                 "ten": "Dziesiątka Kier",
                 "jack": "Walet Kier",
-                "queen": "Królowa Kier",
+                "queen": "Dama Kier",
                 "king": "Król Kier",
                 "ace": "As Kier"
             } ,
@@ -376,7 +377,7 @@
                 "nine": "Dziewiątka Karo",
                 "ten": "Dziesiątka Karo",
                 "jack": "Walet Karo",
-                "queen": "Królowa Karo",
+                "queen": "Dama Karo",
                 "king": "Król Karo",
                 "ace": "As Karo"
             },
@@ -392,7 +393,7 @@
                 "nine": "Dziewiątka Pik",
                 "ten": "Dziesiątka Pik",
                 "jack": "Walet Pik",
-                "queen": "Królowa Pik",
+                "queen": "Dama Pik",
                 "king": "Król Pik",
                 "ace": "As Pik"
             },

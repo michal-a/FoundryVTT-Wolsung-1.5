@@ -190,15 +190,7 @@ export default class WolsungCardsHand extends CardsHand {
 
     async _onInitiativeCard(element) {
         const hand = this.object;
-        const discard = game.cards.getName(game.settings.get("wolsung", "discardPile"));
         const card = this.object.cards.get(element.dataset.cardid);
-        let initiativeValue = card.data.value;
-        if (card.data.suit == "wolsung.cards.joker.black.suit") initiativeValue += 0.6;
-        if (card.data.suit == "wolsung.cards.joker.red.suit") initiativeValue += 0.5;
-        if (card.data.suit == "wolsung.cards.spades.suit") initiativeValue += 0.4;
-        if (card.data.suit == "wolsung.cards.hearts.suit") initiativeValue += 0.3;
-        if (card.data.suit == "wolsung.cards.diamonds.suit") initiativeValue += 0.2;
-        if (card.data.suit == "wolsung.cards.clubs.suit") initiativeValue += 0.1;
         const combatants = game.combat.turns.filter(combatant => combatant.isOwner);
         const html = await renderTemplate("systems/wolsung/templates/cards/dialog-initiative.hbs", {card: card, combatants: combatants});
         return Dialog.prompt({
@@ -212,19 +204,7 @@ export default class WolsungCardsHand extends CardsHand {
                     ui.notifications.error("<div>" + game.i18n.localize("wolsung.cards.hand.inicjatywaError.noCombatant") + "</div>");
                     return false;
                 }
-                try {
-                    await hand.pass(discard, [card.id], {chatNotification: false});
-                }
-                catch (e) {
-                    ui.notifications.error("<div>" + game.i18n.localize("wolsung.cards.hand.inicjatywaError.noCard") + "</div>");
-                    return false;
-                }
-                game.combat.updateEmbeddedDocuments("Combatant", [{_id: fd.postac, initiative: initiativeValue}]);
-                CONFIG.Cards.documentClass._postChatNotification(card, "wolsung.cards.chat.initiativeCard", {
-                    name: CONFIG.Cards.documentClass.getCardShortName(card),
-                    tokenName: game.combat.getEmbeddedDocument("Combatant", fd.postac).token.name,
-                    actorName: game.combat.getEmbeddedDocument("Combatant", fd.postac).actor.name
-                });
+                CONFIG.Cards.documentClass._cardForInitiative(card, hand, game.combat, fd.postac);
             },
             rejectClose: false,
             options: {jQuery: false}

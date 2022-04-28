@@ -292,7 +292,7 @@ export default class WolsungChatLog extends ChatLog {
 
         //get list of Cards on hand
         const cardsDeckId = game.cards.getName(game.settings.get("wolsung", "wolsungDeck")).id;
-        const cardsList = hand.cards.filter(card => card.data.origin == cardsDeckId)
+        const cardsList = hand.cards.filter(card => card.data.origin == cardsDeckId);
 
         //render Dialog
         return WolsungCardSelectDialog.prompt({

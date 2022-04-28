@@ -79,6 +79,7 @@ export default class WolsungCombat extends Combat {
         const vaBanque = this.getFlag("wolsung", "vaBanque");
         this.combatants.map(c => {this.generateOdpornosc(c, type, vaBanque)});
         super.startCombat();
+        this.rollAll();
     }
 
     /** @inheritdoc */

@@ -226,4 +226,29 @@ export default class WolsungCards extends Cards {
         ChatMessage.applyRollMode(messageData, game.settings.get("core", "rollMode"));
         return ChatMessage.create(messageData);
     }
+
+
+    static async _cardForInitiative(card, hand, combat, combatantId) {
+        const discard = game.cards.getName(game.settings.get("wolsung", "discardPile"));
+        try {
+            await hand.pass(discard, [card.id], {chatNotification: false})
+        }
+        catch (e) {
+            ui.notifications.error("<div>" + game.i18n.localize("wolsung.cards.hand.inicjatywaError.noCard") + "</div>");
+            return false;
+        }
+        let initiativeValue = card.data.value;
+        if (card.data.suit == "wolsung.cards.joker.black.suit") initiativeValue += 0.6;
+        if (card.data.suit == "wolsung.cards.joker.red.suit") initiativeValue += 0.5;
+        if (card.data.suit == "wolsung.cards.spades.suit") initiativeValue += 0.4;
+        if (card.data.suit == "wolsung.cards.hearts.suit") initiativeValue += 0.3;
+        if (card.data.suit == "wolsung.cards.diamonds.suit") initiativeValue += 0.2;
+        if (card.data.suit == "wolsung.cards.clubs.suit") initiativeValue += 0.1;
+        combat.updateEmbeddedDocuments("Combatant", [{_id: combatantId, initiative: initiativeValue}]);
+        CONFIG.Cards.documentClass._postChatNotification(card, "wolsung.cards.chat.initiativeCard", {
+            name: CONFIG.Cards.documentClass.getCardShortName(card),
+            tokenName: game.combat.getEmbeddedDocument("Combatant", combatantId).token.name,
+            actorName: game.combat.getEmbeddedDocument("Combatant", combatantId).actor.name
+        });
+    }
 }
