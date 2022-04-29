@@ -131,14 +131,18 @@ ${game.i18n.localize("wolsung.cards.hand.jocker")}`
     Handlebars.registerHelper("combatDef", function(combat, combatantId) {
         const actor = combat.getEmbeddedDocument("Combatant", combatantId).actor;
         const type = combat.getFlag("wolsung", "konfrontacja");
-        if (actor == undefined) return;
-        switch (type) {
-            case "walka":
-                return actor.data.data.konfrontacja.obrona.value;
-            case "poscig":
-                return actor.data.data.konfrontacja.wytrwalosc.value;
-            case "dyskusja":
-                return actor.data.data.konfrontacja.pewnoscSiebie.value;
+        try {
+            switch (type) {
+                case "walka":
+                    return actor.data.data.konfrontacja.obrona.value;
+                case "poscig":
+                    return actor.data.data.konfrontacja.wytrwalosc.value;
+                case "dyskusja":
+                    return actor.data.data.konfrontacja.pewnoscSiebie.value;
+            }
+        }
+        catch (e) {
+            return;
         }
     });
 }
