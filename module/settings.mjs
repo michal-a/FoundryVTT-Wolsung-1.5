@@ -54,6 +54,15 @@ wolsungSettings.numberOfPlayers = {
     default: 4
 };
 
+wolsungSettings.autoOdpornosc = {
+    config: true,
+    scope: "world",
+    name: "SETTINGS.autoOdpornosc.name",
+    hint: "SETTINGS.autoOdpornosc.label",
+    type: Boolean,
+    default: true
+}
+
 wolsungSettings.sortingOfSkills = {
     config: true,
     scope: "client",

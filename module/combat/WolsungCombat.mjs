@@ -53,6 +53,7 @@ export default class WolsungCombat extends Combat {
     }
 
     async generateOdpornosc(combatant, type, vaBanque) {
+        if (!game.settings.get("wolsung", "autoOdpornosc")) return;
         let actor = combatant.actor;
         if (actor.type == "bohater") {
             let value = 13
@@ -69,7 +70,7 @@ export default class WolsungCombat extends Combat {
                     break;
             }
             value += -parseInt(actor.data.data.atrybuty[atrybut]["wartosc"]) - Math.abs(actor.data.data.atrybuty[atrybut]["rany"]);
-            if (vaBanque) value += 3;
+            if (vaBanque && actor.isPlayerOwner) value += 3;
             await actor.update({data: {konfrontacja: {odpornosc: {value: value, max: value}}}});
         }
     }

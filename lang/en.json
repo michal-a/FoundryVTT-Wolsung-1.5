@@ -494,6 +494,10 @@
             "label": "Alfabetyczne sortowanie listy umiejętności na karcie postaci wzdłuż kolumn lub rzędów. Wymaga zamknięcia i ponownego otwarcia karty postaci.",
             "row": "rzędami",
             "column": "kolumnami"
+        },
+        "autoOdpornosc": {
+            "name": "Automatyczna Odporność:",
+            "label": "Automatycznie wylicza Odporność bohaterów po rozpoczęciu lub zmianie typu konfrontacji"
         }
     }
 }
