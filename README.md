@@ -18,10 +18,11 @@ This is a Wolsung 1.5 unofficial implementation for Foundry VTT. There is no con
 
 ## FEATURES
 - Obsługa kart i żetonów do Wolsunga.
-- Inicjatywa losowana poprzez ciągniecie kart w każdej turze. Możliwość użycia karty z ręki by zastąpić kartę inicjatywy.
+- Inicjatywa losowana poprzez ciągniecie kart w każdej turze. Możliwość użycia karty z ręki by zastąpić kartę inicjatywy (poprzez prawoklik lub przeciągnięcie).
 - Komenda /wss rozdająca karty i żetony na rozpoczęcie sesji
 - Obsługa rzutów według zasad Wolsunga wraz z traktowaniem przerzutu jako 10. Rzuty dostępne są z karty postaci, karty obsady oraz chatu poprzez komendę /wr. Dice so Nice jest również obsługiwany.
 - Modyfikowanie rzutów kartami i żetonami poprzez kliknięciem prawym przyciskiem na wiadomość w Chacie lub przeciągnięcie karty/żetonu na wiadomość. UWAGA: wymaga zainstalowania modułu _socketlib_ i aktywowania go w ustawieniach.
+- Trzy typy konfrontacji wyświetlające oraz możliwość wyboru konfrontacji Va Banque. Zmienia to wyświetlany typ Obrony (Obrona, Wytrwałość i Pewność Siebie) w _Combat Tracker_. Ponadto automatyczne wyliczanie odporności bohaterów (_Actor_ w typi _bohater_), które można wyłączyć w ustawieniach.
 - Automatyczne tworzenie się rąk z kartami dla graczy i MG.
 - Instrukcje dla graczy oraz MG dostępne w Compendium.
 
