@@ -1,4 +1,6 @@
+/** @inheritdoc */
 export default class WolsungCardSelectDialog extends Dialog {
+    /** @inheritdoc */
     static get defaultOptions() {
         return foundry.utils.mergeObject(super.defaultOptions, {
             template: "systems/wolsung/templates/chat/card-selector-dialog.hbs",
@@ -9,12 +11,17 @@ export default class WolsungCardSelectDialog extends Dialog {
         });
     }
     
+    /** @inheritdoc */
     activateListeners(html) {
         html.find(".card-selector").change(this._updateSelectedCard.bind(this));
 
         super.activateListeners(html)
     }
 
+    /**
+     * Render Card view inner section on change of the card
+     * @param {Object} event 
+     */
     async _updateSelectedCard(event) {
         event.preventDefault();
         const cardId = event.currentTarget.value;

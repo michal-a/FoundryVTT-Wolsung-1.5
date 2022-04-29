@@ -1,3 +1,4 @@
+/** @inheritdoc */
 export default class WolsungCardsDirectory extends CardsDirectory {
 
     /** @override */

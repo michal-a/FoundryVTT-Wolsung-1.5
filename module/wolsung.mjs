@@ -112,10 +112,11 @@ Hooks.on('ready', async function(){
             game.settings.set('wolsung', 'wereCardsImported', true);
         }
 
+        // Encounters settings for Wolsung
         if (game.settings.get('wolsung', 'firstRun')) {
             game.settings.set("core", Combat.CONFIG_SETTING, {
                 resource: 'konfrontacja.odpornosc.value',
-                skipDefeated: true
+                skipDefeated: false
               });
               game.settings.set('wolsung', 'firstRun', false);
         }

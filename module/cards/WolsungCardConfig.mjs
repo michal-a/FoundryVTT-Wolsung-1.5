@@ -1,3 +1,4 @@
+/** @inheritdoc */
 export default class WolsungCardConfig extends CardConfig {
     static get defaultOptions() {
         return mergeObject(super.defaultOptions, {

@@ -14,13 +14,26 @@ export function wolsungRollFormat(formula) {
     return {numberOfDices: numberOfDices, explodeOn: explodeOn, modificator: modificator};
 }
 
+/**
+ * Return if Roll formula is for Wolsung roll
+ * @param {String} formula 
+ * @returns {Boolean}
+ */
 export function isWolsungRoll(formula) {
     if (formula.match(/^{(1d10x>=\d\d?,?)+}kh\s[\+\-]\s\d+$/g)) return true;
     else return false;
 }
 
+/**
+ * Handle creating of Wolsung Roll by command /wr
+ * @param {String} messageText 
+ * @param {Object} data 
+ * @returns 
+ */
 export async function wolsungRollCommand(messageText, data) {
+    // Match command to regexp
     let match = messageText.match(new RegExp(`^/wr\\s*(\\d+)\\s*d\\s*(\\d+)\\s*([\+\-]\\s*\\d+)?\\s*(#.*)?$`));
+    // Return error if command doesn't match
     if (!match) return (messageText) => {
         ui.notifications.error(
             `<div>Failed parsing your command:</div>
@@ -30,21 +43,32 @@ export async function wolsungRollCommand(messageText, data) {
         );
         return null;
     }
-    let rollFormule = "{" + Array(parseInt(match[1])).fill("1d10x>=" + match[2]).join() + "}kh";
+    // Prepare formula for roll
+    let rollFormula = "{" + Array(parseInt(match[1])).fill("1d10x>=" + match[2]).join() + "}kh";
+    // Add modificator or + 0 if there is no modificator
     if (typeof match[3] !== "undefined") {
-        rollFormule += match[3].replace(/\s/g, '');
+        rollFormula += match[3].replace(/\s/g, '');
     }
     else {
-        rollFormule += "+ 0";
+        rollFormula += "+ 0";
     }
-    let r = new Roll(rollFormule);
+    // Evaluate roll from formula
+    let r = new Roll(rollFormula);
     await r.evaluate();
+
+    // Add flavor if provided after #
     if (typeof match[4] !== "undefined") {
         r.toMessage({flavor: match[4].replace(/^#\s/, '')});
     }
-    else r.toMessage();
+    else r.toMessage(data);
 }
 
+/**
+ * Handle command /wss for dealing cards at start of the session
+ * @param {String} messageText 
+ * @param {Object} data 
+ * @returns 
+ */
 export async function wolsungSessionStart(messageText, data) {
     //Checking if user is GM
     if (game.user.data.role != 4) {
@@ -69,6 +93,7 @@ export async function wolsungSessionStart(messageText, data) {
         playersHands = messageText.match(/(?:[^\s"']+|['"][^'"]*["'])+/g).slice(1).map(handName =>{
             if ((handName.charAt(0) == "'" || handName.charAt(0) == '"') && (handName.charAt(handName.length - 1) == "'" || handName.charAt(handName.length - 1) == '"')) handName = handName.substring(1,handName.length - 1);
             let hand;
+            // Try to find all hands by their names
             try { 
                 hand = game.cards.getName(handName);
                 if (!playersHandsIds.includes(hand.id)) errorHands.push(handName);
@@ -79,7 +104,7 @@ export async function wolsungSessionStart(messageText, data) {
             return hand;
         });
 
-        // Check for errors
+        // Check for errors in hand name. If they exist, stop execution
         if (errorHands.length > 0) {
             ui.notifications.error(game.i18n.format("wolsung.wss.undefinedHand", {hands: errorHands.join(', ')}));
             return null;
@@ -117,6 +142,10 @@ export async function wolsungSessionStart(messageText, data) {
     ui.notifications.info(game.i18n.localize("wolsung.wss.success"));
 }
 
+/**
+ * Return Cards object which is current user's hand
+ * @returns {Object}
+ */
 export function wolsungGetHand() {
     if (game.user.role == 4) return game.cards.get(game.settings.get('wolsung', 'GMHandId'));
     else return game.cards.get(game.user.getFlag('wolsung', 'handId'))

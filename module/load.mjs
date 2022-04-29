@@ -1,3 +1,6 @@
+/** 
+ * Preload templates
+ * */
 export default async function loadWolsung() {
     const templatePaths = [
         "systems/wolsung/templates/partials/bohater-umiejetnosci-block.hbs",

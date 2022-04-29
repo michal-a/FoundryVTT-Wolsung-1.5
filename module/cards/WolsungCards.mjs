@@ -1,4 +1,6 @@
+/** @inheritdoc */
 export default class WolsungCards extends Cards {
+    /** @inheritdoc */
     async _drawCards(number, how) {
 
         // Confirm that sufficient cards are available
@@ -34,6 +36,7 @@ export default class WolsungCards extends Cards {
         return drawn;
     }
     
+    /** @inheritdoc */
     async deal(to, number=1, {action="deal", how=0, updateData={}, chatNotification=true}={}) {
 
         // Validate the request
@@ -172,6 +175,11 @@ export default class WolsungCards extends Cards {
         });
     }
 
+    /**
+     * Return short name of the Card
+     * @param {Object} card 
+     * @returns {String}
+     */
     static getCardShortName(card) {
         let cardShortName
         switch (card.data.value) {
@@ -228,6 +236,14 @@ export default class WolsungCards extends Cards {
     }
 
 
+    /**
+     * Change initiative by card
+     * @param {Object} card 
+     * @param {Object} hand 
+     * @param {Object} combat 
+     * @param {String} combatantId 
+     * @returns 
+     */
     static async _cardForInitiative(card, hand, combat, combatantId) {
         const discard = game.cards.getName(game.settings.get("wolsung", "discardPile"));
         try {

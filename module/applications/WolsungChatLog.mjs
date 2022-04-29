@@ -84,6 +84,11 @@ export default class WolsungChatLog extends ChatLog {
         return options;
     }
 
+    /**
+     * Check if message is Wolsung Roll
+     * @param {Object} messageId 
+     * @returns {Boolean}
+     */
     _useOnRollCondition(messageId) {
         const message = game.messages.get(messageId);
 
@@ -100,10 +105,15 @@ export default class WolsungChatLog extends ChatLog {
         return true;
     }
 
+    /**
+     * Check if message is Wolsung Roll and user has Wolsung tokens
+     * @param {String} messageId 
+     * @returns {Bolean}
+     */
     _useZetonOnRollContextCondition(messageId) {
         if (!this._useOnRollCondition(messageId)) return false;
 
-        //check if user have Tokens in hand
+        //check if user has Tokens in hand
         let haveZetons = false;
         const hand = wolsungGetHand();
         if (hand != undefined) {
@@ -113,10 +123,15 @@ export default class WolsungChatLog extends ChatLog {
         return  haveZetons;
     }
 
+    /**
+     * Check if message is Wolsung Roll and user has Cards
+     * @param {String} messageId 
+     * @returns {Bolean}
+     */
     _useCardOnRollContextCondition(messageId) {
         if (!this._useOnRollCondition(messageId)) return false;
 
-        //check if user have Cards in hand
+        //check if user has any Cards in hand
         let haveCards = false;
         const hand = wolsungGetHand()
         if (hand != undefined) {
