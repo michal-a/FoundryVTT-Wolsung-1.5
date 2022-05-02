@@ -22,3 +22,13 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+Wolsung 1.5 for Foundry VTT autorstwa Michał "Feanir" Alicki to niezależny
+dodatek do Wolsunga, niepowiązany z autorem gry, którym jest Artur Ganszyniec.
+Produkt wydany w ramach Otwartej Licencji Wolsunga.
+
+Wolsung: Magia Wieku Pary, został wymyślony przez Artura Ganszyńca i wydany
+przez Kuźnię Gier.
+
+Wolsung: Magia i Melonik, copyright © Artur Ganszyniec. Wszelkie prawa
+zastrzeżone.
