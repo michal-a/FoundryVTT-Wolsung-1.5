@@ -70,7 +70,7 @@ export default class WolsungCombat extends Combat {
                     break;
             }
             value += -parseInt(actor.data.data.atrybuty[atrybut]["wartosc"]) - Math.abs(actor.data.data.atrybuty[atrybut]["rany"]);
-            if (vaBanque && actor.isPlayerOwner) value += 3;
+            if (vaBanque && actor.hasPlayerOwner) value += 3;
             await actor.update({data: {konfrontacja: {odpornosc: {value: value, max: value}}}});
         }
     }
