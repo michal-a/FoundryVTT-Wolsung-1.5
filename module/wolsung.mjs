@@ -69,8 +69,6 @@ Hooks.once("init", function(){
     // Create System Settings
     Object.keys(wolsungSettings).map(key => game.settings.register("wolsung", key, wolsungSettings[key]));
 
-    // Create socket for socketlib
-    var socket;
 
     console.log("Wolsung | Wolsung 1.5 System is initialized");
 });
@@ -173,8 +171,8 @@ Hooks.on('chatMessage', (_, messageText, data) => {
 
 // Register wolsung socketlib functions
 Hooks.once("socketlib.ready", () => {
-	socket = socketlib.registerSystem("wolsung");
-    socket.register("updateChatMessage", async (messageId, data) => {
+	CONFIG.wolsungSocket = socketlib.registerSystem("wolsung");
+    CONFIG.wolsungSocket.register("updateChatMessage", async (messageId, data) => {
         const message = game.messages.get(messageId);
         message.update(data);
     });

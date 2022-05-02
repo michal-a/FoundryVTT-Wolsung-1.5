@@ -232,7 +232,7 @@ export default class WolsungChatLog extends ChatLog {
         await modRoll.evaluate();
 
         //update ChatMessage
-        await socket.executeAsGM("updateChatMessage", message.id, {
+        await CONFIG.wolsungSocket.executeAsGM("updateChatMessage", message.id, {
             flavor: modRoll.flavor,
             content: modRoll.total,
             roll: JSON.stringify(modRoll)
@@ -287,7 +287,7 @@ export default class WolsungChatLog extends ChatLog {
         await modRoll.evaluate();
 
         //update ChatMessage
-        await socket.executeAsGM("updateChatMessage", message.id, {
+        await CONFIG.wolsungSocket.executeAsGM("updateChatMessage", message.id, {
             flavor: modRoll.flavor,
             content: modRoll.total,
             roll: JSON.stringify(modRoll)
@@ -413,7 +413,7 @@ export default class WolsungChatLog extends ChatLog {
         await modRoll.evaluate();
 
         //update ChatMessage
-        await socket.executeAsGM("updateChatMessage", message.id, {
+        await CONFIG.wolsungSocket.executeAsGM("updateChatMessage", message.id, {
             flavor: modRoll.flavor,
             content: modRoll.total,
             roll: JSON.stringify(modRoll)
