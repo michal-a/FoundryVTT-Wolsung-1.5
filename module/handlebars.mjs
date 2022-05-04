@@ -70,6 +70,8 @@ export default function registerHandlebars() {
     });
 
     Handlebars.registerHelper("cardDetails", function(card) {
+        const cardsDeckId = game.cards.getName(game.settings.get("wolsung", "wolsungDeck")).id;
+        if (card.data.origin != cardsDeckId) return;
         let title = `${game.i18n.localize("wolsung.cards.hand.bonus")}${card.data.data.testBonus}
 ${game.i18n.localize("wolsung.cards.hand.sukces")}${card.data.data.st}`;
         if (card.data.data.podbicie) title += `
@@ -78,6 +80,19 @@ ${game.i18n.localize("wolsung.cards.hand.podbicie")}${card.data.data.podbicie}`;
 ${game.i18n.localize("wolsung.cards.hand.jocker")}`
         return title
     });
+
+    Handlebars.registerHelper("cardType", function(card) {
+        const cardsDeckId = game.cards.getName(game.settings.get("wolsung", "wolsungDeck")).id;
+        const zetonDeckId = game.cards.getName(game.settings.get("wolsung", "zetonDeck")).id;
+        switch(card.data.origin) {
+            case cardsDeckId:
+                return "karta";
+            case zetonDeckId:
+                return "zeton";
+            default:
+                return;
+        }
+    })
 
     Handlebars.registerHelper("combatType", function(combat) {
         const type = combat.getFlag("wolsung", "konfrontacja");

@@ -19,7 +19,7 @@ import WolsungChatLog from "./applications/WolsungChatLog.mjs";
 import WolsungCombat from "./combat/WolsungCombat.mjs";
 import WolsungCombatTracker from "./combat/WolsungCombatTracker.mjs";
 
-Hooks.once("init", function(){
+Hooks.once("init", async function(){
     console.log("Wolsung | Initialising Wolsung 1.5 System");
 
     // Import Wolsung Config
@@ -68,6 +68,12 @@ Hooks.once("init", function(){
 
     // Create System Settings
     Object.keys(wolsungSettings).map(key => game.settings.register("wolsung", key, wolsungSettings[key]));
+    // Support Card Hand Mini Toolbar
+    if (game.modules.get('hand-mini-bar').active) {
+        const { default: WHMB } = await import('./cards/WolsungHandMiniBar.mjs');
+        CONFIG.HandMiniBar.documentClass = WHMB;
+        HandMiniBar = WHMB;
+    }
 
 
     console.log("Wolsung | Wolsung 1.5 System is initialized");
@@ -145,6 +151,7 @@ Hooks.on('ready', async function(){
         }
 
     }
+
 });
 
 // Hook for /wr (Wolsung Roll) command

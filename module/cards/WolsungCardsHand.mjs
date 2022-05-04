@@ -130,28 +130,10 @@ export default class WolsungCardsHand extends CardsHand {
     }
 
     async _onDrawCards(element) {
-        const card = this.object.cards.get(element.dataset.cardid);
-        const hand = this.object;
-        const deck = game.cards.getName(game.settings.get("wolsung", "wolsungDeck"));
-        let maxCards = 3;
-        if (!this.object.hasPlayerOwner) {
-            maxCards = 4;
-            const noPlayers = game.settings.get("wolsung", "numberOfPlayers")
-            if (noPlayers > 4) maxCards = noPlayers;
-        }
-        let toDraw = maxCards - this.object.cards.toObject().filter(card => card.origin == deck.id).length;
-        if (toDraw > 0) {
-            for (let i = 0; i < toDraw; i++) await deck.deal([hand], 1, {how: 2, chatNotification: false});
-            await card.reset();
-            CONFIG.Cards.documentClass._postChatNotification(card, "wolsung.cards.chat.drawCards", {
-                number: toDraw
-            });
-        }
-        else {
-            ui.notifications.error("<div>" + game.i18n.localize("wolsung.cards.chat.errorDraw") + "</div>", );
-        }
-        
+        const zeton = this.object.cards.get(element.dataset.cardid);
+        this.object.drawCards(zeton);
     }
+
 
     async _onUseCard(element) {
         const hand = this.object;

@@ -86,9 +86,6 @@ export default class WolsungCombatTracker extends CombatTracker {
                 if (newCombat) combat = await this.newCombat();
                 else {
                     combat= this.viewed;
-                    console.log(selected.type)
-                    console.log(selected.vaBanque)
-                    console.log(combat.rund)
                     if ((selected.type != fd.type || selected.vaBanque != fd.vabanque) && combat.rund != 0) {
                         combat.combatants.map(c => {combat.generateOdpornosc(c, fd.type, fd.vabanque)});
                     }

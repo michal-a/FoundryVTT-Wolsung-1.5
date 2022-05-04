@@ -221,6 +221,27 @@ export default class WolsungCards extends Cards {
         return cardShortName;
     }
 
+    async drawCards(zeton) {
+        const deck = game.cards.getName(game.settings.get("wolsung", "wolsungDeck"));
+        let maxCards = 3;
+        if (!this.hasPlayerOwner) {
+            maxCards = 4;
+            const noPlayers = game.settings.get("wolsung", "numberOfPlayers")
+            if (noPlayers > 4) maxCards = noPlayers;
+        }
+        let toDraw = maxCards - this.cards.toObject().filter(card => card.origin == deck.id).length;
+        if (toDraw > 0) {
+            for (let i = 0; i < toDraw; i++) await deck.deal([this], 1, {how: 2, chatNotification: false});
+            await zeton.reset();
+            CONFIG.Cards.documentClass._postChatNotification(zeton, "wolsung.cards.chat.drawCards", {
+                number: toDraw
+            });
+        }
+        else {
+            ui.notifications.error("<div>" + game.i18n.localize("wolsung.cards.chat.errorDraw") + "</div>", );
+        }
+    }
+
     static _postChatNotification(source, action, context) {
         const messageData = {
             type: CONST.CHAT_MESSAGE_TYPES.OTHER,

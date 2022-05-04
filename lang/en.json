@@ -462,6 +462,13 @@
         "socketlib": {
             "activate": "W celu umożliwiania modyfikowania rzutów kośćmi za pomocą kart i żetonów, proszę aktywuj moduł socketlib",
             "install": "W celu umożliwiania modyfikowania rzutów kośćmi za pomocą kart i żetonów, proszę zainstaluj i aktywuj moduł socketlib"
+        },
+        "handminibar": {
+            "noZetons": "Brak Żetonów na ręku",
+            "drawCards": "Dobierz karty za Żeton",
+            "qDrawCards": "Czy dobrać karty za Żeton?",
+            "discardCardTitle": "Wybierz kartę do odrzucenia",
+            "discardCardLabel": "Odrzuć kartę"
         }
     },
     "SETTINGS": {
